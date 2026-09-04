@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>주차대수 산정기 — MANMIN-Ver1.0</title>
+<title>부설주차장 법정대수 산정기 · MANMIN Ver-5.0</title>
 <meta name="application-name" content="주차산정">
-<meta name="description" content="주차장법 시행령 별표1 기준 부설주차장 법정대수 자동 산정 | ARCHITECT KIM MANMIN">
-<meta name="theme-color" content="#00C2A8">
+<meta name="description" content="주차장법 시행령 [별표 1]·전북 6개 시 조례 기준 부설주차장 법정대수·장애인·전기차 구획 자동 산정 · A4 산정서 — MANMIN Ver-5.0 | ARCHITECT KIM MANMIN">
+<meta name="theme-color" content="#15803d">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -22,7 +22,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
 <!-- OG -->
-<meta property="og:title" content="주차장법 — 부설주차장 법정대수 산정기">
+<meta property="og:title" content="부설주차장 법정대수 산정기 · MANMIN Ver-5.0">
 <meta property="og:description" content="주차장법 시행령 별표1 · 전북 6개 시 조례 기준 | MANMIN">
 <meta property="og:image" content="og-image.jpg">
 <meta property="og:type" content="website">
@@ -71,43 +71,17 @@
 }
 .pwa-close-btn:hover{background:rgba(255,255,255,.12);color:#fff}
 
-/* ══ 헤더 로고 이미지 (JPG) ══ */
-.brand-logo-img{
-  width:44px;height:44px;border-radius:10px;
-  object-fit:cover;flex-shrink:0;
-  box-shadow:0 0 18px rgba(0,194,168,.3);
-  transition:box-shadow .25s;
-}
-.brand:hover .brand-logo-img{box-shadow:0 0 28px rgba(75,142,245,.5)}
-
-/* ══ 헤더 히어로 이미지 배너 ══ */
-.hero-img-wrap{
-  position:relative;overflow:hidden;
-  max-height:200px;
-  display:flex;align-items:center;justify-content:center;
-}
-.hero-img-wrap img{
-  width:100%;max-height:200px;object-fit:cover;object-position:center 30%;
-  filter:brightness(.6) saturate(.8);
-  display:block;
-}
-.hero-img-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(11,27,46,.2) 0%,rgba(11,27,46,.85) 100%);
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  padding:20px 24px;
-}
 @media(max-width:640px){
-  .hero-img-wrap{max-height:140px}
-  .hero-img-wrap img{max-height:140px}
   #pwa-banner{padding:12px 12px}
   .pwa-install-btn{padding:9px 14px;font-size:12px}
 }
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/fonts/manmin-fonts.css"><!-- v5.0 로컬 폴백 폰트 (§3-7) -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=DM+Mono:wght@400;500&family=Orbitron:wght@700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" crossorigin="anonymous"></script><!-- v5.0 JPG 엔진 (§3-5) — 원본은 동적 로드 -->
 <style>
 /* ═══════════════════════════════════════════════
-   MANMIN Design System Ver 1.0 — 주차대수 산정기
+   MANMIN Design System Ver-5.0 (2026-09-04 v5.0 디자인 통일 — 3단 헤더·탭·A4·JPG·FAB 건축 녹색 · §3-12 라이트 본문)
    Navy × Teal × Gold × Cobalt
 ═══════════════════════════════════════════════ */
 :root{
@@ -124,7 +98,7 @@
   --glow-t:0 0 30px rgba(0,194,168,.18);
   --glow-g:0 0 30px rgba(232,160,32,.15);
   --glow-c:0 0 24px rgba(75,142,245,.2);
-  --font-base:'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --font-base:'Noto Sans KR','Noto Sans KR Local','Apple SD Gothic Neo','Malgun Gothic',sans-serif;   /* v5.0 §3-7 로컬 폴백 */
   --font-mono:'DM Mono','Consolas',monospace;
   --fs-2xs:10px; --fs-xs:11px; --fs-sm:12px; --fs-md:14px;
   --fs-lg:16px; --fs-xl:20px; --fs-2xl:24px;
@@ -151,269 +125,48 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 ::-webkit-scrollbar-track{background:var(--navy)}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
 
-/* ══ HEADER ══ */
-.hdr{position:sticky;top:0;z-index:200;background:rgba(9,20,38,.98);
-  backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:0 20px}
-.hdr-inner{max-width:1320px;margin:0 auto;height:64px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.brand-logo{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-  overflow:hidden;flex-shrink:0;box-shadow:0 0 18px rgba(0,194,168,.3);transition:box-shadow .25s;
-  background:var(--navy3)}
-.brand-logo svg{width:30px;height:30px}
-.brand:hover .brand-logo{box-shadow:0 0 28px rgba(75,142,245,.5)}
-.brand-txt .nm{font-size:17px;font-weight:900;color:var(--teal2);letter-spacing:.02em;line-height:1}
-.brand-txt .sb{font-size:10px;font-weight:400;color:var(--slate);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
-.hdr-right{display:flex;align-items:center;gap:8px;flex-wrap:nowrap}
-.ver-pill{font-family:var(--font-mono);font-size:10px;font-weight:500;
-  padding:4px 11px;border-radius:20px;background:rgba(75,142,245,.1);
-  color:var(--cobalt2);border:1px solid rgba(75,142,245,.25);letter-spacing:.06em;white-space:nowrap}
-.hdr-btn{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;
-  font-family:var(--font-base);border-radius:7px;padding:7px 12px;cursor:pointer;
-  transition:all .2s;white-space:nowrap;border:1px solid;text-decoration:none}
-.hdr-btn.preview{color:var(--text2);background:rgba(255,255,255,.05);border-color:var(--border)}
-.hdr-btn.preview:hover{background:rgba(255,255,255,.1);border-color:var(--slate)}
-.hdr-btn.mobile-btn{color:var(--cobalt2);background:rgba(75,142,245,.08);border-color:rgba(75,142,245,.25)}
-.hdr-btn.mobile-btn:hover{background:rgba(75,142,245,.18)}
-.hdr-btn.a4-btn{color:var(--teal2);background:rgba(0,194,168,.08);border-color:rgba(0,194,168,.3)}
-.hdr-btn.a4-btn:hover{background:rgba(0,194,168,.18)}
-.hdr-btn.home{color:var(--gold);background:rgba(232,160,32,.08);border-color:rgba(232,160,32,.2)}
-.hdr-btn.home:hover{background:rgba(232,160,32,.18);box-shadow:0 0 14px rgba(232,160,32,.25)}
-.hdr-sep{width:1px;height:24px;background:var(--border);opacity:.5;flex-shrink:0}
-@media(max-width:700px){
-  .btn-txt{display:none}
-  .hdr-btn{padding:7px 9px}
-  .ver-pill{display:none}
-}
-/* ══════════════════════════════════════════════
-   반응형 시스템 — 3 브레이크포인트
-   Desktop  : 981px+   (2-column layout)
-   Tablet   : 641~980px (single column, large touch)
-   Mobile   : ~640px   (compact, thumb-friendly)
-   Mini     : ~380px   (small phone extra compact)
-══════════════════════════════════════════════ */
-
-/* ── 태블릿 (641~980px) ── */
-@media(max-width:980px) and (min-width:641px){
-  /* 헤더 */
-  .hdr{padding:0 16px}
-  .brand-txt .nm{font-size:15px}
-  .hdr-btn{font-size:11px;padding:7px 10px}
-
-  /* 히어로 */
-  .hero{padding:32px 20px 22px}
-  .hero-title{font-size:clamp(24px,4vw,38px)}
-  .hero-sub{font-size:12px}
-
-  /* 레이아웃 */
-  .page{padding:20px 16px 80px;gap:18px}
-  .card{padding:20px}
-
-  /* 산정 버튼 */
-  .calc-btn{font-size:15px;padding:14px}
-
-  /* 결과 */
-  .metrics-grid{grid-template-columns:repeat(2,1fr);gap:8px}
-  .vh-value{font-size:clamp(32px,5vw,48px)}
-
-  /* 미리보기 탭 */
-  .pv-tab{padding:6px 10px;font-size:11px}
-  .pv-tab-row{gap:3px}
-
-  /* A4 미리보기 */
-  .a4-wrap{
-    width:520px;
-    max-width:calc(100vw - 32px);
-  }
-
-  /* Galaxy 폰 프레임 — 태블릿에서 폰 크기 유지 */
-  #pv-mobile-view{padding:16px 16px 8px}
-}
-
-/* ── 모바일 (≤640px) ── */
+/* ══ HEADER (v5.0 §3-1 · §18-1 — 3단 · 탭은 헤더 안 · sticky 금지 · 로고 없음) ══ */
+.app-header{position:relative;z-index:40;background:linear-gradient(135deg,#052e16 0%,#15803d 50%,#16a34a 100%);color:#fff;
+  box-shadow:0 2px 20px rgba(21,128,61,.35);}
+.header-inner{max-width:1300px;margin:0 auto;padding:20px 24px 16px;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.brand-logo{display:flex;align-items:flex-start;min-width:0;}
+.brand-texts{min-width:0;}
+.hdr-eyebrow{font-size:11px;font-weight:600;opacity:.7;color:#fff;letter-spacing:.15em;line-height:16px;text-transform:uppercase;margin-bottom:6px;}
+.hdr-h1{font-size:26px;font-weight:900;color:#fff;letter-spacing:.04em;line-height:1.2;margin:0;}
+.hdr-sub{font-size:11px;margin-top:8px;color:#fff;opacity:.85;letter-spacing:.02em;line-height:17px;font-weight:400;}
+.hdr-manmin{font-family:'Orbitron',sans-serif!important;font-weight:900;font-size:12px;color:#86efac;letter-spacing:.08em;
+  text-shadow:0 0 8px rgba(134,239,172,.6);white-space:nowrap;display:inline-block;line-height:17px;vertical-align:top;}
+.hdr-right-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:6px;padding-bottom:2px;flex-shrink:0;}
+.hdr-right{text-align:right;opacity:.75;color:#fff;font-size:11px;line-height:16px;font-weight:400;}   /* 4줄 13/11/11/10 = 70px */
+.hdr-right strong{font-size:13px;font-weight:700;line-height:19px;}
+.hdr-right em{font-size:10px;color:#86efac;font-style:normal;display:block;margin-top:4px;line-height:15px;}
+@media(max-width:768px){ .hdr-right{display:none;} .hdr-right-wrap{gap:0;} }
 @media(max-width:640px){
-  /* 헤더 */
-  .hdr{padding:0 12px}
-  .hdr-inner{height:56px;gap:8px}
-  .brand-logo{width:38px;height:38px}
-  .brand-txt .nm{font-size:14px}
-  .brand-txt .sb{display:none}
-  .btn-txt{display:none}
-  .hdr-btn{padding:6px 8px;font-size:11px}
-  .hdr-sep{display:none}
-
-  /* 히어로 */
-  .hero{padding:24px 16px 18px}
-  .hero-badge{font-size:10px;padding:5px 14px}
-  .hero-title{font-size:clamp(22px,6.5vw,32px)}
-  .hero-sub{font-size:11px;line-height:1.7}
-  .hero-sub br{display:none} /* 모바일 자연 줄바꿈 */
-  .pc-br{display:none}
-  .hero-law{font-size:10px;padding:4px 12px}
-
-  /* 레이아웃 */
-  .page{padding:16px 12px 80px;gap:14px}
-
-  /* 카드 */
-  .card{padding:16px 14px;border-radius:12px;margin-bottom:12px}
-  .card::before{height:2px}
-  .sec-title{font-size:14px;margin-bottom:14px}
-
-  /* 입력 */
-  .mm-sel,.mm-inp{font-size:16px;padding:11px 14px} /* 16px: iOS 줌 방지 */
-  .mm-sel{background-position:right 12px center;padding-right:36px}
-  .fg{margin-bottom:12px}
-  .slabel{font-size:10px}
-
-  /* 버튼 */
-  .btn-row{flex-wrap:wrap;gap:8px}
-  .calc-btn{font-size:14px;padding:14px 12px}
-  .reset-btn{flex:1;min-width:80px;text-align:center;padding:11px 12px}
-
-  /* 토글 */
-  .toggle-lbl{font-size:12px}
-  .toggle-sub{font-size:10px}
-  .tog{width:40px;height:22px}
-  .tog-sl::before{width:14px;height:14px}
-  .tog input:checked + .tog-sl::before{left:20px}
-
-  /* 결과 */
-  .verdict-hero{padding:16px 14px}
-  .vh-value{font-size:clamp(30px,8vw,44px)}
-  .vh-sub{font-size:11px}
-  .metrics-grid{grid-template-columns:repeat(2,1fr);gap:6px}
-  .metric-card{padding:10px 8px;border-radius:10px}
-  .metric-card .ml{font-size:9px}
-  .metric-card .mv{font-size:17px}
-  .formula-wrap{padding:14px 12px}
-  .step-item{gap:8px;margin-bottom:8px}
-  .s-body .s-val{font-size:12px;padding:4px 8px}
-
-  /* 테이블 — 가로 스크롤 */
-  .shadow-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
-  .tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
-
-  /* 법조문 카드 */
-  .law-card{padding:12px 14px}
-  .disab-box{padding:12px 14px}
-  .disab-l{font-size:11px}
-  .disab-v{font-size:13px}
-
-  /* 토스트 */
-  .toast{font-size:11px;padding:10px 18px;bottom:80px;max-width:calc(100vw - 32px);white-space:normal;text-align:center}
-
-  /* FAB */
-  .fab{width:48px;height:48px;font-size:20px;bottom:18px;right:16px}
-
-  /* 모달 */
-  .modal-ov{padding:12px}
-  .modal-box{border-radius:16px;max-height:calc(100vh - 48px)}
-  .modal-hdr{padding:14px 16px 12px}
-  .modal-title{font-size:15px}
-  .modal-body{padding:16px}
-  .m-tabrow{gap:2px;padding:3px}
-  .m-tab{font-size:11px;padding:8px 4px}
-
-  /* 미리보기 오버레이 */
-  .preview-ov{padding:10px 10px 16px}
-  .pv-topbar{gap:8px;padding-bottom:10px}
-  .pv-bar-title{font-size:12px}
-  .pv-tab-row{gap:2px;padding:2px}
-  .pv-tab{padding:5px 8px;font-size:10px}
-
-  /* JPG/공유 패널 */
-  .save-card{padding:16px}
-  .save-btn-grid{grid-template-columns:1fr 1fr;gap:8px}
-  .save-btn{padding:12px 8px}
-  .save-btn .sb-ico{font-size:22px}
-  .save-btn .sb-lbl{font-size:10px}
-
-  /* Galaxy S24 폰 프레임 — 모바일에서 크기 축소 */
-  #pv-mobile-view{padding:10px 8px 8px}
-  .phone{width:280px;height:606px;border-radius:44px;border-width:8px}
-  .phone-spec-row{gap:5px}
-  .p-spec-chip{font-size:8px;padding:2px 7px}
-
-  /* A4 미리보기 */
-  .a4-wrap{width:calc(100vw - 24px);max-width:100%}
-  .a4-outer{width:100%}
-
-  /* 전북 패널 */
-  #jeonbuk-panel .card{padding:14px 12px}
+  .hdr-h1{font-size:18px;}
+  .header-inner{padding:20px 14px 16px;row-gap:0;}
+  .hdr-right-wrap{padding-bottom:0;}
+  .tab-bar-inner{padding:4px 14px 0;}
 }
-
-/* ── 초소형 폰 (≤380px) ── */
-@media(max-width:380px){
-  .page{padding:12px 10px 80px}
-  .card{padding:14px 12px}
-  .hero-title{font-size:20px}
-  .hdr-inner{height:52px}
-  .brand-txt .nm{font-size:13px}
-  .hdr-btn{padding:5px 7px}
-  .mm-sel,.mm-inp{font-size:16px;padding:10px 12px}
-  .vh-value{font-size:28px}
-  .metrics-grid{grid-template-columns:repeat(2,1fr);gap:5px}
-  .metric-card .mv{font-size:15px}
-  .phone{width:258px;height:558px;border-radius:40px}
-  .pv-tab{font-size:9px;padding:4px 6px}
-  .m-tab{font-size:10px;padding:7px 3px}
-}
-
-/* ── 데스크탑 전용 hover 효과 ── */
-@media(hover:hover){
-  .card:hover{transform:translateY(-1px)}
-  .metric-card:hover{transform:translateY(-1px)}
-  .ref-item:hover{transform:translateX(2px)}
-}
-
-/* ── 터치 디바이스 최적화 ── */
-@media(pointer:coarse){
-  /* 터치 타겟 최소 44px */
-  .hdr-btn{min-height:44px;min-width:44px;justify-content:center}
-  .m-tab{min-height:40px}
-  .pv-tab{min-height:36px}
-  .tog{width:48px;height:26px;cursor:pointer}
-  .tog-sl::before{width:18px;height:18px;left:3px}
-  .tog input:checked + .tog-sl::before{left:25px}
-  .mm-sel,.mm-inp{min-height:48px}
-  .calc-btn{min-height:52px}
-  /* 스크롤 부드럽게 */
-  .modal-box,.p-screen,#result-col{-webkit-overflow-scrolling:touch}
-}
-
-
-/* ══ HERO ══ */
-.hero{position:relative;z-index:1;text-align:center;padding:40px 24px 28px;border-bottom:1px solid var(--border2)}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--cobalt2);
-  background:rgba(75,142,245,.08);border:1px solid rgba(75,142,245,.2);
-  border-radius:20px;padding:6px 18px;margin-bottom:14px}
-.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--cobalt);
-  animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.hero-title{font-weight:900;font-size:clamp(26px,5vw,46px);line-height:var(--lh-tight);
-  letter-spacing:-.03em;margin-bottom:10px;word-break:keep-all}
-.hero-title .hl-t{background:linear-gradient(90deg,var(--teal2),var(--cobalt2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-title .hl-g{background:linear-gradient(90deg,var(--gold),var(--orange));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero-sub{font-size:var(--fs-sm);color:var(--text2);line-height:var(--lh-loose);
-  max-width:620px;margin:0 auto 14px}
-.hero-law{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
-  color:var(--gold);background:rgba(232,160,32,.08);border:1px solid rgba(232,160,32,.2);
-  border-radius:20px;padding:5px 16px}
-
-/* ══ MAIN LAYOUT ══ */
-.page{position:relative;z-index:1;max-width:1320px;margin:0 auto;
-  padding:24px 20px 100px;display:grid;grid-template-columns:440px 1fr;gap:24px;align-items:start}
-@media(max-width:980px){.page{grid-template-columns:1fr}}
-@media(min-width:981px){
-  .pc-br{display:inline}
-  #result-col{position:sticky;top:80px;max-height:calc(100vh - 100px);
-    overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;padding-right:4px}
-  #result-col::-webkit-scrollbar{width:4px}
-  #result-col::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-}
+/* ══ TAB BAR (v5.0 §3-2 · §18-1) ══ */
+.tab-bar{background:transparent;overflow-x:auto;scrollbar-width:none;}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-bar-inner{max-width:1300px;margin:0 auto;padding:4px 24px 0;display:flex;}
+.tb{background:none;border:none;cursor:pointer;color:rgba(255,255,255,.75);font-family:var(--font-base);
+  padding:11px 16px;font-size:13px;font-weight:700;letter-spacing:.02em;line-height:19px;
+  border-bottom:3px solid transparent;transition:all .15s;display:flex;align-items:center;gap:5px;
+  white-space:nowrap;flex-shrink:0;-webkit-tap-highlight-color:transparent;}
+.tb:hover{color:#fff;background:rgba(255,255,255,.09);}
+.tb.active{color:#fff;background:#15803d;border-bottom-color:#86efac;}
+.tab-panel{display:none;width:100%;}
+.tab-panel.active{display:block;}
+/* v5.0-HDR — 요약 스트립 (헤더 3층) */
+.sum-bar-wrap{position:relative;z-index:1;background:#0f172a;padding:10px 0;}
+.sum-bar{max-width:1300px;margin:0 auto;padding:0 24px;display:flex;flex-wrap:wrap;gap:14px;}
+.sum-item{font-size:12px;color:#94a3b8;line-height:18px;}
+.sum-item b{font-family:'JetBrains Mono','DM Mono',monospace;font-weight:700;color:#86efac;}
+.sum-item b.ng{color:#fca5a5;} .sum-item b.na{color:#fbbf24;}
+@media(max-width:640px){.sum-bar{padding:0 14px;}.sum-item{font-size:11px;}}
 
 /* ══ CARD ══ */
 .card{background:var(--surf1);border:1px solid var(--border);border-radius:16px;
@@ -592,18 +345,19 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   transition:all .3s;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* ══ FAB ══ */
-.fab{position:fixed;bottom:22px;right:22px;z-index:500;
-  width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;
-  background:linear-gradient(135deg,var(--cobalt),#6B6EF5);
-  color:#fff;font-size:22px;box-shadow:0 4px 20px rgba(75,142,245,.5);
-  transition:all .25s;display:flex;align-items:center;justify-content:center}
-.fab:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 30px rgba(75,142,245,.6)}
-.fab-tip{position:absolute;bottom:62px;right:0;background:var(--navy2);
-  border:1px solid var(--border);border-radius:8px;padding:5px 13px;
-  font-size:11px;font-weight:600;color:var(--cobalt2);white-space:nowrap;
-  pointer-events:none;opacity:0;transform:translateY(4px);transition:all .2s}
-.fab:hover .fab-tip{opacity:1;transform:translateY(0)}
+/* ══ FAB (v5.0 §18-11 — 3줄 72×72.7 · 초기화 위 · 이용안내 아래) ══ */
+#fab-group{position:fixed;bottom:18px;right:18px;z-index:1200;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.help-fab{position:relative;z-index:auto;background:linear-gradient(135deg,#052e16 0%,#15803d 55%,#16a34a 100%);
+  border:1px solid rgba(134,239,172,.3);color:#fff;border-radius:16px;padding:11px 8px;width:72px;min-width:72px;cursor:pointer;font-family:var(--font-base);
+  box-shadow:0 4px 20px rgba(21,128,61,.65);display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.3;
+  transition:transform .15s,box-shadow .15s;animation:fabIn .55s cubic-bezier(.34,1.56,.64,1) forwards;}
+@keyframes fabIn{from{opacity:0;transform:scale(.3) rotate(-20deg);}to{opacity:1;transform:scale(1) rotate(0);}}
+.help-fab:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(21,128,61,.65);}
+.help-fab:active{transform:translateY(0);}
+.help-fab .fab-icon{font-size:20px;line-height:1;}
+.help-fab .fab-lbl{font-size:10px;font-weight:800;letter-spacing:.04em;color:#fff;}
+.help-fab .fab-sub{font-size:9px;opacity:.8;}
+@media(max-width:540px){ #fab-group{bottom:16px;right:12px;} .help-fab{padding:10px 8px;} }
 
 /* ══════════════════════════════════════════════
    중앙 오버레이 모달 시스템
@@ -689,931 +443,243 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
 .ref-body .rt{font-size:12px;font-weight:700}
 .ref-body .rs{font-size:11px;color:var(--slate);margin-top:2px}
 
-/* ══════════════════════════════════════════════
-   우측 하단 슬라이드 모달 — 이용안내 & 관련 자료
-══════════════════════════════════════════════ */
-#bottom-help-panel{
-  position:fixed;
-  bottom:86px;right:18px;
-  z-index:800;
-  width:340px;
-  max-width:calc(100vw - 24px);
-  max-height:70vh;
-  background:var(--navy2);
-  border:1px solid var(--border);
-  border-radius:18px;
-  box-shadow:0 16px 60px rgba(0,0,0,.75),0 0 0 1px rgba(75,142,245,.1);
-  display:none;
-  flex-direction:column;
-  overflow:hidden;
-  transform:translateY(20px) scale(.97);
-  opacity:0;
-  transition:transform .32s cubic-bezier(.4,0,.2,1),opacity .28s ease;
-}
-#bottom-help-panel.open{
-  display:flex;
-  transform:translateY(0) scale(1);
-  opacity:1;
-}
-#bottom-help-panel.closing{
-  transform:translateY(20px) scale(.97);
-  opacity:0;
-}
-.bhp-hdr{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 16px 12px;
-  border-bottom:1px solid var(--border);
-  flex-shrink:0;
-  background:linear-gradient(135deg,rgba(75,142,245,.08),rgba(0,194,168,.04));
-}
-.bhp-title{
-  font-size:14px;font-weight:900;color:var(--text);
-  display:flex;align-items:center;gap:7px;letter-spacing:-.01em;
-}
-.bhp-title-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:linear-gradient(135deg,var(--cobalt),var(--teal));
-  flex-shrink:0;
-}
-.bhp-close{
-  width:28px;height:28px;border-radius:50%;border:none;cursor:pointer;
-  background:rgba(255,255,255,.06);border:1px solid var(--border);
-  color:var(--slate);font-size:12px;display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
-}
-.bhp-close:hover{background:rgba(255,255,255,.12);color:var(--text)}
-.bhp-tabs{
-  display:flex;gap:2px;background:var(--surf3);
-  border-bottom:1px solid var(--border);
-  padding:6px 8px;flex-shrink:0;
-}
-.bhp-tab{
-  flex:1;padding:7px 4px;border-radius:6px;border:none;cursor:pointer;
-  background:transparent;color:var(--slate);
-  font-family:var(--font-base);font-size:10px;font-weight:700;
-  transition:all .2s;text-align:center;letter-spacing:.01em;
-}
-.bhp-tab.on{
-  background:var(--navy4);color:var(--cobalt2);
-  border:1px solid rgba(75,142,245,.2);
-  box-shadow:0 2px 8px rgba(0,0,0,.3);
-}
-.bhp-body{
-  overflow-y:auto;flex:1;padding:14px 14px;
-  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
-}
-.bhp-body::-webkit-scrollbar{width:3px}
-.bhp-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.bhp-panel{display:none}
-.bhp-panel.on{display:block;animation:fdIn .2s ease}
-
-/* 이용 단계 */
-.bhp-step{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start}
-.bhp-step-no{
-  min-width:22px;height:22px;border-radius:50%;flex-shrink:0;margin-top:1px;
-  background:rgba(75,142,245,.15);border:1px solid rgba(75,142,245,.3);
-  color:var(--cobalt2);font-size:10px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-}
-.bhp-step-txt{font-size:11px;color:var(--text2);line-height:1.7}
-.bhp-step-txt strong{color:var(--text);font-weight:700}
-
-/* 법령 아이템 */
-.bhp-law{
-  background:var(--surf2);border-left:3px solid var(--cobalt);
-  border-radius:0 8px 8px 0;padding:9px 11px;margin-bottom:7px;
-  font-size:11px;color:var(--text2);line-height:1.7;
-}
-.bhp-law strong{color:var(--cobalt2);font-weight:700}
-.bhp-law-badge{
-  display:inline-block;font-size:9px;color:var(--green);font-weight:700;
-  background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.2);
-  border-radius:4px;padding:1px 5px;margin-left:5px;
-}
-
-/* 산정기준 테이블 */
-.bhp-tbl{width:100%;border-collapse:collapse;font-size:10px;margin-bottom:8px}
-.bhp-tbl th{background:rgba(75,142,245,.1);padding:6px 8px;font-weight:700;
-  color:var(--cobalt2);border:1px solid rgba(75,142,245,.15);text-align:center}
-.bhp-tbl td{padding:5px 8px;border:1px solid var(--border2);color:var(--text2)}
-.bhp-tbl tr:nth-child(even) td{background:rgba(0,0,0,.1)}
-.bhp-tbl td:first-child{font-weight:600;color:var(--text)}
-
-/* 참고 링크 */
-.bhp-link{display:flex;align-items:center;gap:8px;
-  background:var(--surf2);border:1px solid var(--border);border-radius:8px;
-  padding:9px 11px;margin-bottom:6px;cursor:pointer;
-  text-decoration:none;color:var(--text);transition:all .2s}
-.bhp-link:hover{border-color:rgba(75,142,245,.4);color:var(--cobalt2)}
-.bhp-link-ico{font-size:16px;flex-shrink:0}
-.bhp-link-body .bhp-lt{font-size:11px;font-weight:700}
-.bhp-link-body .bhp-ls{font-size:10px;color:var(--slate);margin-top:1px}
-
-/* FAB 2 — 이용안내 전용 */
-.fab2{
-  position:fixed;bottom:22px;right:22px;z-index:810;
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-}
-.fab2-btn{
-  width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;
-  background:linear-gradient(135deg,var(--cobalt),#6B6EF5);
-  color:#fff;font-size:20px;
-  box-shadow:0 4px 20px rgba(75,142,245,.5);
-  transition:all .25s;display:flex;align-items:center;justify-content:center;
-  position:relative;
-}
-.fab2-btn:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 8px 30px rgba(75,142,245,.6)}
-.fab2-badge{
-  position:absolute;top:-2px;right:-2px;
-  width:14px;height:14px;border-radius:50%;
-  background:var(--teal);border:2px solid var(--navy);
-  display:flex;align-items:center;justify-content:center;
-  font-size:7px;color:#fff;font-weight:900;
-}
-.fab2-tip{
-  position:absolute;bottom:58px;right:0;
-  background:var(--navy2);border:1px solid var(--border);
-  border-radius:8px;padding:5px 11px;font-size:10px;font-weight:600;
-  color:var(--cobalt2);white-space:nowrap;
-  pointer-events:none;opacity:0;transform:translateY(4px);transition:all .2s;
-}
-.fab2-btn:hover .fab2-tip{opacity:1;transform:translateY(0)}
-
-@media(max-width:640px){
-  #bottom-help-panel{
-    width:calc(100vw - 20px);
-    right:10px;
-    bottom:82px;
-    max-height:72vh;
-    border-radius:16px;
-  }
-  .fab2-btn{width:46px;height:46px;font-size:18px}
-}
-
-/* ══════════════════════════════════════════════
-   미리보기 오버레이 — 화면 정중앙
-══════════════════════════════════════════════ */
-.preview-ov{
-  position:fixed;inset:0;z-index:950;
-  background:rgba(4,8,18,.96);
-  backdrop-filter:blur(20px);
-  display:none;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:16px;
-  overflow-y:auto;
-  overflow-x:hidden;
-}
-.preview-ov.open{display:flex;animation:ovIn .3s ease}
-
-.pv-bar{width:100%;max-width:860px;display:flex;align-items:center;
-  justify-content:space-between;padding:0 4px 14px;flex-shrink:0}
-.pv-bar-title{font-size:13px;font-weight:700;color:var(--text2);
-  display:flex;align-items:center;gap:8px}
-.pv-bar-title::before{content:'';width:3px;height:14px;
-  background:var(--teal);border-radius:2px;display:block}
-.pv-bar-right{display:flex;align-items:center;gap:8px}
-.pv-bar-close{width:34px;height:34px;background:var(--surf2);border:1px solid var(--border);
-  border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:14px;color:var(--slate);transition:all .2s}
-.pv-bar-close:hover{background:var(--navy4);color:var(--text)}
-.pv-spec-pill{font-family:var(--font-mono);font-size:9px;color:var(--slate);
-  background:var(--surf2);border:1px solid var(--border);border-radius:12px;padding:4px 10px}
-/* 미리보기 탭 선택 */
-.pv-tab-row{display:flex;gap:4px;background:var(--surf2);border-radius:8px;padding:3px;flex-shrink:0}
-.pv-tab{padding:6px 14px;border-radius:6px;border:none;background:transparent;
-  color:var(--slate);font-family:var(--font-base);font-size:11px;font-weight:700;
-  cursor:pointer;transition:all .2s}
-.pv-tab.on{background:var(--navy4);color:var(--teal2);border:1px solid var(--border)}
-
-/* ── Galaxy S24 Ultra 폰 프레임 ──
-   실제 스펙: 6.8" QHD+ 3088×1440 · 505ppi · 19.3:9 · 티타늄 프레임
-   화면 표시: 320px × 692px (비율 1:2.16)
-─────────────────────────────────────── */
-.phone-wrap{
-  position:relative;flex-shrink:0;
-  display:flex;flex-direction:column;align-items:center;
-}
-
-/* 티타늄 외장 레이어 */
-.phone{
-  width:320px;
-  background:linear-gradient(180deg,#0e0e0e 0%,#080808 100%);
-  border-radius:50px;
-  border:10px solid #2a2a2a;
-  box-shadow:
-    0 0 0 1px #3a3a3a,       /* 티타늄 하이라이트 */
-    0 0 0 2px #1c1c1c,       /* 베젤 내부 */
-    inset 0 0 0 1px rgba(255,255,255,.04),
-    0 0 80px rgba(0,0,0,.8),
-    0 30px 90px rgba(0,0,0,.7),
-    0 0 40px rgba(75,142,245,.08);  /* 코발트 글로우 */
-  overflow:hidden;
-  display:flex;flex-direction:column;
-  height:692px;   /* 19.3:9 비율 */
-  position:relative;
-}
-
-/* 상단 펀치홀 카메라 (S24 Ultra: 중앙 단일 홀) */
-.p-topbar{
-  background:#050505;
-  height:42px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 18px;flex-shrink:0;position:relative;
-}
-.p-topbar-cam{
-  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:12px;height:12px;border-radius:50%;
-  background:radial-gradient(circle at 35% 35%,#1a1a1a,#050505);
-  box-shadow:
-    0 0 0 1.5px rgba(255,255,255,.06),
-    inset 0 0 4px rgba(0,100,200,.15);
-}
-/* 카메라 내부 렌즈 */
-.p-topbar-cam::after{
-  content:'';position:absolute;
-  width:5px;height:5px;border-radius:50%;
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  background:radial-gradient(circle at 30% 30%,#2a3a4a,#050505);
-}
-.p-topbar-left{
-  font-family:var(--font-mono);font-size:10.5px;
-  color:rgba(255,255,255,.82);letter-spacing:.02em;
-}
-.p-topbar-right{
-  display:flex;align-items:center;gap:5px;
-  font-size:11px;color:rgba(255,255,255,.82);
-}
-/* 배터리 아이콘 */
-.p-batt{
-  display:inline-flex;align-items:center;gap:2px;
-  font-size:9px;color:rgba(255,255,255,.7);
-}
-.p-batt-bar{
-  width:18px;height:9px;border-radius:2px;
-  border:1.5px solid rgba(255,255,255,.45);position:relative;
-}
-.p-batt-bar::before{
-  content:'';position:absolute;
-  left:2px;top:1.5px;height:4px;width:12px;
-  background:linear-gradient(90deg,#00C896,#00E5C8);border-radius:1px;
-}
-.p-batt-bar::after{
-  content:'';position:absolute;
-  right:-5px;top:2.5px;width:3px;height:4px;
-  background:rgba(255,255,255,.3);border-radius:0 1.5px 1.5px 0;
-}
-/* WiFi 아이콘 */
-.p-wifi{font-size:11px;color:rgba(255,255,255,.8)}
-/* 신호 막대 */
-.p-signal{display:inline-flex;align-items:flex-end;gap:1.5px;height:10px}
-.p-signal span{
-  background:rgba(255,255,255,.75);border-radius:1px;width:2.5px;
-}
-.p-signal span:nth-child(1){height:3px}
-.p-signal span:nth-child(2){height:5px}
-.p-signal span:nth-child(3){height:7px}
-.p-signal span:nth-child(4){height:10px}
-
-/* 스크린 영역 */
-.p-screen{
-  background:var(--navy);
-  flex:1;overflow-y:auto;
-  scrollbar-width:none;
-  position:relative;
-}
-.p-screen::-webkit-scrollbar{display:none}
-
-/* 스크린 상단 그라디언트 페이드 */
-.p-screen::before{
-  content:'';position:sticky;top:0;left:0;right:0;
-  height:12px;display:block;
-  background:linear-gradient(180deg,var(--navy) 0%,transparent 100%);
-  z-index:2;flex-shrink:0;
-}
-
-/* 컨텐츠 패딩 */
-.p-content{padding:6px 12px 12px}
-
-/* 홈 인디케이터 바 */
-.p-bottombar{
-  background:#050505;height:32px;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.p-home-indicator{
-  width:130px;height:5px;
-  background:linear-gradient(90deg,rgba(255,255,255,.12),rgba(255,255,255,.22),rgba(255,255,255,.12));
-  border-radius:3px;
-}
-
-/* 음량 버튼 (왼쪽) */
-.phone-wrap::before{
-  content:'';position:absolute;
-  left:-4px;top:130px;
-  width:4px;height:32px;
-  background:linear-gradient(180deg,#2a2a2a,#1e1e1e);
-  border-radius:3px 0 0 3px;
-  box-shadow:-1px 0 2px rgba(0,0,0,.5);
-}
-/* 음량 버튼 2 */
-.phone-wrap .vol2{
-  position:absolute;left:-4px;top:172px;
-  width:4px;height:32px;
-  background:linear-gradient(180deg,#2a2a2a,#1e1e1e);
-  border-radius:3px 0 0 3px;
-  box-shadow:-1px 0 2px rgba(0,0,0,.5);
-}
-/* 전원 버튼 (오른쪽) */
-.phone-wrap::after{
-  content:'';position:absolute;
-  right:-4px;top:140px;
-  width:4px;height:52px;
-  background:linear-gradient(180deg,#2a2a2a,#1e1e1e);
-  border-radius:0 3px 3px 0;
-  box-shadow:1px 0 2px rgba(0,0,0,.5);
-}
-
-/* S펜 슬롯 표시 */
-.p-spen-slot{
-  position:absolute;bottom:0;right:14px;
-  width:4px;height:20px;
-  background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
-  border-radius:2px 2px 0 0;
-}
-
-/* 상태바 노치 영역 곡면 */
-.phone::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;
-  height:1px;
-  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.04) 20%,rgba(255,255,255,.06) 50%,rgba(255,255,255,.04) 80%,transparent 100%);
-  z-index:10;
-}
-
-/* 모바일 뷰 전체 컨테이너 */
-#pv-mobile-view{
-  display:flex;flex-direction:column;align-items:center;
-  padding:20px 20px 10px;
-  overflow-y:auto;
-  height:calc(100vh - 100px);
-}
-/* 스펙 필 */
-.phone-spec-row{
-  margin-top:16px;
-  display:flex;align-items:center;gap:8px;
-  flex-wrap:wrap;justify-content:center;
-}
-.p-spec-chip{
-  font-family:var(--font-mono);font-size:9px;
-  color:var(--cobalt2);
-  background:rgba(75,142,245,.08);
-  border:1px solid rgba(75,142,245,.2);
-  border-radius:20px;padding:3px 10px;
-  white-space:nowrap;
-}
-
-/* 모바일 콘텐츠 내 카드 스타일 */
-.pm-card{
-  background:var(--surf2);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:12px;margin-bottom:10px;
-}
-.pm-hero{
-  background:linear-gradient(135deg,rgba(75,142,245,.12),rgba(0,194,168,.08));
-  border:1px solid rgba(75,142,245,.25);
-  border-radius:12px;
-  padding:14px;margin-bottom:10px;
-}
-.pm-hero-label{font-size:8px;color:var(--cobalt2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
-.pm-hero-value{font-family:var(--font-mono);font-size:42px;font-weight:700;color:var(--teal2);line-height:1}
-.pm-hero-unit{font-size:14px;color:var(--slate);margin-left:4px}
-.pm-hero-sub{font-size:10px;color:var(--text2);margin-top:5px}
-.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
-.pm-cell{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:9px;padding:10px;text-align:center}
-.pm-cell-label{font-size:8px;color:var(--text2);text-transform:uppercase;margin-bottom:4px}
-.pm-cell-value{font-family:var(--font-mono);font-size:18px;font-weight:700;color:var(--teal)}
-.pm-cell-unit{font-size:8px;color:var(--slate);margin-top:1px}
-.pm-steps{background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:10px;padding:10px;margin-bottom:10px}
-.pm-step-title{font-size:8px;font-weight:700;color:var(--cobalt2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
-.pm-step-row{display:flex;gap:6px;margin-bottom:5px;align-items:flex-start}
-.pm-step-no{min-width:16px;height:16px;border-radius:3px;background:rgba(75,142,245,.18);color:var(--cobalt2);font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.pm-step-label{font-size:9px;color:var(--text2);line-height:1.4}
-.pm-step-val{font-family:var(--font-mono);font-size:9px;color:var(--teal2);background:rgba(0,194,168,.07);border-radius:3px;padding:1px 5px;margin-top:2px;display:inline-block}
-.pm-warn{background:rgba(232,160,32,.06);border:1px solid rgba(232,160,32,.2);border-radius:8px;padding:8px;font-size:8px;color:#c89040;line-height:1.6}
-.p-content{padding:6px 12px 12px}
-
-/* ══════════════════════════════════════════════
-   ISO A4 미리보기 & 인쇄/PDF 출력 시스템
-   ISO A4 = 210 × 297 mm
-   화면 미리보기: 595px × 842px (72 dpi)
-   인쇄/PDF:      210mm × 297mm (실제 용지)
-
-   여백 기준 (상업용 보고서 표준)
-     상단(Top)    : 20mm
-     하단(Bottom) : 20mm
-     좌측(Left)   : 20mm
-     우측(Right)  : 20mm
-   콘텐츠 영역:  170mm × 257mm
-══════════════════════════════════════════════ */
-
-/* ─ CSS 변수: 72dpi 기준 픽셀 값
-   1mm = 72/25.4 ≈ 2.835 px
-   20mm ≈ 56.7px → 57px 사용
-   170mm ≈ 481.9px (콘텐츠 폭)
-   상단 헤더·하단 푸터는 여백 포함 영역 안에 배치
-*/
+/* ══ LIGHT 본문 (v5.0 §3-12 · 2026-09-04 — Navy×Teal×Cobalt 토큰 라이트 재지정 · 건축 녹색 · 조례값은 황토색 유지) ══ */
 :root{
-  --a4-w: 595px;          /* A4 가로 @ 72dpi */
-  --a4-h: 842px;          /* A4 세로 @ 72dpi */
-  --a4-mg: 15mm;          /* 용지 여백 (인쇄) - 1장 최적화 */
-  --a4-mg-px: 43px;       /* 용지 여백 (화면 미리보기) */
-  --a4-content-w: 509px;  /* 콘텐츠 폭 = 595 - 43×2 */
+  --navy:#f4f6f9; --navy2:#ffffff; --navy3:#eef2f7; --navy4:#e4e9f0;
+  --teal:#15803d; --teal2:#16a34a; --teal3:#dcfce7;
+  --gold:#b45309; --gold2:#d97706; --gold3:#fde68a;
+  --cobalt:#15803d; --cobalt2:#166534;
+  --orange:#c2410c; --red:#dc2626; --green:#15803d;
+  --slate:#64748b; --slate2:#94a3b8;
+  --border:#e4e9f0; --border2:#edf1f5;
+  --text:#1a2744; --text2:#475569; --text3:#94a3b8;
+  --surf1:#ffffff; --surf2:#f8fafd; --surf3:#f1f5f9;
+  --shadow:0 1px 4px rgba(0,0,0,.05);
+  --glow-t:0 4px 14px rgba(21,128,61,.10); --glow-g:0 4px 14px rgba(180,83,9,.10); --glow-c:0 4px 14px rgba(21,128,61,.10);
+  --font-mono:'JetBrains Mono','DM Mono','Consolas',monospace;
 }
+body::before{display:none;}
+::-webkit-scrollbar-track{background:#f4f6f9} ::-webkit-scrollbar-thumb{background:#cbd5e1}
+.card{border-radius:12px;padding:18px;box-shadow:var(--shadow);} .card::before{opacity:.9;} .card:hover{box-shadow:var(--shadow);}
+.sec-title{color:#1a2744;font-size:15px;} .sec-title::before{background:#15803d;box-shadow:none;}
+.slabel{font-size:12px;font-weight:700;color:#475569;text-transform:none;letter-spacing:.02em;margin-bottom:7px;} .slabel .badge{color:#15803d;background:#dcfce7;border-color:#bbf7d0;} .slabel .badge-c{color:#166534;background:#dcfce7;}
+/* §3-12 입력 규격 (설비 23 .finput 기준) — 배경 #f8fafd · 1.5px #dde3ed · r7 · 13px/600 · 7px 10px · 높이 38px */
+.mm-sel,.mm-inp{background:#f8fafd;border:1.5px solid #dde3ed;border-radius:7px;color:#1a2744;font-size:13px;font-weight:600;padding:7px 10px;height:38px;min-height:0;line-height:1.3;}
+.mm-sel{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px;}   /* §20-15 no-repeat */
+.mm-sel:focus,.mm-inp:focus{border-color:#15803d;box-shadow:0 0 0 3px rgba(21,128,61,.15);} .mm-sel:hover,.mm-inp:hover{border-color:#94a3b8;} .mm-inp::placeholder{color:#94a3b8;font-weight:500;}
+.num-wrap .mm-inp{padding-right:52px;} .num-unit{color:#64748b;font-size:12px;} .iunit{color:#64748b;font-size:12px;} .divider{background:#e4e9f0;}
+.toggle-row{border-color:#edf1f5;} .toggle-lbl{color:#1a2744;} .toggle-sub{color:#64748b;}
+.tog-sl{background:#e4e9f0;border-color:#dde3ed;} .tog-sl::before{background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);} .tog input:checked + .tog-sl{background:#15803d;border-color:#15803d;} .tog input:checked + .tog-sl::before{background:#fff;}
+.calc-btn{background:linear-gradient(135deg,#15803d,#16a34a);color:#fff;box-shadow:0 4px 14px rgba(21,128,61,.28);font-size:14px;} .calc-btn:hover{box-shadow:0 8px 24px rgba(21,128,61,.32);}
+.reset-btn{background:#fff;color:#475569;border-color:#dde3ed;} .reset-btn:hover{border-color:#94a3b8;color:#1a2744;}
+.note-box{background:#fffbeb;border-color:#fde68a;color:#92400e;} .note-box strong{color:#b45309;}
+.info-box{background:#f0fdf4;border-color:#bbf7d0;color:#14532d;} .info-box strong{color:#15803d;}
+.law-update-box{background:#f0fdf4;border-color:#bbf7d0;color:#14532d;} .law-update-box strong{color:#15803d;}
+.ph-icon{background:#f8fafd;border-color:#e4e9f0;} .ph-icon::after{border-color:#bbf7d0 transparent transparent transparent;} .ph-txt{color:#64748b;}
+.verdict-hero{background:#f0fdf4;border:1px solid #bbf7d0;box-shadow:none;} .verdict-hero::before{background:linear-gradient(90deg,#15803d,#16a34a);} .vh-label{color:#15803d;} .vh-value{color:#14532d;} .vh-value span{color:#64748b;} .vh-sub{color:#475569;} .vh-final{color:#b45309;}
+.metric-card{background:#f8fafd;border-color:#e4e9f0;} .metric-card:hover{border-color:#bbf7d0;} .metric-card .ml{color:#64748b;} .metric-card .mv{color:#1a2744;} .metric-card .mv.teal{color:#15803d;} .metric-card .mv.gold{color:#b45309;} .metric-card .mv.red{color:#dc2626;} .metric-card .mu{color:#94a3b8;}
+.formula-wrap{background:#f8fafd;border-color:#e4e9f0;} .formula-title{color:#475569;} .formula-title::before{background:#15803d;} .s-num{background:#dcfce7;color:#15803d;border-color:#bbf7d0;} .s-body .s-label{color:#475569;} .s-body .s-val{color:#1a2744;} .step-arrow{color:#94a3b8;}
+.law-card{background:#fffbeb;border-color:#fde68a;} .law-tag{color:#b45309;} .law-text{color:#475569;} .law-text strong{color:#b45309;}
+.disab-box{background:#f0fdf4;border-color:#bbf7d0;} .disab-title{color:#15803d;} .disab-row{border-color:#dcfce7;} .disab-l{color:#475569;} .disab-v{color:#1a2744;}
+.shadow-table th{background:#f1f5f9;color:#475569;border-color:#e4e9f0;} .shadow-table td{border-color:#edf1f5;color:#1a2744;} .shadow-table tr:hover td{background:#f8fafd;} .td-mono{color:#15803d;} .td-hi{color:#b45309;}
+#jeonbuk-panel{background:#fffbeb;border-color:#fde68a;} #jeonbuk-ordinance-note{color:#92400e;}
+.toast{background:#1a2744;color:#fff;border:none;}
+#pwa-banner{background:#1a2744!important;}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+/* ══ MAIN LAYOUT · RESPONSIVE (v5.0 §3-9 — 1024 · 768 · 640 · 480 · 420) ══ */
+.page{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:24px 20px 100px;display:grid;grid-template-columns:420px 1fr;gap:24px;align-items:start;}
+@media(min-width:1025px){ #result-col{position:sticky;top:16px;max-height:calc(100vh - 32px);overflow-y:auto;scrollbar-width:thin;padding-right:4px;} #result-col::-webkit-scrollbar{width:4px} #result-col::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:2px} }
+@media(max-width:1024px){ .page{grid-template-columns:1fr;gap:18px;padding:16px 16px 60px} #result-col{width:100%} }
+@media(max-width:768px){ .card{padding:16px 14px} .vh-value{font-size:40px} }
+@media(max-width:640px){ .metrics-grid{grid-template-columns:1fr 1fr;gap:10px} .vh-value{font-size:34px} .shadow-table-wrap{overflow-x:auto} .btn-row{flex-direction:column;align-items:stretch} .reset-btn{width:100%} }
+@media(max-width:480px){ .proj-grid,.area2{grid-template-columns:1fr} .page{padding:12px 12px 70px} .card{padding:14px 12px} .vh-value{font-size:30px} }
+@media(max-width:420px){ .metrics-grid{grid-template-columns:1fr} }
+@media screen and (max-width:768px){ .mm-inp,.mm-sel{font-size:16px;} }   /* iOS 자동확대 방지 (§3-11) */
+@media(hover:none) and (pointer:coarse){ .mm-inp,.mm-sel{min-height:40px;} .tb{min-height:44px;} .mm-btn,.btn-export{min-height:38px;} .tog{width:48px;height:26px;} }
 
-/* ─ 미리보기 외부 컨테이너 */
-.a4-outer{
-  position:relative;
-  /* 종이 그림자 효과 */
-  filter:
-    drop-shadow(0 2px  6px rgba(0,0,0,.35))
-    drop-shadow(0 8px 32px rgba(0,0,0,.65))
-    drop-shadow(0 20px 60px rgba(0,0,0,.50));
-}
+/* ══ 이용안내 모달 — v5.0 §18-11 라이트 재지정 (다크 테마 도구 · 본문 클래스 전부 재지정) ══ */
+.modal-ov{z-index:9000;background:rgba(0,0,0,.65);backdrop-filter:blur(5px);padding:16px;}
+.modal-box{background:#fff;border:none;border-radius:20px;width:100%;max-width:800px;max-height:calc(100vh - 32px);
+  box-shadow:0 30px 80px rgba(0,0,0,.4);color:#111827;}
+.modal-hdr{background:linear-gradient(135deg,#052e16,#15803d,#16a34a);color:#fff;border-bottom:none;padding:18px 22px 14px;}
+.modal-title{color:#fff;font-size:14px;letter-spacing:.04em;}
+.modal-close{width:34px;height:34px;background:rgba(255,255,255,.13);border:none;color:#fff;font-size:18px;}
+.modal-close:hover{background:rgba(255,255,255,.26);color:#fff;}
+.modal-body{padding:20px 22px 26px;}
+.m-tabrow{background:#f1f5f9;}
+.m-tab{color:#64748b;}
+.m-tab.on{background:#15803d;color:#fff;border:none;box-shadow:none;}
+.msec-title{color:#15803d;} .msec-title::before{background:#15803d;}
+.mitem{background:#f8fafc;border-color:#e2e8f0;}
+.mitem-t{color:#0f172a;} .mitem-d{color:#475569;}
+.mtip{background:#fffbeb;border-color:#fde68a;color:#92400e;} .mtip strong{color:#b45309;}
+.step-no{background:#dcfce7;border-color:#86efac;color:#15803d;}
+.step-txt{color:#475569;} .step-txt strong{color:#0f172a;}
+.ref-link{background:#f8fafc;border-color:#e2e8f0;color:#0f172a;}
+.ref-link:hover{border-color:#15803d;color:#15803d;}
+.ref-link-body .rs{color:#64748b;}
+.modal-body a.home{background:#f0fdf4;border-color:#86efac;}
+@media(max-width:540px){ .modal-ov{padding:0;align-items:flex-end;} .modal-box{border-radius:20px 20px 0 0;max-height:92vh;width:100%;max-width:100%;} .modal-hdr{padding:14px 16px 12px;} .modal-body{padding:16px 16px 36px;} }
+/* 40 모달 본문 클래스 추가 재지정 */
+.modal-box{max-width:800px;} .modal-hdr{background:linear-gradient(135deg,#052e16,#15803d,#16a34a);}
+.help-step{gap:12px;} .law-item{background:#f8fafc;border-left-color:#15803d;color:#475569;} .law-item strong{color:#15803d;} .law-item .law-date{color:#b45309;}
+.ref-tbl th{background:#dcfce7;color:#14532d;border-color:#bbf7d0;} .ref-tbl td{border-color:#e2e8f0;color:#1a2744;} .ref-tbl tr:nth-child(even) td{background:#f8fafc;} .ref-tbl td.td-key{color:#0f172a;}
+.ref-item{background:#f8fafc;border-color:#e2e8f0;color:#0f172a;} .ref-item:hover{border-color:#15803d;color:#15803d;} .ref-body .rs{color:#64748b;}
+.modal-body .note-box,.modal-body .info-box{color:#92400e;}
 
-/* ─ A4 용지 본체 — 1장 고정 */
-.a4-wrap{
-  width: var(--a4-w);
-  height: var(--a4-h);        /* 842px — 1장 높이 고정 */
-  overflow: hidden;            /* 넘치는 콘텐츠 잘라냄 */
-  background: #ffffff;
-  color: #1a1a2e;
-  font-family: var(--font-base);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  max-width: calc(100vw - 32px);
-  outline: 1px solid rgba(255,255,255,.08);
+/* ══ A4 계산서 탭 (v5.0 §3-3 · §3-4 · §3-4-1 · §17-2) — 화면 = 인쇄 = JPG 동일 DOM ══ */
+.a4-panel{position:relative;z-index:1;max-width:1320px;margin:0 auto;padding:24px 20px 80px;}
+.a4-export-bar{background:var(--surf1);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.bar-lbl{font-size:11px;font-weight:700;color:var(--text2);}
+.bar-hint{font-weight:400;color:var(--text3);margin-left:6px;}
+.bar-spacer{flex:1 1 auto;}
+.btn-export,.mm-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 16px;border-radius:9px;font-size:12px;font-weight:800;cursor:pointer;
+  border:none;font-family:inherit;white-space:nowrap;line-height:1.2;min-height:38px;transition:background .15s,box-shadow .15s,transform .1s;}
+.mm-btn-print{background:#15803d;color:#fff;} .mm-btn-print:hover{background:#166534;}
+.mm-btn-jpg{background:#7e22ce;color:#fff;} .mm-btn-jpg:hover{background:#6b21a8;}
+@media(max-width:480px){ .a4-export-bar{flex-direction:column;align-items:stretch;} .bar-spacer{display:none;} .a4-export-bar .btn-export,.a4-export-bar .mm-btn{width:100%;} }   /* §20-8: 입력은 카드 ① 로 이동 — 출력바에는 flex-basis 요소를 두지 않는다 */
+.a4-wrap{background:#64748b;padding:20px 20px 32px;min-height:300px;display:flex;justify-content:center;align-items:flex-start;border-radius:10px;overflow:hidden;}
+@media(max-width:640px){.a4-wrap{padding:8px 8px 24px;} .a4-panel{padding:16px 0 60px;}}   /* §20-13(35 동일): ≤640 패널 좌우 0 → A4 359px@375 */
+.a4-scale-wrap{display:block;transform-origin:top center;flex-shrink:0;}
+.a4-page{background:#fff;width:794px;min-height:1122px;margin:0;padding:53px 45px 83px 53px;box-shadow:0 8px 40px rgba(0,0,0,.28);font-size:11px;color:#111827;display:block;position:relative;line-height:1.5;word-break:keep-all;
+  font-family:'Noto Sans KR Local','Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-weight:500;}
+.a4-page .mono{font-family:'JetBrains Mono','DM Mono','Noto Sans KR','Malgun Gothic',monospace;}   /* §20-17 ②: 한글 글리프는 Noto 로 — generic monospace 의 한글 자간 벌어짐 방지 */
+.a4-tit{font-size:22px;font-weight:900;color:#052e16;text-align:center;border-bottom:2.5px solid #15803d;padding-bottom:9px;margin-bottom:12px;letter-spacing:-.02em;}
+.a4-head2{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-bottom:12px;}
+.a4-head2 .a4-proj{font-size:12px;font-weight:800;color:#111827;}
+.a4-head2 .a4-meta{font-size:9px;color:#64748b;text-align:right;line-height:1.6;font-weight:600;}
+.a4-sub{font-size:13px;font-weight:800;color:#15803d;margin-bottom:4px;margin-top:9px;padding-left:7px;border-left:3px solid #15803d;text-align:left;}
+/* §20-17 ①: 화면·JPG·PDF 공통 — collapse 대신 separate + 셀 자체 선(html2canvas·PDF 래스터가 바깥 반픽셀 선을 버리는 것 방지) */
+.a4-tbl,.a4-meta-table{width:100%;border-collapse:separate;border-spacing:0;border:0;font-size:11px;margin-bottom:7px;}
+.a4-tbl th,.a4-meta-table th{background:#dcfce7;padding:5px 6px;text-align:center;font-weight:700;font-size:11px;color:#14532d;border:0;border-top:1px solid #bbf7d0;border-right:1px solid #bbf7d0;border-bottom:1px solid #bbf7d0;}
+.a4-tbl th:first-child,.a4-meta-table th:first-child{border-left:1px solid #bbf7d0;}
+.a4-tbl td,.a4-meta-table td{padding:5px 7px;text-align:left;border:0;border-right:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;font-weight:600;color:#111827;vertical-align:top;line-height:1.45;}
+.a4-tbl td:first-child,.a4-meta-table td:first-child{border-left:1px solid #e2e8f0;}
+.a4-tbl tbody:first-child tr:first-child td,.a4-meta-table tbody:first-child tr:first-child td{border-top:1px solid #e2e8f0;}
+.a4-page tr:last-child td{border-bottom:1px solid #e2e8f0;}   /* §20-17 ③: 원본 전역 `tr:last-child td{border-bottom:none}`(0,1,2) 가 .a4-tbl td(0,1,1) 를 이김 → 마지막 행 아래선 소실(화면·JPG) */
+.a4-tbl td.c{text-align:center;} .a4-tbl td.r{text-align:right;font-family:'JetBrains Mono','DM Mono','Noto Sans KR','Malgun Gothic',monospace;}
+.a4-meta-table td.k{background:#f0fdf4;font-weight:800;color:#14532d;width:110px;white-space:nowrap;}
+.a4-tbl tfoot td{background:#dcfce7!important;font-weight:900;}
+.a4-tbl.shadow td{padding:3px 6px;font-size:10px;}
+.a4-verdict{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;margin-bottom:8px;border:1.5px solid;}
+.a4-verdict.ok{background:#f0fdf4;border-color:#86efac;color:#15803d;}
+.a4-verdict.ng{background:#fef2f2;border-color:#fca5a5;color:#b91c1c;}
+.a4-verdict.na{background:#fffbeb;border-color:#fde68a;color:#b45309;}
+.a4-verdict .v-main{font-size:16px;font-weight:900;letter-spacing:-.01em;}
+.a4-verdict .v-sub{font-size:10px;font-weight:600;opacity:.85;}
+.a4-tag{display:inline-block;padding:1px 7px;border-radius:4px;font-size:10px;font-weight:800;white-space:nowrap;}
+.a4-tag.ok{background:#dcfce7;color:#15803d;} .a4-tag.ng{background:#fee2e2;color:#b91c1c;} .a4-tag.na{background:#fef3c7;color:#b45309;} .a4-tag.info{background:#dcfce7;color:#14532d;}
+.a4-notice{font-size:10.5px;line-height:1.65;color:#374151;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:8px 10px;margin-bottom:7px;}
+.a4-notice strong{color:#15803d;}
+.a4-footer{border-top:1px solid #e2e8f0;padding-top:8px;font-size:9px;color:#9ca3af;margin-top:16px;line-height:1.6;font-weight:600;display:table;width:100%;table-layout:fixed;}
+.a4-footer>span{display:table-cell;width:33.33%;vertical-align:top;}
+.a4-footer>span:nth-child(2){text-align:center;} .a4-footer>span:nth-child(3){text-align:right;}
+/* JPG 저장 시트 (§3-5 · §3-5-3) */
+#mm-save-ov{display:none;position:fixed;inset:0;z-index:9999;background:rgba(12,26,46,.82);align-items:center;justify-content:center;padding:18px;}
+#mm-save-ov.show{display:flex;}
+.mm-sheet{background:#fff;border:1px solid #bbf7d0;border-radius:14px;width:100%;max-width:720px;max-height:88vh;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.45);color:#111827;}
+.mm-sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid #e2e8f0;}
+.mm-sheet-title{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;letter-spacing:.12em;color:#15803d;text-transform:uppercase;}
+.mm-sheet-note{font-size:11px;color:#64748b;margin-top:4px;}
+.mm-sheet-body{padding:16px 18px;overflow-y:auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;}
+.mm-shot{background:#f8fafc;border:1px solid #e2e8f0;border-radius:9px;padding:9px;display:flex;flex-direction:column;gap:8px;}
+.mm-shot img{width:100%;height:auto;border-radius:4px;background:#fff;display:block;border:1px solid #e2e8f0;}
+.mm-shot-btn{display:flex;align-items:center;justify-content:center;gap:5px;padding:7px 10px;border-radius:7px;border:1px solid #c4b5fd;background:none;color:#7e22ce;font-family:inherit;font-size:11.5px;font-weight:700;cursor:pointer;}
+.mm-shot-btn:hover{background:#f5f3ff;}
+.mm-sheet-foot{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;padding:13px 18px;border-top:1px solid #e2e8f0;}
+.mm-btn-close{background:#e2e8f0;color:#334155;}
+.mm-sheet-head > div:first-child{flex:1 1 auto;min-width:0;} .mm-sheet-head .btn-export{flex:0 0 auto;}
+@media(max-width:480px){
+  .mm-sheet-body{grid-template-columns:1fr;padding:12px;} .mm-sheet-body.multi{grid-template-columns:repeat(2,1fr);}
+  .mm-sheet-foot{justify-content:stretch;} .mm-sheet-foot .btn-export{flex:1;}
+  .mm-sheet-head{padding:12px 14px;gap:8px;} .mm-sheet-title{font-size:10px;} .mm-sheet-note{font-size:10px;line-height:1.45;}
+  .mm-sheet-head .btn-export{padding:6px 9px!important;min-height:28px!important;font-size:10.5px!important;align-self:flex-start;}
+  .mm-shot{padding:7px;} .mm-shot-btn{padding:6px;font-size:11px;} .mm-shot img{max-height:46vh;object-fit:contain;}
 }
+/* #dev-stamp 없음 — 인쇄 PDF 하단 각인은 전 종 적용하지 않는다 (지시서 §20-1) */
 
-/* ─ 상단 MANMIN 컬러 바 (인쇄 시에도 유지) */
-.a4-wrap::before{
-  content: '';
-  display: block;
-  height: 3px;
-  background: linear-gradient(90deg,#5b9cf0 0%,#3dbfb0 50%,#f0b030 100%);
-  flex-shrink: 0;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-}
-
-/* ─ 헤더 (여백 포함 영역 내부) */
-.a4-header{
-  background: linear-gradient(135deg,#1e3a5f 0%,#1a3358 100%);
-  padding: 8px var(--a4-mg-px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-shrink: 0;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-}
-.a4-hdr-main{}
-.a4-hdr-title{
-  font-size: 13px;font-weight:900;color:#b2ede8;
-  letter-spacing: -.01em;line-height:1.2;
-}
-.a4-hdr-sub{font-size:8.5px;color:#8ab4c8;margin-top:3px;letter-spacing:.04em}
-.a4-hdr-meta{text-align:right;flex-shrink:0}
-.a4-hdr-badge{
-  font-size:8px;font-weight:700;color:#b87a10;
-  background:rgba(232,160,32,.10);border:1px solid rgba(232,160,32,.2);
-  border-radius:3px;padding:2px 7px;display:inline-block;
-  letter-spacing:.06em;margin-bottom:3px;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-.a4-hdr-date{font-size:8.5px;color:#4a6580}
-
-/* ─ 본문 — 1장 최적화 */
-.a4-body{
-  /* flex:1 제거 → 자연 높이 사용, 푸터 밀림 방지 */
-  padding: 14px var(--a4-mg-px) 8px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* ─ 섹션 헤더 */
-.a4-sec-hd{
-  display:flex;align-items:center;gap:8px;
-  margin-bottom:4px;padding-bottom:2px;
-  border-bottom:1.5px solid #dce4f0;
-  font-size:10.5px;font-weight:700;color:#1a3460;
-  letter-spacing:.06em;text-transform:uppercase;
-}
-.a4-sec-num{
-  width:16px;height:16px;
-  background:#d6f0ec;color:#0d6b5e;
-  border-radius:3px;
-  display:inline-flex;align-items:center;justify-content:center;
-  font-size:7.5px;font-weight:700;flex-shrink:0;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-
-/* ─ 입력 정보 그리드 (3열) */
-.a4-info-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:4px;
-}
-.a4-info-cell{
-  background:#f5f8fc;border:1px solid #dce4f0;border-radius:4px;
-  padding:5px 8px;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-.a4-info-cell .aic-l{
-  font-size:7.5px;color:#6B8FA3;text-transform:uppercase;
-  letter-spacing:.05em;margin-bottom:2px;
-}
-.a4-info-cell .aic-v{font-size:9.5px;font-weight:700;color:#1a2e4a;word-break:keep-all}
-
-/* ─ 결과 히어로 박스 */
-.a4-result-hero{
-  background:linear-gradient(135deg,#eef4ff,#f5fffd);
-  border:1.5px solid #b8d0ff;border-radius:6px;
-  padding:8px 12px;
-  display:flex;align-items:center;gap:14px;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-.a4-result-big{
-  font-family:'DM Mono','Consolas',monospace;
-  font-size:30px;font-weight:700;color:#1a2e4a;
-  line-height:1;letter-spacing:-.03em;
-}
-.a4-result-big span{font-size:12px;color:#6B8FA3;margin-left:3px}
-.a4-result-label{font-size:7.5px;color:#6B8FA3;text-transform:uppercase;letter-spacing:.07em;margin-bottom:1px}
-.a4-result-note{font-size:8px;color:#4a6580;margin-top:2px}
-
-/* ─ 지표 4열 그리드 */
-.a4-metric-row{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:3px;
-}
-.a4-mcell{
-  background:#f5f8fc;border:1px solid #dce4f0;border-radius:4px;
-  padding:5px;text-align:center;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-.a4-mcell .aml{font-size:7.5px;color:#6B8FA3;text-transform:uppercase;margin-bottom:3px}
-.a4-mcell .amv{font-family:'DM Mono',monospace;font-size:13px;font-weight:700;color:#1a2e4a}
-
-/* ─ 단계별 공식 */
-.a4-step-row{display:flex;gap:4px;margin-bottom:1px;align-items:flex-start}
-.a4-step-n{
-  min-width:15px;height:15px;border-radius:3px;
-  background:#ddeeff;color:#1a5fa0;
-  font-size:7px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:0;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-.a4-step-label{font-size:8.5px;color:#1a2e4a;font-weight:500;margin-bottom:0;line-height:1.35}
-.a4-step-val{
-  font-family:'DM Mono',monospace;font-size:8px;color:#1a3a6a;
-  background:#f2f7ff;border:1px solid #ccddf5;
-  border-radius:3px;padding:1px 4px;display:inline-block;margin-top:1px;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-
-/* ─ 법조문 테이블 */
-.a4-law-tbl{width:100%;border-collapse:collapse;font-size:9px}
-.a4-law-tbl th{
-  background:#2c5282;color:#f0f8ff;
-  padding:4px 7px;font-weight:700;text-align:left;font-size:8px;letter-spacing:.04em;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-.a4-law-tbl td{padding:4px 7px;border-bottom:1px solid #e4edf8;color:#1a2e4a;line-height:1.4;font-size:8.5px}
-.a4-law-tbl tr:nth-child(even) td{
-  background:#fafcff;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-
-/* ─ 면책 고지 */
-.a4-disclaimer{
-  background:#fffdf5;border:1px solid #f0dda0;border-radius:4px;
-  padding:5px 8px;font-size:7.5px;color:#8a6620;line-height:1.6;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-
-/* ─ 푸터 (여백 포함 영역 내부) */
-.a4-footer{
-  background:#1e3a5f;
-  padding:5px var(--a4-mg-px);
-  font-size:8px;color:#90b8cc;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-shrink:0;
-  -webkit-print-color-adjust:exact;print-color-adjust:exact;
-}
-.a4-footer span:first-child{color:#7ad4cc;font-weight:700}
-
-/* ─ 미리보기 버튼 (레거시 유지) */
-.pv-print-btn{
-  background:linear-gradient(135deg,var(--teal),var(--cobalt));color:#1a2e4a;
-  border:none;border-radius:8px;padding:8px 18px;font-family:var(--font-base);
-  font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;
-}
-.pv-print-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,194,168,.4)}
-
-/* ══ 미리보기 오버레이 새 구조 ══ */
-.pv-topbar{
-  width:100%;max-width:900px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 4px 14px;flex-shrink:0;gap:12px;flex-wrap:wrap;
-}
-.pv-topbar-left{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.pv-topbar-right{display:flex;align-items:center;gap:8px}
-#pv-a4-actions{display:none;align-items:center;gap:8px}
-.pv-action-btn{
-  padding:8px 16px;border-radius:8px;border:none;cursor:pointer;
-  font-family:var(--font-base);font-size:12px;font-weight:700;
-  transition:all .2s;display:flex;align-items:center;gap:5px;
-}
-.pv-pdf-btn{
-  background:linear-gradient(135deg,#e74c3c,#c0392b);color:#fff;
-  box-shadow:0 3px 12px rgba(231,76,60,.4);
-}
-.pv-pdf-btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(231,76,60,.55)}
-.pv-pdf-btn:disabled{opacity:.6;transform:none;cursor:not-allowed}
-.pv-print-btn2{
-  background:rgba(0,194,168,.12);color:var(--teal2);
-  border:1px solid rgba(0,194,168,.3)!important;
-}
-.pv-print-btn2:hover{background:rgba(0,194,168,.22)}
-
-/* ══════════════════════════════════════════════
-   @media print — 브라우저 인쇄 다이얼로그 최적화
-   용지: ISO A4 (210 × 297 mm)
-   여백: 20mm (상하좌우 균등)
-══════════════════════════════════════════════ */
+/* ══ PRINT (v5.0 §3-3 · §16-13 · §16-15 · §20-1) ══ */
 @media print{
-  /* ① html/body 1페이지 고정 */
-  html,body{
-    margin:0!important;padding:0!important;
-    width:210mm!important;height:297mm!important;
-    max-height:297mm!important;
-    overflow:hidden!important;
-    background:#fff!important;
-    -webkit-print-color-adjust:exact!important;
-    print-color-adjust:exact!important;
-    color-adjust:exact!important;
-  }
-  /* ② 모든 body 자식 숨김 */
-  body > *{ display:none!important; }
-
-  /* ③ 오버레이만 표시 */
-  .preview-ov{
-    display:block!important;
-    position:static!important;
-    width:210mm!important;height:297mm!important;
-    max-height:297mm!important;
-    overflow:hidden!important;
-    background:#fff!important;
-    padding:0!important;margin:0!important;
-  }
-
-  /* ④ 불필요한 패널 숨김 */
-  .pv-topbar,
-  #pv-mobile-view,
-  #pv-jpg-view,
-  .pv-spec-pill,
-  #pv-a4-view > div:last-child{
-    display:none!important;
-  }
-
-  /* ⑤ A4 뷰 표시 */
-  #pv-a4-view{
-    display:block!important;
-    width:210mm!important;height:297mm!important;
-    max-height:297mm!important;
-    overflow:hidden!important;
-    padding:0!important;margin:0!important;
-  }
-
-  /* ⑥ a4-outer */
-  .a4-outer{
-    filter:none!important;
-    width:210mm!important;height:297mm!important;
-    max-height:297mm!important;
-    overflow:hidden!important;
-  }
-
-  /* ⑦ a4-wrap — 인쇄 1장 */
-  .a4-wrap{
-    width:210mm!important;
-    height:297mm!important;
-    max-width:210mm!important;
-    max-height:297mm!important;
-    overflow:hidden!important;
-    box-shadow:none!important;
-    outline:none!important;
-    display:flex!important;
-    flex-direction:column!important;
-    page-break-after:avoid!important;
-    break-after:avoid!important;
-  }
-
-  /* ⑧ a4-body flex:1 */
-  .a4-body{
-    flex:1!important;
-    overflow:hidden!important;
-    padding:12px 43px 6px!important;
-    gap:5px!important;
-  }
-
-  /* ⑨ 배경색 강제 출력 */
-  *{
-    -webkit-print-color-adjust:exact!important;
-    print-color-adjust:exact!important;
-    color-adjust:exact!important;
-  }
-
-  /* ⑩ 페이지 나누기 완전 차단 */
-  .a4-sec-hd,.a4-result-hero,.a4-info-grid,
-  .a4-step-row,.a4-metric-row,.a4-disclaimer,
-  .a4-body,.a4-wrap,.a4-footer,.a4-header{
-    page-break-inside:avoid!important;
-    break-inside:avoid!important;
-    page-break-before:avoid!important;
-    break-before:avoid!important;
-    page-break-after:avoid!important;
-    break-after:avoid!important;
-  }
-}
-
-/* ── @page 규칙: 인쇄 용지·여백 선언 ── */
-@page{
-  size: A4 portrait;  /* ISO A4, 세로 방향 */
-  /* 여백: 상 20mm / 우 20mm / 하 20mm / 좌 20mm */
-  margin: 15mm 15mm 15mm 15mm;
+  *,*::before,*::after{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;}
+  html,body{background:#fff!important;margin:0;padding:0;}
+  body::before{display:none!important;}
+  .app-header,.sum-bar-wrap,.tab-panel:not(#tab-print),#pwa-banner,#help-modal-ov,footer,.a4-export-bar,#fab-group,.modal-ov,#mm-save-ov,.toast,#pwa-install-bar,#pwa-update-bar,.no-print{display:none!important;}
+  #tab-print{display:block!important;}
+  .a4-panel{padding:0!important;margin:0!important;max-width:none!important;}
+  .a4-wrap{background:#fff!important;padding:0!important;min-height:unset!important;border-radius:0!important;display:block!important;overflow:visible!important;}
+  .a4-scale-wrap{transform:none!important;margin:0!important;height:auto!important;width:auto!important;max-width:none!important;}
+  .a4-page{width:100%!important;max-width:100%!important;box-shadow:none!important;min-height:unset!important;padding:0!important;margin:0!important;font-size:9.5px!important;}
+  .a4-page,.a4-page *{font-family:'Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo',sans-serif!important;transform:none!important;animation:none!important;}   /* §20-15: PDF 드라이버의 가변폰트(Local woff2) 글리프 기울어짐 방지 — 인쇄는 정적 Noto 만 */
+  .a4-page .mono,.a4-page td.r{font-family:'JetBrains Mono','DM Mono','Noto Sans KR','Malgun Gothic',Consolas,monospace!important;}
+  /* §20-17 ①: 표 선은 화면 CSS_A4 가 separate+셀 선으로 통일 — print 재정의 없음 */
+  .a4-tbl,.a4-meta-table{break-inside:avoid;page-break-inside:avoid;}
+  .a4-tbl.long,.a4-meta-table.long{break-inside:auto!important;page-break-inside:auto!important;}
+  .a4-tbl thead,.a4-meta-table thead{display:table-header-group;}
+  .a4-tbl tr,.a4-meta-table tr{page-break-inside:avoid;page-break-after:auto;}
+  .a4-sub{page-break-after:avoid;page-break-before:auto;}
+  .a4-sub + table,.a4-sub + .a4-verdict{break-before:avoid;page-break-before:avoid;}
+  .a4-verdict,.a4-notice{break-inside:avoid;page-break-inside:avoid;}
+  @page{size:A4 portrait;margin:14mm 12mm 22mm 14mm;}
 }
 
 
-/* ══ JPG 저장 & 공유 패널 ══ */
-.save-panel{
-  display:flex;flex-direction:column;align-items:center;gap:18px;
-  padding:10px 0;
-}
-.save-card{
-  background:var(--surf2);border:1px solid var(--border);border-radius:16px;
-  padding:22px 24px;width:100%;max-width:480px;
-}
-.save-card-title{
-  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--cobalt2);margin-bottom:14px;display:flex;align-items:center;gap:8px;
-}
-.save-card-title::before{
-  content:'';width:3px;height:13px;
-  background:linear-gradient(180deg,var(--cobalt),var(--teal));border-radius:2px;
-}
-.save-btn-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.save-btn{
-  padding:14px 10px;border-radius:12px;border:none;cursor:pointer;
-  font-family:var(--font-base);font-size:13px;font-weight:700;
-  transition:all .25s;display:flex;flex-direction:column;
-  align-items:center;gap:6px;position:relative;overflow:hidden;
-}
-.save-btn .sb-ico{font-size:28px;line-height:1}
-.save-btn .sb-lbl{font-size:11px;font-weight:700;letter-spacing:.02em}
-.save-btn .sb-sub{font-size:9px;opacity:.75;font-weight:400}
-.save-btn.jpg{
-  background:linear-gradient(135deg,#1565C0,#1976D2);color:#fff;
-  box-shadow:0 4px 16px rgba(21,101,192,.4);
-}
-.save-btn.jpg:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(21,101,192,.55)}
-.save-btn.jpg:disabled{opacity:.6;transform:none;cursor:not-allowed}
-.save-btn.share{
-  background:linear-gradient(135deg,#00796B,#00897B);color:#fff;
-  box-shadow:0 4px 16px rgba(0,121,107,.4);
-}
-.save-btn.share:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,121,107,.55)}
-.save-btn.share:disabled{opacity:.6;transform:none;cursor:not-allowed}
-.save-btn.copy-link{
-  background:rgba(75,142,245,.12);color:var(--cobalt2);
-  border:1px solid rgba(75,142,245,.3)!important;
-}
-.save-btn.copy-link:hover{background:rgba(75,142,245,.22)}
-.save-btn.kakao{
-  background:linear-gradient(135deg,#FEE500,#FFCC00);color:#3A1D1D;
-  box-shadow:0 4px 16px rgba(254,229,0,.35);
-}
-.save-btn.kakao:hover{transform:translateY(-2px)}
-
-/* 미리보기 썸네일 프리뷰 */
-.thumb-preview{
-  width:100%;border-radius:10px;overflow:hidden;
-  border:1px solid var(--border);
-  background:linear-gradient(135deg,#0B1B2E,#112240);
-  min-height:140px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:12px;position:relative;
-}
-.thumb-preview canvas{width:100%!important;height:auto!important;display:block}
-.thumb-preview .thumb-ph{
-  font-size:12px;color:var(--text3);text-align:center;padding:20px;
-}
-.thumb-badge{
-  position:absolute;top:8px;right:8px;
-  background:rgba(0,0,0,.7);color:var(--teal2);
-  font-size:9px;font-weight:700;padding:3px 8px;border-radius:6px;
-  letter-spacing:.04em;
-}
-
-/* ══ 모바일 화면 캡처 JPG 저장 바 ══ */
-.mobile-jpg-bar{
-  margin-top:16px;
-  width:100%;
-  max-width:360px;
-  padding:0 4px;
-}
-.mobile-jpg-btn{
-  width:100%;
-  background:linear-gradient(135deg,#1565C0 0%,#1976D2 50%,#0097A7 100%);
-  color:#fff;border:none;border-radius:14px;
-  padding:14px 20px;
-  font-family:var(--font-base);cursor:pointer;
-  display:flex;align-items:center;gap:14px;
-  box-shadow:0 4px 20px rgba(21,101,192,.45);
-  transition:all .25s;
-  text-align:left;
-}
-.mobile-jpg-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(21,101,192,.6)}
-.mobile-jpg-btn:disabled{opacity:.65;transform:none;cursor:not-allowed}
-.mjb-ico{font-size:26px;flex-shrink:0;line-height:1}
-.mjb-lbl{font-size:14px;font-weight:900;letter-spacing:.01em;display:block}
-.mjb-sub{font-size:10px;opacity:.8;font-weight:400;margin-top:2px;display:block}
-
-@media(max-width:640px){
-  .mobile-jpg-bar{max-width:100%;padding:0}
-  .mobile-jpg-btn{padding:13px 16px;gap:12px}
-  .mjb-lbl{font-size:13px}
-}
-
-/* 공유 링크 복사 상태 */
-.copy-success{
-  background:rgba(0,200,150,.15)!important;
-  border-color:rgba(0,200,150,.4)!important;
-  color:var(--green)!important;
-}
-
-/* 애니메이션 */
-.fade-in{animation:fadeIn .4s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
 
-<!-- ══ HEADER ══ -->
-<header class="hdr">
-  <div class="hdr-inner">
-    <a class="brand" href="#">
-      <img src="icons/icon-512x512.png" alt="주차장법 MANMIN" class="brand-logo-img">
-      <div class="brand-txt">
-        <div class="nm">주차대수 산정기</div>
-        <div class="sb">MANMIN-Ver1.0</div>
+<!-- ══ HEADER (v5.0 §3-1 · §18-1 — 3단 · 버튼 0개 · 탭은 헤더 안 · hero 이미지·hero 섹션·로고 삭제 MIN 확정 2026-09-04) ══ -->
+<header class="app-header no-print">
+  <div class="header-inner">
+    <div class="brand-logo">
+      <div class="brand-texts">
+        <div class="hdr-eyebrow">Parking Lot Act · 주차장법 제19조 · 시행령 별표1</div>
+        <h1 class="hdr-h1">부설주차장 법정대수 산정기</h1>
+        <div class="hdr-sub">
+          시행령 [별표 1] 기준 + 전북 6개 시 조례 적용값 동시 산출 · 장애인·전기차 구획 · A4 산정서
+          <span class="hdr-manmin">MANMIN · Ver-5.0</span>
+        </div>
       </div>
-    </a>
-    <div class="hdr-right">
-      <button class="hdr-btn mobile-btn" onclick="openPreview('mobile')">📱 <span class="btn-txt">모바일</span></button>
-      <button class="hdr-btn a4-btn" onclick="openPreview('a4')">📄 <span class="btn-txt">A4 미리보기</span></button>
-      <div class="hdr-sep"></div>
-      <a class="hdr-btn home" href="https://manminkim-eng.github.io/KIMMANMIN/" target="_blank">🏠 <span class="btn-txt">홈</span></a>
+    </div>
+    <div class="hdr-right-wrap">
+      <!-- v5.0-HDR — 4줄 · LawMCP 2026-09-04 확인(주차장법 시행령 현행 2026-08-28 시행 · 별표1 개정 2026-08-25 · 11개 시설군) -->
+      <div class="hdr-right"><strong>주차장법 제19조 (부설주차장)</strong><br/>시행령 제6조 · [별표 1] 설치기준<br/>전북 6개 시 도시계획조례 · 장애인 구획<br/><em>[시행령 시행 2026. 8. 28.]</em></div>
     </div>
   </div>
-</header>
-
-<!-- ══ 히어로 이미지 배너 ══ -->
-<div class="hero-img-wrap">
-  <img src="hero-bg.jpg" alt="주차장법 — MANMIN 건축 도구" loading="lazy">
-  <div class="hero-img-overlay">
-    <div style="text-align:center">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(0,229,200,.8);margin-bottom:6px">MANMIN 건축 도구</div>
-      <div style="font-size:clamp(18px,4vw,28px);font-weight:900;color:#fff;letter-spacing:-.02em;line-height:1.1">부설주차장 법정대수 산정기</div>
+  <nav class="tab-bar">
+    <div class="tab-bar-inner">
+      <button class="tb active" onclick="goTab('main',this)">⌨️ 산정 입력·결과</button>
+      <button class="tb" onclick="goTab('print',this)">📄 A4 산정서</button>
     </div>
+  </nav>
+</header>
+<!-- v5.0-HDR : 요약 스트립 (헤더 3층) — 문서 끝 스크립트가 _lastResult 를 읽어 채운다 -->
+<div class="sum-bar-wrap no-print">
+  <div class="sum-bar">
+    <span class="sum-item">🏢 용도: <b id="sb-use">—</b></span>
+    <span class="sum-item">📍 지역: <b id="sb-region">—</b></span>
+    <span class="sum-item">📐 규모: <b id="sb-scale">—</b></span>
+    <span class="sum-item">🚗 기준대수: <b id="sb-base">—</b></span>
+    <span class="sum-item">♿ 장애인: <b id="sb-dis">—</b></span>
+    <span class="sum-item">✅ 법정대수: <b id="sb-final">—</b></span>
   </div>
 </div>
-
-<!-- ══ HERO ══ -->
-<section class="hero">
-  <div class="hero-badge"><span class="dot"></span>주차장법 시행령 별표1 &nbsp;|&nbsp; 2025.08.17 최신 개정</div>
-  <h1 class="hero-title">부설주차장 <span class="hl-t">법정대수</span><br><span class="hl-g">자동 산정기</span></h1>
-  <p class="hero-sub">건물 용도·지역·연면적·세대수·역세권·장애인 구획 6가지 입력만으로<span class="pc-br"><br></span> 법정 주차대수를 단계별 공식과 함께 즉시 산출합니다</p>
-  <span class="hero-law">⚖️ 주차장법 시행령 (대통령령 제35708호, 2025.08.17 개정) &nbsp;·&nbsp; MANMIN-Ver1.0</span>
-</section>
+<!-- ══ MAIN (탭 1) ══ -->
+<div class="tab-panel active" id="tab-main">
 
 <!-- ══ MAIN ══ -->
 <main class="page">
 
   <!-- 입력 컬럼 -->
   <div id="input-col">
+
+    <!-- v5.0 공사 정보 — A4 산정서 표제 (§3-12 · 산정 입력 첫 카드) -->
+    <div class="card">
+      <div class="sec-title">📋 공사 정보 — A4 표제</div>
+      <div class="proj-grid">
+        <div><div class="slabel">공사명</div><input class="mm-inp" type="text" id="a4ProjName" placeholder="예: ○○동 근린생활시설 신축" oninput="renderA4()" autocomplete="off"></div>
+        <div><div class="slabel">작성자</div><input class="mm-inp" type="text" id="a4Author" placeholder="작성자" oninput="renderA4()" autocomplete="off"></div>
+      </div>
+    </div>
 
     <!-- 건물 용도 -->
     <div class="card">
@@ -1793,6 +859,36 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
     </div>
   </div>
 </main>
+</div><!-- /tab-main -->
+
+<!-- ══ TAB 2 : A4 산정서 (v5.0 §3-4 · 출력 진입점 1곳 · 동일 DOM §2②) ══ -->
+<div class="tab-panel" id="tab-print">
+<div class="a4-panel">
+  <div class="a4-export-bar no-print">
+    <span class="bar-lbl">📄 A4 출력 : <span class="bar-hint">공사명·작성자는 「산정 입력」 공사 정보에서 입력</span></span>
+    <span class="bar-spacer"></span>
+    <button class="mm-btn mm-btn-print" onclick="printA4()">🖨️ 인쇄 / PDF 저장</button>
+    <button class="mm-btn mm-btn-jpg" id="btn-jpg" onclick="exportA4Jpg()">🖼️ JPG 저장</button>
+  </div>
+  <div class="a4-wrap" id="a4Wrap">
+  <div class="a4-scale-wrap" id="a4ScaleWrap">
+  <div class="a4-page" id="a4Page">
+    <div class="a4-tit">부설주차장 법정대수 산정서</div>
+    <div class="a4-head2">
+      <div class="a4-proj">공사명 : <span id="a4-projName">—</span></div>
+      <div class="a4-meta">근거 : 주차장법 제19조 · 시행령 제6조 · [별표 1] · 지자체 조례<br/>작성일 : <span id="a4-projDate">—</span><br/>작성자 : <span id="a4-projAuthor">—</span></div>
+    </div>
+    <div id="a4-body"><div style="color:#94a3b8;font-size:11px;padding:10px;">「산정 입력·결과」 탭에서 건물 용도·규모를 입력하고 산정을 실행하세요.</div></div>
+    <div class="a4-footer">
+      <span>부설주차장 법정대수 산정기 [MANMIN-Ver5.0]</span>
+      <span>주차장법 시행령 [별표 1] · 지자체 조례</span>
+      <span>작성일: <span id="a4-foot-date">—</span></span>
+    </div>
+  </div><!-- /a4-page -->
+  </div><!-- /a4-scale-wrap -->
+  </div><!-- /a4-wrap -->
+</div>
+</div><!-- /tab-print -->
 
 
 <!-- ══ PWA 설치 배너 ══ -->
@@ -1808,153 +904,21 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   <button class="pwa-close-btn" id="pwa-close-btn" aria-label="닫기">✕</button>
 </div>
 
-<!-- ══ FAB — 이용안내 (우측 하단 슬라이드 패널) ══ -->
-<div class="fab2">
-  <button class="fab2-btn" id="fab2-btn" onclick="toggleHelpPanel()">
-    <span id="fab2-icon">❓</span>
-    <span class="fab2-badge" id="fab2-badge">!</span>
-    <span class="fab2-tip">이용안내 &amp; 관련 자료</span>
+<!-- ══ FAB (v5.0 §18-11 — 초기화 위 · 이용안내 아래) ══ -->
+<div id="fab-group" class="no-print">
+  <button class="help-fab" onclick="resetAll()" title="입력 초기화">
+    <span class="fab-icon">🔄</span><span class="fab-lbl">초기화</span><span class="fab-sub">전체</span>
   </button>
-</div>
-
-<!-- ══ 우측 하단 이용안내 패널 ══ -->
-<div id="bottom-help-panel">
-  <div class="bhp-hdr">
-    <div class="bhp-title">
-      <span class="bhp-title-dot"></span>
-      이용안내 &amp; 관련 자료
-    </div>
-    <button class="bhp-close" onclick="closeHelpPanel()">✕</button>
-  </div>
-  <div class="bhp-tabs">
-    <button class="bhp-tab on" onclick="switchBhpTab(this,'bhp-guide')">이용방법</button>
-    <button class="bhp-tab" onclick="switchBhpTab(this,'bhp-law')">관련 법령</button>
-    <button class="bhp-tab" onclick="switchBhpTab(this,'bhp-table')">산정기준</button>
-    <button class="bhp-tab" onclick="switchBhpTab(this,'bhp-links')">참고 자료</button>
-  </div>
-  <div class="bhp-body">
-
-    <!-- 이용방법 패널 -->
-    <div class="bhp-panel on" id="bhp-guide">
-      <div class="bhp-step">
-        <div class="bhp-step-no">1</div>
-        <div class="bhp-step-txt"><strong>건물 용도 선택</strong><br>대분류 → 세분류 순으로 건물 용도를 선택하세요</div>
-      </div>
-      <div class="bhp-step">
-        <div class="bhp-step-no">2</div>
-        <div class="bhp-step-txt"><strong>지역 구분 설정</strong><br>용도지역(일반/도심/역세권)과 지자체를 선택하세요</div>
-      </div>
-      <div class="bhp-step">
-        <div class="bhp-step-no">3</div>
-        <div class="bhp-step-txt"><strong>연면적 / 세대수 입력</strong><br>전체 연면적(㎡) 입력 — 공동주택은 세대수도 필수 입력</div>
-      </div>
-      <div class="bhp-step">
-        <div class="bhp-step-no">4</div>
-        <div class="bhp-step-txt"><strong>의무 구획 설정</strong><br>장애인 전용구획 · 전기차 충전구획 해당 여부 설정</div>
-      </div>
-      <div class="bhp-step">
-        <div class="bhp-step-no">5</div>
-        <div class="bhp-step-txt"><strong>결과 확인 &amp; 저장</strong><br>우측 결과 확인 후 상단 버튼으로 JPG · A4 PDF 저장</div>
-      </div>
-      <div style="background:rgba(75,142,245,.06);border:1px solid rgba(75,142,245,.18);border-radius:8px;padding:10px 12px;font-size:10px;color:var(--cobalt2);line-height:1.8;margin-top:4px">
-        <strong>💡 역세권 감면</strong><br>
-        서울 30%, 그 외 20% (기본). 실제 적용 시 해당 시군구에 확인 필요
-      </div>
-    </div>
-
-    <!-- 관련 법령 패널 -->
-    <div class="bhp-panel" id="bhp-law">
-      <div class="bhp-law">
-        <strong>주차장법 시행령 별표1</strong><span class="bhp-law-badge">2025.08.17</span><br>
-        부설주차장 설치 대상 시설물 종류 및 설치기준 (대통령령 제35708호)
-      </div>
-      <div class="bhp-law">
-        <strong>주차장법 제19조</strong><br>
-        부설주차장 설치 의무 규정 — 시설물 신·증축 시 적용
-      </div>
-      <div class="bhp-law">
-        <strong>장애인·노인·임산부법 제17조</strong><span class="bhp-law-badge">2024.01.25</span><br>
-        장애인 전용주차구역 설치 의무 (주차대수 2% 이상, 최소 1구획)
-      </div>
-      <div class="bhp-law">
-        <strong>친환경자동차법 제11조의2</strong><br>
-        전기차 충전시설 설치 의무 (100대 이상 시 5% 이상)
-      </div>
-      <div class="bhp-law">
-        <strong>주차장법 시행령 별표1 비고 제3호</strong><br>
-        역세권(350m 이내) 감면 — 지자체 조례 20~30% 범위
-      </div>
-      <div style="background:rgba(232,160,32,.06);border:1px solid rgba(232,160,32,.18);border-radius:8px;padding:10px 12px;font-size:10px;color:#d4a050;line-height:1.7;margin-top:4px">
-        ⚠️ 본 산정기는 참고용입니다. 실제 인허가 시 해당 지자체 건축과·교통과에서 최신 조례를 반드시 확인하십시오.
-      </div>
-    </div>
-
-    <!-- 산정기준 패널 -->
-    <div class="bhp-panel" id="bhp-table">
-      <div style="font-size:10px;color:var(--slate);margin-bottom:8px;line-height:1.7">주차장법 시행령 별표1 주요 기준 (2025.08.17)</div>
-      <table class="bhp-tbl">
-        <thead><tr><th>시설 용도</th><th>기준</th></tr></thead>
-        <tbody>
-          <tr><td>위락시설</td><td>100㎡당 1대</td></tr>
-          <tr><td>판매·운수·업무시설</td><td>150㎡당 1대</td></tr>
-          <tr><td>근린·숙박시설</td><td>200㎡당 1대</td></tr>
-          <tr><td>의료·교육·운동시설</td><td>200㎡당 1대</td></tr>
-          <tr><td>공동주택 60㎡ 초과</td><td>세대당 1.0대</td></tr>
-          <tr><td>공동주택 60㎡ 이하</td><td>세대당 0.7대</td></tr>
-          <tr><td>단독주택</td><td>150㎡당 1대</td></tr>
-          <tr><td>공장</td><td>350㎡당 1대</td></tr>
-          <tr><td>창고·물류시설</td><td>400㎡당 1대</td></tr>
-          <tr><td>기숙사</td><td>400㎡당 1대</td></tr>
-          <tr><td>데이터센터</td><td>400㎡당 1대</td></tr>
-          <tr><td>그 외 건축물</td><td>300㎡당 1대</td></tr>
-          <tr><td>주유소</td><td>최소 2대</td></tr>
-          <tr><td>골프장</td><td>1홀당 10대</td></tr>
-          <tr><td>옥외수영장</td><td>15인당 1대</td></tr>
-          <tr><td>관람장</td><td>100인당 1대</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- 참고 자료 패널 -->
-    <div class="bhp-panel" id="bhp-links">
-      <div class="bhp-link" onclick="window.open('https://www.law.go.kr/lsSc.do?menuId=1&subMenuId=15&tabMenuId=81&query=%EC%A3%BC%EC%B0%A8%EC%9E%A5%EB%B2%95+%EC%8B%9C%ED%96%89%EB%A0%B9','_blank')">
-        <span class="bhp-link-ico">📋</span>
-        <div class="bhp-link-body">
-          <div class="bhp-lt">주차장법 시행령 — 국가법령정보센터</div>
-          <div class="bhp-ls">별표1 최신 기준 (2025.08.17 시행)</div>
-        </div>
-      </div>
-      <div class="bhp-link" onclick="window.open('https://www.molit.go.kr/USR/WPGE0201/m_35503/DTL.jsp','_blank')">
-        <span class="bhp-link-ico">🏛</span>
-        <div class="bhp-link-body">
-          <div class="bhp-lt">국토교통부 주차장 정책</div>
-          <div class="bhp-ls">주차 관련 정책 및 조례 지침</div>
-        </div>
-      </div>
-      <div class="bhp-link" onclick="window.open('https://www.law.go.kr/lsInfoP.do?lsiSeq=75547','_blank')">
-        <span class="bhp-link-ico">♿</span>
-        <div class="bhp-link-body">
-          <div class="bhp-lt">장애인 편의증진법 — 법령정보센터</div>
-          <div class="bhp-ls">장애인 전용주차구역 설치기준 (2024.01.25 개정)</div>
-        </div>
-      </div>
-      <div class="bhp-link" onclick="window.open('https://manminkim-eng.github.io/KIMMANMIN/','_blank')">
-        <span class="bhp-link-ico">🏠</span>
-        <div class="bhp-link-body">
-          <div class="bhp-lt">MANMIN 건축 도구 홈</div>
-          <div class="bhp-ls">일조사선 계산기 등 건축 도구 모음</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <button class="help-fab" onclick="openModal()" title="이용안내 · 관련 법령">
+    <span class="fab-icon">📖</span><span class="fab-lbl">이용안내</span><span class="fab-sub">관련법령</span>
+  </button>
 </div>
 
 <!-- ══ 중앙 도움말 모달 ══ -->
 <div class="modal-ov" id="help-modal-ov" onclick="closeModal(event)">
   <div class="modal-box" id="help-modal-box">
     <div class="modal-hdr">
-      <div class="modal-title">📚 이용안내 &amp; 관련 자료</div>
+      <div class="modal-title">📖 이용 안내 · 관련 법령 · 산정 기준표</div>
       <button class="modal-close" onclick="closeModalDirect()">✕</button>
     </div>
     <div class="modal-body">
@@ -2096,124 +1060,7 @@ body::before{content:'';position:fixed;inset:0;z-index:0;
   </div>
 </div>
 
-<!-- ══ 미리보기 & 저장 오버레이 ══ -->
-<div class="preview-ov" id="preview-ov">
-
-  <!-- ── 상단 컨트롤 바 ── -->
-  <div class="pv-topbar">
-    <div class="pv-topbar-left">
-      <div class="pv-bar-title">미리보기 &amp; 저장</div>
-      <div class="pv-tab-row">
-        <button class="pv-tab on" id="pv-tab-mobile" onclick="switchPreviewTab('mobile')">📱 Galaxy S24</button>
-        <button class="pv-tab" id="pv-tab-a4" onclick="switchPreviewTab('a4')">📄 A4 미리보기</button>
-      </div>
-    </div>
-    <div class="pv-topbar-right">
-      <!-- A4 전용 버튼 -->
-      <div id="pv-a4-actions" style="display:none">
-        <button class="pv-action-btn pv-pdf-btn" onclick="exportPDF()">
-          <span id="pdf-btn-icon">📥</span>
-          <span id="pdf-btn-txt"> PDF 저장</span>
-        </button>
-        <button class="pv-action-btn pv-print-btn2" onclick="doPrint()">🖨 인쇄</button>
-      </div>
-      <button class="pv-bar-close" onclick="closePreview()">✕</button>
-    </div>
-  </div>
-
-
-  <!-- ── Galaxy S24 Ultra 모바일 미리보기 뷰 ── -->
-  <div id="pv-mobile-view" style="display:flex;flex-direction:column;align-items:center;">
-    <div class="phone-wrap" id="phone-capture-target">
-      <!-- 음량 버튼2 -->
-      <div class="vol2"></div>
-      <div class="phone">
-        <!-- 상태바 -->
-        <div class="p-topbar">
-          <span class="p-topbar-left" id="p-time">9:41</span>
-          <div class="p-topbar-cam"></div>
-          <div class="p-topbar-right">
-            <div class="p-signal">
-              <span></span><span></span><span></span><span></span>
-            </div>
-            <span class="p-wifi">▲</span>
-            <div class="p-batt"><div class="p-batt-bar"></div></div>
-          </div>
-        </div>
-        <!-- 스크린 -->
-        <div class="p-screen">
-          <div class="p-content" id="p-mobile-content">
-            <div style="text-align:center;padding:60px 10px;color:var(--text3);font-size:11px;line-height:1.8">
-              🚗<br>산정 결과가 없습니다.<br>먼저 값을 입력하고 산정하세요.
-            </div>
-          </div>
-        </div>
-        <!-- 홈 인디케이터 -->
-        <div class="p-bottombar">
-          <div class="p-home-indicator"></div>
-        </div>
-        <!-- S펜 슬롯 -->
-        <div class="p-spen-slot"></div>
-      </div>
-    </div>
-    <!-- 스펙 정보 -->
-    <div class="phone-spec-row">
-      <span class="p-spec-chip">Galaxy S24 Ultra</span>
-      <span class="p-spec-chip">6.8" QHD+ 3088×1440</span>
-      <span class="p-spec-chip">505ppi · 19.3:9</span>
-      <span class="p-spec-chip">티타늄 프레임</span>
-    </div>
-    <!-- ── 모바일 화면 캡처 JPG 저장 버튼 ── -->
-    <div class="mobile-jpg-bar">
-      <button class="mobile-jpg-btn" id="mobile-jpg-btn" onclick="saveMobileJPG()">
-        <span class="mjb-ico">📷</span>
-        <span class="mjb-lbl">화면 캡처 저장</span>
-        <span class="mjb-sub">지금 보이는 폰 화면을 JPG로 저장</span>
-      </button>
-      <div id="mobile-jpg-status" style="display:none;margin-top:10px;background:rgba(0,194,168,.1);border:1px solid rgba(0,194,168,.25);border-radius:8px;padding:10px 14px;font-size:11px;color:var(--teal2);text-align:center;line-height:1.7"></div>
-      <div style="margin-top:8px;font-size:10px;color:var(--slate);text-align:center;line-height:1.7">
-        💡 지금 보이는 폰 화면 그대로 캡처됩니다 · iOS는 새 탭에서 길게 눌러 저장
-      </div>
-    </div>
-  </div>
-
-  <!-- JPG 저장 기능은 Galaxy S24 탭 하단 버튼으로 통합됨 -->
-
-  <!-- ── ISO A4 미리보기 뷰 ── -->
-  <div id="pv-a4-view" style="display:none">
-    <div class="a4-outer">
-      <div class="a4-wrap" id="a4-render-target">
-        <div class="a4-header">
-          <div class="a4-hdr-main">
-            <div class="a4-hdr-title">부설주차장 법정대수 산정서</div>
-            <div class="a4-hdr-sub">MANMIN-Ver1.0 · 주차장법 시행령 별표1 (대통령령 제35708호, 2025.08.17 시행)</div>
-          </div>
-          <div class="a4-hdr-meta">
-            <div class="a4-hdr-badge">ISO A4</div>
-            <div class="a4-hdr-date" id="a4-hdr-date"></div>
-          </div>
-        </div>
-        <div class="a4-body">
-          <div id="a4-sec-input"></div>
-          <div id="a4-sec-result"></div>
-          <div id="a4-sec-steps"></div>
-          <div id="a4-sec-law"></div>
-          <div class="a4-disclaimer" id="a4-disclaimer">
-            ⚠️ 본 산정서는 참고용입니다. 실제 건축 인허가 시 해당 지자체 건축과·교통과에서 최신 조례를 반드시 확인하십시오.
-          </div>
-        </div>
-        <div class="a4-footer">
-          <span>MANMIN 건축 도구 · manminkim-eng.github.io/KIMMANMIN</span>
-          <span id="a4-date-footer"></span>
-        </div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:14px">
-      <span class="pv-spec-pill">ISO A4 · 210 × 297 mm · 1장 고정 · PDF 저장 / 인쇄</span>
-    </div>
-  </div>
-
-</div>
+<span id="fab-icon" hidden></span><!-- 원본 openModal/closeModalDirect 참조 스텁(§20-14 ①) -->
 
 <!-- 토스트 -->
 <div class="toast" id="toast"></div>
@@ -3118,7 +1965,7 @@ function updatePreviewContent(){
   const a4SecLaw=document.getElementById('a4-sec-law');
   const now2=new Date();
   const dateStr=now2.toLocaleDateString('ko-KR',{year:'numeric',month:'long',day:'numeric'});
-  if(document.getElementById('a4-date-footer'))document.getElementById('a4-date-footer').textContent=`산정일: ${dateStr} · MANMIN-Ver1.0`;
+  if(document.getElementById('a4-date-footer'))document.getElementById('a4-date-footer').textContent=`산정일: ${dateStr} · MANMIN Ver-5.0`;
   if(document.getElementById('a4-hdr-date'))document.getElementById('a4-hdr-date').textContent=dateStr;
   if(!d){
     if(a4SecInput)a4SecInput.innerHTML='<div style="text-align:center;padding:40px 0;color:#aaa;font-size:11px">산정 결과가 없습니다. 먼저 값을 입력하고 산정하세요.</div>';
@@ -3379,7 +2226,7 @@ function buildMobileContent(d){
       <div style="width:28px;height:28px;background:linear-gradient(135deg,var(--cobalt),var(--teal));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🚗</div>
       <div>
         <div style="font-size:12px;font-weight:900;color:var(--teal2)">주차대수 산정기</div>
-        <div style="font-size:8px;color:var(--slate);letter-spacing:.04em">MANMIN-Ver1.0</div>
+        <div style="font-size:8px;color:var(--slate);letter-spacing:.04em">MANMIN Ver-5.0</div>
       </div>
     </div>
     <div class="pm-hero">
@@ -3782,6 +2629,159 @@ document.addEventListener('keydown',e=>{
 
 // A4 날짜 초기 설정
 // A4 date set on open
+</script>
+<script>
+/* ═══════════════ v5.0 — 탭 · 출력 · 스트립 (계산 스크립트 무접촉 · §19-5 window.* 재할당) ═══════════════ */
+/* 삭제된 미리보기 오버레이(S24·A4 jsPDF)·슬라이드 패널·공유 함수 무력화 */
+window.openPreview=function(){ goTab('print'); }; window.closePreview=function(){}; window.switchPreviewTab=function(){}; window.setPhoneTime=function(){};
+window.saveMobileJPG=function(){ goTab('print'); }; window.exportPDF=function(){ printA4(); }; window.doPrint=function(){ printA4(); };
+window.copyLink=function(){}; window.shareKakao=function(){};
+window.toggleHelpPanel=function(){ openModal(); }; window.openHelpPanel=function(){ openModal(); }; window.closeHelpPanel=function(){}; window.switchBhpTab=function(){};
+/* 원본 openModal/closeModalDirect 가 존재하지 않는 #fab-icon 을 만진다(원본부터 결함) → 재정의 */
+window.openModal=function(){ document.getElementById('help-modal-ov').classList.add('open'); document.body.style.overflow='hidden'; };
+window.closeModalDirect=function(){ document.getElementById('help-modal-ov').classList.remove('open'); document.body.style.overflow=''; };
+
+window.goTab=function(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tb').forEach(function(b){ b.classList.remove('active'); });
+  var panel=document.getElementById('tab-'+id); if(panel) panel.classList.add('active');
+  if(btn && btn.classList && btn.classList.contains('tb')) btn.classList.add('active');
+  else document.querySelectorAll('.tb').forEach(function(b){ if((b.getAttribute('onclick')||'').indexOf("'"+id+"'")>=0) b.classList.add('active'); });
+  if(id==='print'){ renderA4(); setTimeout(function(){ if(window._scaleA4) window._scaleA4(); },30); }
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
+/* 현재 산정 상태 — 계산 스크립트의 _lastResult 와 select 표시 문자열을 읽기만 한다 */
+function _selText(id){ var el=document.getElementById(id); if(!el||el.tagName!=='SELECT') return ''; var o=el.options[el.selectedIndex]; return o?o.textContent.trim():''; }
+function mmSnap(){
+  var d=(typeof _lastResult!=='undefined')?_lastResult:null; if(!d) return null;
+  var zoneTxt=_selText('sel-zone'), regionTxt=_selText('sel-region'), catTxt=_selText('sel-category');
+  return {d:d, zoneTxt:zoneTxt, regionTxt:regionTxt, catTxt:catTxt, cd:d.cityData||null, jb:!!d.isJeonbukCity,
+          subLabel:(d.sub&&d.sub.label)?d.sub.label:'—', subNote:(d.sub&&d.sub.note)?d.sub.note:''};
+}
+
+/* 초기화 — 원본 resetForm(계산 스크립트) 호출 + 공사 정보·조례 패널·스트립·A4 */
+window.resetAll=function(){
+  if(typeof resetForm==='function') resetForm();
+  ['a4ProjName','a4Author','inp-jeonbuk-room'].forEach(function(id){ var el=document.getElementById(id); if(el) el.value=''; });
+  var jr=document.getElementById('sel-jeonbuk-rule'); if(jr) jr.innerHTML='<option value="">— 해당 조례 시설 선택 —</option>';
+  var jp=document.getElementById('jeonbuk-panel'); if(jp) jp.style.display='none';
+  var jn=document.getElementById('jeonbuk-ordinance-note'); if(jn){ jn.style.display='none'; jn.innerHTML=''; }
+  mmSetSum(); renderA4(); goTab('main');
+};
+
+/* ═══════════════ A4 산정서 렌더 ═══════════════ */
+function _esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function _today(){ var n=new Date(); return n.getFullYear()+'. '+(n.getMonth()+1)+'. '+n.getDate()+'.'; }
+function _n(v,d){ return (v==null||isNaN(v))?'—':Number(v).toLocaleString(undefined,{maximumFractionDigits:d==null?1:d}); }
+/* LawMCP 2026-09-04 — 주차장법 시행령 [별표 1] <개정 2026. 8. 25.> 11개 시설군 */
+var MM_ANNEX1=[['1','위락시설','시설면적 100㎡당 1대'],['2','문화 및 집회시설(관람장 제외)·종교·판매·운수·의료(정신·요양·격리병원 제외)·운동(골프장·골프연습장·옥외수영장 제외)·업무(외국공관·오피스텔 제외)·방송국·장례식장','시설면적 150㎡당 1대'],['3','제1종 근린생활시설(일부 제외)·제2종 근린생활시설·숙박시설','시설면적 200㎡당 1대'],['4','단독주택(다가구주택 제외)','50㎡ 초과 150㎡ 이하 1대 · 150㎡ 초과 시 1 + (시설면적−150㎡)/100㎡'],['5','다가구주택·공동주택(기숙사 제외)·오피스텔','「주택건설기준 등에 관한 규정」 제27조 제1항 산정 주차대수'],['6','골프장·골프연습장·옥외수영장·관람장','1홀 10대 · 1타석 1대 · 정원 15명당 1대 · 정원 100명당 1대'],['7','수련시설·공장(아파트형 제외)·발전시설','시설면적 350㎡당 1대'],['8','창고시설','시설면적 400㎡당 1대'],['9','학생용 기숙사','시설면적 400㎡당 1대'],['10','방송통신시설 중 데이터센터','시설면적 400㎡당 1대'],['11','그 밖의 건축물','시설면적 300㎡당 1대']];
+window.renderA4=function(){
+  var s=mmSnap();
+  var $=function(id){ return document.getElementById(id); };
+  var set=function(id,v){ var e=$(id); if(e) e.textContent=v; };
+  var pn=($('a4ProjName')||{}).value||'', au=($('a4Author')||{}).value||'';
+  set('a4-projName', pn||'—'); set('a4-projAuthor', au||'—'); set('a4-projDate', _today()); set('a4-foot-date', _today());
+  var body=$('a4-body'); if(!body) return;
+  if(!s){ body.innerHTML='<div style="color:#94a3b8;font-size:11px;padding:10px;">「산정 입력·결과」 탭에서 건물 용도·규모를 입력하고 산정을 실행하세요.</div>'; return; }
+  var d=s.d, h='';
+  var basis = s.jb&&s.cd ? (s.cd.name+' 주차장 조례 '+(s.cd.ordinanceNo||'')) : '주차장법 시행령 [별표 1]';
+  h+='<div class="a4-sub">1. 산정 조건</div><table class="a4-meta-table"><tbody>'
+    +'<tr><td class="k">건물 용도</td><td colspan="3">'+_esc(s.catTxt||'—')+' › <strong>'+_esc(s.subLabel)+'</strong></td></tr>'
+    +'<tr><td class="k">연면적(시설면적)</td><td class="mono">'+_n(d.area,2)+' ㎡</td><td class="k">세대·객실</td><td class="mono">'+(d.units>0?_n(d.units,0)+' 개':'—')+'</td></tr>'
+    +'<tr><td class="k">지역 구분</td><td>'+_esc(s.zoneTxt||'—')+'</td><td class="k">적용 기준</td><td>'+_esc(s.regionTxt||'—')+(s.jb?' <span class="a4-tag ok">조례 적용</span>':' <span class="a4-tag info">시행령</span>')+'</td></tr>'
+    +'<tr><td class="k">부가 구획</td><td colspan="3">장애인 '+(d.disabledOn?'<span class="a4-tag ok">적용</span>':'<span class="a4-tag na">미적용</span>')+' · 전기차 '+(d.evOn?'<span class="a4-tag ok">적용</span>':'<span class="a4-tag na">미적용</span>')+' · 이륜차 '+(d.motoOn?'<span class="a4-tag ok">적용</span>':'<span class="a4-tag na">미적용</span>')+'</td></tr>'
+    +'</tbody></table>';
+  h+='<div class="a4-sub">2. 산정 결과</div>'
+    +'<div class="a4-verdict ok"><div><div class="v-main">최종 법정 주차대수 '+_n(d.finalCount,0)+' 대</div><div class="v-sub">'+_esc(basis)+(d.subwayReduction>0?' · 역세권 감면 '+_n(d.subwayReduction,0)+'대 적용':'')+'</div></div></div>'
+    +'<table class="a4-tbl"><thead><tr><th>항목</th><th style="width:22%">값</th><th>근거</th></tr></thead><tbody>'
+    +'<tr><td>기준 주차대수</td><td class="r">'+_n(d.baseCount,0)+' 대</td><td>'+_esc(s.subNote||basis)+'</td></tr>'
+    +'<tr><td>역세권 감면</td><td class="r">'+(d.subwayReduction>0?'− '+_n(d.subwayReduction,0)+' 대':'—')+'</td><td>'+(d.subwayReduction>0?'별표1 비고 · 지자체 조례 감면':'미적용')+'</td></tr>'
+    +'<tr><td><strong>최종 법정 주차대수</strong></td><td class="r"><strong>'+_n(d.finalCount,0)+' 대</strong></td><td>소수점 0.5 이상 올림 · 1대 미만 0 (별표1 비고 제6호)</td></tr>'
+    +'</tbody></table>';
+  h+='<div class="a4-sub">3. 단계별 산정 산식</div><table class="a4-tbl"><thead><tr><th style="width:8%">단계</th><th style="width:44%">항목</th><th>산식 · 값</th></tr></thead><tbody>';
+  (d.steps||[]).forEach(function(st,i){ h+='<tr><td class="c">'+(i+1)+'</td><td>'+_esc(st.l)+'</td><td class="mono">'+_esc(st.v||'')+'</td></tr>'; });
+  h+='</tbody></table>';
+  h+='<div class="a4-sub">4. 전용 구획</div><table class="a4-tbl"><thead><tr><th>구획</th><th style="width:18%">구획 수</th><th>근거</th></tr></thead><tbody>'
+    +'<tr><td>♿ 장애인 전용주차구획</td><td class="r">'+(d.disabledOn?_n(d.disabledCount,0)+' 구획 이상':'—')+'</td><td>별표1 비고 제10호 — 주차대수의 2~4 % 범위에서 조례로 정하는 비율 이상(10대 미만 제외)'+(s.jb&&s.cd&&s.cd.disabled_pct?' · '+s.cd.name+' 조례 '+(s.cd.disabled_pct*100)+' %':'')+'</td></tr>'
+    +'<tr><td>⚡ 전기차 충전구역·전용구역</td><td class="r">'+(d.evOn&&d.evCount>0?_n(d.evCount,0)+' 구획 이상':'—')+'</td><td>친환경자동차법 제11조의2 · 시행령 제18조의5 (지자체 조례 비율)</td></tr>'
+    +'<tr><td>🏍 이륜자동차 전용구획</td><td class="r">'+(d.motoOn&&d.motoCount>0?_n(d.motoCount,0)+' 구획':'—')+'</td><td>주차장법 시행령 제11조의2 · 지자체 조례</td></tr>'
+    +'</tbody></table>';
+  h+='<div class="a4-sub">5. 주차장법 시행령 [별표 1] 부설주차장 설치기준 (개정 2026. 8. 25.)</div><table class="a4-tbl long splitok"><thead><tr><th style="width:6%">호</th><th>시설물</th><th style="width:34%">설치기준</th></tr></thead><tbody>';
+  MM_ANNEX1.forEach(function(r){ h+='<tr><td class="c">'+r[0]+'</td><td style="font-size:10px">'+_esc(r[1])+'</td><td style="font-size:10px">'+_esc(r[2])+'</td></tr>'; });
+  h+='</tbody></table>';
+  h+='<div class="a4-sub">6. 적용 기준 · 유의사항</div><table class="a4-meta-table"><tbody>'
+    +'<tr><td class="k">주차장법 제19조</td><td>시설물 건축·설치 시 부설주차장 설치 의무 — 설치기준은 대통령령([별표 1]) · 지자체 조례로 강화·완화(시행령 제6조 ②, 1/2 범위)</td></tr>'
+    +'<tr><td class="k">시행령 제6조 · [별표 1]</td><td>11개 시설군 설치기준 · 비고 제4호 복합용도 합산 · 제6호 소수점 0.5 이상 올림 · 제10호 장애인 구획 2~4 % [시행령 시행 2026. 8. 28.]</td></tr>'
+    +'<tr><td class="k">지자체 조례</td><td>'+(s.jb&&s.cd?_esc(s.cd.name)+' 주차장 조례 '+_esc(s.cd.ordinanceNo||'')+' 적용 — 개정 여부는 자치법규정보시스템(elis.go.kr) 확인':'시행령 기준값 — 해당 시·군·구 주차장 조례(강화·완화·역세권 감면) 확인 필요')+'</td></tr>'
+    +'<tr><td class="k">검토 범위</td><td>표준 산정 자료 — 주택건설기준 규정 제27조(공동주택) · 기계식주차장 · 지구단위계획 · 용도변경 차이분(시행령 제6조 ④) 등 개별 규제는 허가권자 확인 필요</td></tr>'
+    +'</tbody></table>';
+  body.innerHTML=h;
+  var p=$('a4Page'); if(p&&typeof markLongTables==='function') markLongTables(p);
+};
+
+window.printA4=function(){
+  if(!mmSnap()){ showToast('⚠️ 먼저 산정을 실행하세요'); goTab('main'); return; }
+  goTab('print'); var _t=document.title; document.title=' '; var _r=function(){ document.title=_t; window.removeEventListener('afterprint',_r); }; window.addEventListener('afterprint',_r); setTimeout(function(){ window.print(); setTimeout(_r,1500); },200);   /* §20-15 */
+};
+function scaleA4Page(){
+  var wrap=document.getElementById('a4ScaleWrap'), outer=document.getElementById('a4Wrap'); if(!wrap||!outer) return;
+  if(window.matchMedia('print').matches){ wrap.style.transform='none'; wrap.style.height=''; return; }
+  var tab=document.getElementById('tab-print'); if(tab&&!tab.classList.contains('active')) return;
+  var ocs=getComputedStyle(outer); var availW=outer.clientWidth-(parseFloat(ocs.paddingLeft)||0)-(parseFloat(ocs.paddingRight)||0);
+  if(availW<=0){ wrap.style.transform='none'; wrap.style.height=''; return; }
+  var s=Math.max(0.05,Math.min(1,availW/794)); wrap.style.transform='scale('+s.toFixed(5)+')';
+  var pg=document.getElementById('a4Page'); wrap.style.height=((pg?pg.offsetHeight:1122)*s)+'px';
+}
+window._scaleA4=scaleA4Page;
+(function(){ if(typeof ResizeObserver==='undefined') return; var w=document.getElementById('a4Wrap'); if(!w) return; new ResizeObserver(function(){ var t=document.getElementById('tab-print'); if(t&&t.classList.contains('active')) scaleA4Page(); }).observe(w); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(scaleA4Page); })();
+
+/* v5.0-HDR — 요약 스트립 */
+window.mmSetSum=function(){
+  var s=mmSnap(); var f=function(id,v,cls){ var e=document.getElementById(id); if(e){ e.textContent=v; e.className=cls||''; } };
+  if(!s){ ['sb-use','sb-region','sb-scale','sb-base','sb-dis','sb-final'].forEach(function(id){ f(id,'—'); }); return; }
+  var d=s.d; var lab=s.subLabel.split(' — ')[0];
+  f('sb-use', lab); f('sb-region', (s.jb&&s.cd)?s.cd.name+' 조례':(s.regionTxt||'시행령').replace(/\s*\(.*\)$/,''), s.jb?'':'');
+  f('sb-scale', _n(d.area,0)+' ㎡'+(d.units>0?' · '+_n(d.units,0)+'세대':''));
+  f('sb-base', _n(d.baseCount,0)+' 대'+(d.subwayReduction>0?' (−'+_n(d.subwayReduction,0)+')':''), d.subwayReduction>0?'na':'');
+  f('sb-dis', d.disabledOn?_n(d.disabledCount,0)+' 구획':'—', d.disabledOn?'':'na');
+  f('sb-final', _n(d.finalCount,0)+' 대');
+};
+/* updatePreviewContent 는 calculate·calculateJeonbukCity 끝에서 호출된다(원본) → 스트립·A4 갱신으로 재정의 (§3-4 출력 진입점 1곳) */
+window.updatePreviewContent=function(){ mmSetSum(); renderA4(); };
+mmSetSum(); renderA4();
+</script>
+<script>
+/* ═══════════════ v5.0 — A4 페이지 단위 JPG + 저장 시트 (§3-5 · §14-2 · §17-7) — 22 엔진 이식 ═══════════════ */
+function mmSafeCuts(page){ var pr=page.getBoundingClientRect(), out=[]; page.querySelectorAll('.a4-head2,table.a4-tbl tbody tr,table.a4-meta-table tr').forEach(function(el){ out.push(el.getBoundingClientRect().bottom-pr.top); }); page.querySelectorAll('.a4-sub').forEach(function(el){ out.push(el.getBoundingClientRect().top-pr.top); }); out.push(page.scrollHeight); out.sort(function(a,b){return a-b;}); return out.filter(function(v,i,a){return i===0||v-a[i-1]>0.5;}); }
+function mmPickCut(cuts,y,limit){ var best=0; for(var i=0;i<cuts.length;i++){ if(cuts[i]>y+1&&cuts[i]<=limit) best=cuts[i]; else if(cuts[i]>limit) break; } return best; }
+function mmContentHeight(page){ var pr=page.getBoundingClientRect(), max=0; page.querySelectorAll('*').forEach(function(el){ var cs=getComputedStyle(el); if(cs.display==='none'||cs.visibility==='hidden') return; var b=el.getBoundingClientRect().bottom-pr.top; if(b>max) max=b; }); var pad=parseFloat(getComputedStyle(page).paddingBottom)||0; var h=Math.ceil(max+pad); return (h>0&&h<page.scrollHeight)?h:page.scrollHeight; }
+var MM_PAGE={W:794,H:1123,MT:14,MR:12,MB:22,ML:14};
+function markLongTables(page){ var mmPerPx=210/794, usable=(297-14-22)/mmPerPx; page.querySelectorAll('table.a4-tbl,table.a4-meta-table').forEach(function(t){ t.classList.toggle('long', t.getBoundingClientRect().height>usable || t.classList.contains('shadow') || t.classList.contains('splitok')); }); }   /* §20-15·§20-16: .shadow(일영 시각표)·.splitok(21 용도지역 표)는 높이와 무관하게 행 단위 쪽 나눔 허용 — 원자 표가 1쪽을 60% 비우는 것 방지 */
+/* 블록 원자(§17-7) — #a4-body 안의 섹션도 원자로 본다 */
+function mmBlocks(page){ var pr=page.getBoundingClientRect(), out=[], pend=null; var kids=[]; Array.prototype.forEach.call(page.children,function(el){ if(el.id==='a4-body') Array.prototype.forEach.call(el.children,function(c){kids.push(c);}); else kids.push(el); }); kids.forEach(function(el){ var b=el.getBoundingClientRect(); if(b.height<=0) return; var mb=parseFloat(getComputedStyle(el).marginBottom)||0; var top=b.top-pr.top, bot=b.bottom-pr.top+mb; var sp=el.classList.contains('long'); if(el.classList.contains('a4-sub')){ if(pend) out.push(pend); pend={top:top,bot:bot}; return; } if(pend){ out.push({top:pend.top,bot:bot,split:sp}); pend=null; return; } out.push({top:top,bot:bot,split:sp}); });   /* §20-16: 소제목+표 병합 블록도 split 플래그 승계 — 승계 누락 시 .long 표가 원자로 취급되어 1쪽이 비는 결함 */ if(pend) out.push(pend); out.sort(function(a,b){return a.top-b.top;}); return out; }
+function mmSegments(page){ var mmPerPx=210/MM_PAGE.W, cs=getComputedStyle(page); var padTop=parseFloat(cs.paddingTop)||0, padBot=parseFloat(cs.paddingBottom)||0; var usable=(297-MM_PAGE.MT-MM_PAGE.MB)/mmPerPx, docH=mmContentHeight(page), stop=Math.max(padTop,docH-padBot); var blocks=mmBlocks(page); if(!blocks.length) return [[padTop,stop]]; var cuts=mmSafeCuts(page), segs=[], y=padTop, i=0, guard=0; while(i<blocks.length&&guard++<120){ var limit=y+usable, j=i, end=y; while(j<blocks.length&&blocks[j].bot<=limit+0.5){ end=blocks[j].bot; j++; } if(j===i){ var cut=mmPickCut(cuts,y,limit); if(!cut||cut<=y+1) cut=limit; segs.push([y,cut]); if(cut>=blocks[i].bot-0.5) i++; y=cut; continue; } /* §20-15: 다음 블록이 행 나눔 허용 표(.long)이고 남은 공간이 1/4 이상이면 행 경계에서 잘라 미리보기 순서대로 채운다 */ if(j<blocks.length&&blocks[j].split&&(limit-end)>usable*0.25){ var c2=mmPickCut(cuts,end,limit); if(c2>blocks[j].top+20){ segs.push([y,c2]); y=c2; blocks[j].top=c2; i=j; continue; } } segs.push([y,end]); y=end; i=j; } if(stop-y>5) segs.push([y,stop]); return segs.length?segs:[[padTop,stop]]; }
+function mmDownload(url,name){ var a=document.createElement('a'); a.download=name; a.href=url; document.body.appendChild(a); a.click(); document.body.removeChild(a); }
+function mmCloseSheet(){ var ov=document.getElementById('mm-save-ov'); if(ov) ov.classList.remove('show'); }
+function mmOpenSheet(shots,base){ var prev=document.getElementById('mm-save-ov'); if(prev) prev.remove(); var ov=document.createElement('div'); ov.id='mm-save-ov'; var body=''; shots.forEach(function(url,i){ body+='<div class="mm-shot"><img src="'+url+'" alt="'+(i+1)+'쪽 미리보기"/><button class="mm-shot-btn" data-i="'+i+'">🖼 '+(i+1)+'쪽 저장</button></div>'; }); ov.innerHTML='<div class="mm-sheet" role="dialog" aria-modal="true" aria-label="계산서 저장"><div class="mm-sheet-head"><div><div class="mm-sheet-title">계산서 저장 · 총 '+shots.length+'매</div><div class="mm-sheet-note">'+(shots.length>1?'브라우저가 연속 다운로드를 차단하므로 쪽별로 저장합니다.':'미리보기를 확인하고 저장하세요.')+'</div></div><button class="btn-export mm-btn-close" id="mm-sheet-x">✕ 닫기</button></div><div class="mm-sheet-body'+(shots.length>1?' multi':'')+'">'+body+'</div><div class="mm-sheet-foot"><button class="btn-export mm-btn-jpg" id="mm-save-all">🖼 전체 저장 ('+shots.length+'매)</button></div></div>'; document.body.appendChild(ov); ov.classList.add('show'); ov.querySelectorAll('.mm-shot-btn').forEach(function(b){ b.addEventListener('click',function(){ mmDownload(shots[+b.getAttribute('data-i')], base+'_'+(+b.getAttribute('data-i')+1)+'of'+shots.length+'.jpg'); }); }); document.getElementById('mm-sheet-x').addEventListener('click',mmCloseSheet); ov.addEventListener('click',function(e){ if(e.target===ov) mmCloseSheet(); }); document.getElementById('mm-save-all').addEventListener('click',function(){ shots.forEach(function(url,i){ setTimeout(function(){ mmDownload(url, base+'_'+(i+1)+'of'+shots.length+'.jpg'); }, i*400); }); }); }
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') mmCloseSheet(); });
+window.exportA4Jpg=function(){
+  var el=document.getElementById('a4Page'); if(!el) return;
+  if(!_lastResult){ showToast('⚠️ 먼저 산정을 실행하세요'); goTab('main'); return; }
+  var panel=document.getElementById('tab-print'); if(panel&&!panel.classList.contains('active')){ goTab('print'); setTimeout(window.exportA4Jpg,350); return; }
+  renderA4(); showToast('📸 JPG 생성 중...');
+  var scaleWrap=document.getElementById('a4ScaleWrap'); var prevTransform=scaleWrap?scaleWrap.style.transform:''; if(scaleWrap) scaleWrap.style.transform='none'; void el.offsetHeight;
+  var restoreScale=function(){ if(scaleWrap) scaleWrap.style.transform=prevTransform; };
+  markLongTables(el); var segs=mmSegments(el), fullH=Math.max(mmContentHeight(el),1);
+  html2canvas(el,{scale:2,useCORS:true,allowTaint:false,backgroundColor:'#ffffff',logging:false,width:el.scrollWidth,height:fullH,windowWidth:el.scrollWidth,windowHeight:fullH,scrollX:0,scrollY:0}).then(function(canvas){
+    restoreScale(); var now=new Date(), ts=now.getFullYear()+''+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'_'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');
+    var base='주차장법_법정주차대수_산정서_MANMIN-Ver5.0_'+ts;
+    if(!segs||!segs.length){ mmDownload(canvas.toDataURL('image/jpeg',0.95), base+'.jpg'); showToast('✅ JPG 저장 완료!'); return; }
+    var S=canvas.width/el.scrollWidth, PAGE_W=MM_PAGE.W, PAGE_H=MM_PAGE.H, mmPerPx=210/PAGE_W, topPx=MM_PAGE.MT/mmPerPx;
+    var shots=segs.map(function(sg,idx){ var h=Math.max(1,Math.round((sg[1]-sg[0])*S)); var tmp=document.createElement('canvas'); tmp.width=Math.round(PAGE_W*S); tmp.height=Math.round(PAGE_H*S); var ctx=tmp.getContext('2d'); ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,tmp.width,tmp.height); ctx.drawImage(canvas,0,Math.round(sg[0]*S),canvas.width,h,0,Math.round(topPx*S),canvas.width,h); if(segs.length>1){ var fs=Math.round(9*S); ctx.fillStyle='#9CA3AF'; ctx.font='700 '+fs+'px Orbitron, "JetBrains Mono", monospace'; ctx.textAlign='left'; ctx.textBaseline='alphabetic'; ctx.fillText((idx+1)+' / '+segs.length, Math.round(MM_PAGE.ML/mmPerPx*S), Math.round((MM_PAGE.H-MM_PAGE.MB/mmPerPx+fs/S*0.4)*S)); } return tmp.toDataURL('image/jpeg',0.95); });
+    mmOpenSheet(shots,base); showToast(shots.length>1?'📄 '+shots.length+'매로 나눴습니다':'📄 미리보기에서 저장하세요');
+  }).catch(function(err){ restoreScale(); showToast('❌ JPG 저장 실패: '+err.message); });
+};
 </script>
 
 <script>
