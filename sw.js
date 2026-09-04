@@ -1,4 +1,5 @@
 /* ═══════════════════════════════════════════════════
+   S3-0 회차 2026-09-04 — R27 html2canvas 클론 정화 동반 캐시명 v5.0.2
    R25 회차 2026-09-04 — 자기 접두어 캐시 조회 · cors 프리캐시 · opaque 가드 · 캐시명 v5.0.1 (S10)
    부설주차장 법정대수 산정기  MANMIN Ver-5.0
    Service Worker — 오프라인 캐시 + 버전 업데이트  ·  ARCHITECT KIM MANMIN
@@ -18,7 +19,7 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE  = 'parking-v5.0.1';
+const CACHE  = 'parking-v5.0.2';
 const ORPHAN = ['parking-law-v1'];
 const ASSETS = [
   './', './index.html', './manifest.json',
