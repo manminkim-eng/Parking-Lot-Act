@@ -1,4 +1,5 @@
 /* ═══════════════════════════════════════════════════
+   v5.1.0 회차 2026-10-15 — 산정 엔진 교체(PARKENG) · 매뉴얼(/manual/) 캐시 제외 · 캐시명 v5.1.0
    S3-0 회차 2026-09-04 — R27 html2canvas 클론 정화 동반 캐시명 v5.0.2
    R25 회차 2026-09-04 — 자기 접두어 캐시 조회 · cors 프리캐시 · opaque 가드 · 캐시명 v5.0.1 (S10)
    부설주차장 법정대수 산정기  MANMIN Ver-5.0
@@ -19,7 +20,7 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE  = 'parking-v5.0.2';
+const CACHE  = 'parking-v5.1.0';   /* v5.1.0 (2026-10-15) — 별표 1 원문 대조 산정 전면 정정 · 복합용도 · 조례 입력 · 매뉴얼 */
 const ORPHAN = ['parking-law-v1'];
 const ASSETS = [
   './', './index.html', './manifest.json',
@@ -39,6 +40,7 @@ self.addEventListener('activate', e => {
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   if (!e.request.url.startsWith('http')) return;
+  if (new URL(e.request.url).pathname.indexOf('/manual/') !== -1) return;   /* v5.1.0 — 매뉴얼은 온라인 전용 · 캐시 제외 */
   if (e.request.mode === 'navigate' || e.request.destination === 'document') {
     e.respondWith(fetch(e.request).then(res => { if (res && res.status === 200) { const c = res.clone(); caches.open(CACHE).then(x => x.put(e.request, c)); } return res; })
       .catch(() => mmMatch(e.request).then(c => c || mmMatch('./index.html'))));

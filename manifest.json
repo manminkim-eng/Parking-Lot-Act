@@ -1,7 +1,7 @@
 {
-  "name": "부설주차장 법정대수 산정기 · MANMIN Ver-5.0",
+  "name": "부설주차장 법정대수 산정기 · MANMIN Ver-5.1",
   "short_name": "주차장법",
-  "description": "주차장법 시행령 [별표 1]·전북 6개 시 조례 기준 부설주차장 법정대수·장애인·전기차 구획 자동 산정 · A4 산정서 — MANMIN Ver-5.0 | ARCHITECT KIM MANMIN",
+  "description": "주차장법 시행령 [별표 1](2026. 8. 28. 시행)·주택건설기준 제27조 기준 부설주차장 법정대수 · 복합용도 합산 · 조례 기준 입력 · 장애인 · 친환경차 구획 · A4 산정서 — MANMIN Ver-5.1 | ARCHITECT KIM MANMIN",
   "start_url": "./index.html",
   "display": "standalone",
   "orientation": "portrait-primary",
