@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>부설주차장 법정대수 산정기 사용자 매뉴얼 Ver-5.1 · MANMIN</title>
+<meta name="description" content="부설주차장 법정대수 산정기 MANMIN Ver-5.1 사용자 매뉴얼 — 화면 기능, 주차장법 시행령 [별표 1] · 주택건설기준 제27조 해설, 실무 작업 방법">
+<meta name="author" content="김만민 건축사 · ㈜대성건축사사무소">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@700;900&display=swap">
+<link rel="stylesheet" href="./assets/fonts/manmin-fonts.css">
+<style>
+:root{
+  --navy:#2D3A8C;--navy-d:#1F2A6B;--navy-l:#E9ECF8;--accent:#F4A261;--accent-d:#C97A3A;--accent-l:#FDF1E7;
+  --bg:#F8F9FA;--card:#FFFFFF;--text:#1A1A2E;--text2:#4A4F66;--line:#DDE1EA;--ok:#0F766E;--ng:#B42318;
+  --r:12px;--pad:24px;--shadow:0 4px 20px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.75;word-break:keep-all;overflow-wrap:anywhere}
+a{color:var(--navy)}a:hover{color:var(--accent-d)}
+code,kbd,.mono{font-family:var(--font-mono);font-size:.9em}
+code{background:var(--navy-l);color:var(--navy-d);padding:1px 6px;border-radius:5px}
+kbd{border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:0 6px;background:#fff}
+/* 상단 */
+.top{background:linear-gradient(135deg,var(--navy-d),var(--navy));color:#fff}
+.top-in{max-width:1240px;margin:0 auto;padding:44px 24px 36px}
+.eyebrow{font-family:var(--font-brand);font-weight:700;font-size:12px;letter-spacing:.18em;opacity:.85}
+.top h1{font-size:28px;font-weight:900;margin:8px 0 6px;line-height:1.35}
+.top .sub{opacity:.9;margin:0}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:4px 12px;font-size:13px}
+a.badge{color:#fff;text-decoration:none}a.badge:hover{background:rgba(255,255,255,.24);color:#fff}
+.badge.acc{background:var(--accent);border-color:var(--accent);color:#1A1A2E;font-weight:700}
+/* 레이아웃 */
+.wrap{max-width:1240px;margin:0 auto;padding:28px 24px 80px;display:grid;grid-template-columns:260px minmax(0,1fr);gap:32px}
+nav.toc{position:sticky;top:16px;align-self:start;max-height:calc(100vh - 32px);overflow:auto;background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:18px 16px;font-size:14px}
+nav.toc h2{font-size:13px;letter-spacing:.12em;color:var(--text2);margin:0 0 8px}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li a{display:block;padding:5px 8px;border-radius:8px;text-decoration:none;color:var(--text)}
+nav.toc li a:hover,nav.toc li a.on{background:var(--navy-l);color:var(--navy)}
+nav.toc li.sub a{padding-left:20px;font-size:13px;color:var(--text2)}
+main{min-width:0}
+section.ch{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:var(--pad) calc(var(--pad) + 8px);margin-bottom:28px}
+section.ch>h2{font-size:24px;font-weight:700;color:var(--navy);margin:0 0 4px;display:flex;align-items:baseline;gap:10px}
+section.ch>h2 .n{font-family:var(--font-brand);font-weight:700;font-size:14px;color:#fff;background:var(--navy);border-radius:8px;padding:2px 9px}
+section.ch>.lead{color:var(--text2);margin:0 0 18px}
+h3{font-size:19px;color:var(--navy-d);margin:34px 0 10px;padding-top:6px;border-top:1px solid var(--line)}
+h3:first-of-type{border-top:0}
+h4{font-size:16px;margin:22px 0 8px}
+p{margin:8px 0}
+ul,ol{padding-left:22px}
+.note,.tip,.warn{border-radius:10px;padding:12px 16px;margin:14px 0;font-size:15px}
+.note{background:var(--navy-l);border-left:4px solid var(--navy)}
+.tip{background:var(--accent-l);border-left:4px solid var(--accent)}
+.warn{background:#FEF3F2;border-left:4px solid var(--ng)}
+.note b:first-child,.tip b:first-child,.warn b:first-child{margin-right:6px}
+/* 표 */
+.tbl{overflow-x:auto;margin:12px 0;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
+th,td{border-bottom:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy-l);color:var(--navy-d);font-weight:700;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right;font-family:var(--font-mono);white-space:nowrap}
+.ok{color:var(--ok);font-weight:700}.ng{color:var(--ng);font-weight:700}
+/* 그림 */
+figure.shot{margin:18px 0 26px}
+figure.shot .frame{position:relative;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;cursor:zoom-in}
+figure.shot img{display:block;width:100%;height:auto}
+figure.narrow{max-width:420px}
+.pin{position:absolute;transform:translate(-50%,-50%);width:26px;height:26px;border-radius:50%;background:var(--accent);color:#1A1A2E;font:700 13px/26px var(--font-mono);text-align:center;box-shadow:0 0 0 3px #fff,0 2px 8px rgba(0,0,0,.35);pointer-events:none}
+figcaption{font-size:14px;color:var(--text2);margin-top:8px}
+.fno{font-family:var(--font-mono);font-size:11px;background:var(--navy);color:#fff;border-radius:6px;padding:1px 7px;margin-right:8px}
+ol.legend{list-style:none;padding:0;margin:10px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px 16px;font-size:14px}
+ol.legend li{display:flex;gap:8px;align-items:flex-start}
+ol.legend b{flex:0 0 22px;height:22px;border-radius:50%;background:var(--accent);font:700 12px/22px var(--font-mono);text-align:center}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+/* 단계 */
+.steps{counter-reset:st;list-style:none;padding:0;margin:16px 0}
+.steps>li{counter-increment:st;position:relative;padding:4px 0 18px 54px;border-left:2px solid var(--line);margin-left:18px}
+.steps>li:last-child{border-left-color:transparent}
+.steps>li::before{content:counter(st);position:absolute;left:-19px;top:0;width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font:700 15px/36px var(--font-mono);text-align:center;box-shadow:0 0 0 4px var(--bg)}
+.steps>li>b.t{display:block;font-size:17px;color:var(--navy-d);margin-bottom:2px}
+/* 수식 */
+.eq{font-family:var(--font-mono);background:#0F1630;color:#E8ECFF;border-radius:10px;padding:14px 18px;margin:12px 0;overflow-x:auto;font-size:14px;line-height:1.9;white-space:pre}
+.eq .c{color:#9AA6D6}
+.svgbox{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;margin:14px 0;overflow-x:auto}
+.svgbox svg{display:block;width:100%;min-width:640px;height:auto}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;margin:14px 0}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:16px;background:#fff}
+.card h5{margin:0 0 4px;font-size:15px;color:var(--navy)}
+.card p{margin:0;font-size:14px;color:var(--text2)}
+footer.foot{max-width:1240px;margin:0 auto;padding:0 24px 40px;color:var(--text2);font-size:13px}
+/* 라이트박스 */
+#lb{position:fixed;inset:0;background:rgba(10,14,30,.88);display:none;align-items:center;justify-content:center;z-index:99;cursor:zoom-out;padding:16px}
+#lb.open{display:flex}#lb img{max-width:100%;max-height:100%;border-radius:8px;background:#fff}
+.totop{position:fixed;right:18px;bottom:18px;width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;border:0;font-size:18px;box-shadow:var(--shadow);cursor:pointer}
+/* 반응형 5단계 */
+@media (max-width:1240px){.wrap{grid-template-columns:230px minmax(0,1fr);gap:24px}}
+@media (max-width:1024px){.wrap{grid-template-columns:1fr}nav.toc{position:static;max-height:none}nav.toc ol{columns:2}}
+@media (max-width:760px){.pair{grid-template-columns:1fr}section.ch{padding:20px 18px}.top h1{font-size:24px}}
+@media (max-width:640px){nav.toc ol{columns:1}body{font-size:15px}}
+@media (max-width:480px){.wrap,.top-in{padding-left:16px;padding-right:16px}.pin{width:22px;height:22px;font-size:11px;line-height:22px}}
+@media (max-width:400px){section.ch>h2{font-size:20px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+/* A4 인쇄 */
+@page{size:A4;margin:14mm 12mm 14mm}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:10.5pt}
+  nav.toc,.totop,#lb{display:none!important}
+  .wrap{display:block;padding:0}
+  section.ch{box-shadow:none;padding:0 0 8mm;margin:0;break-before:page}
+  main{padding-bottom:8mm}
+  section.ch:first-of-type{break-before:auto}
+  figure.shot,.tbl,.eq,.svgbox,.note,.tip,.warn,.steps>li{break-inside:avoid}
+  h3,h4{break-after:avoid}
+  .top{border-radius:0}
+  .pfoot{position:fixed;bottom:0;left:0;right:0;height:6mm;background:#fff;font-size:8pt;color:#666;border-top:1px solid #ccc;padding-top:1.5mm;display:flex;justify-content:space-between}
+}
+.pfoot{display:none}
+@media print{.pfoot{display:flex}}
+/* ── 좁은 화면 대응(r1 · 2026-10-12) : 화면 전용 — 인쇄·PDF에는 영향 없음 ── */
+@media screen and (max-width:640px){
+  .k1 td:first-child,.k1 th:first-child{white-space:normal}
+  /* 글 표(숫자 칸 없는 표) → 행마다 카드로 쌓기 */
+  .tbl.stack{border:0;border-radius:0;overflow:visible}
+  .tbl.stack table,.tbl.stack tbody,.tbl.stack tr,.tbl.stack td{display:block;width:auto}
+  .tbl.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .tbl.stack table{background:transparent}
+  .tbl.stack tr{border:1px solid var(--line);border-radius:10px;background:#fff;margin:0 0 10px;overflow:hidden}
+  .tbl.stack td{border-bottom:1px solid var(--line);padding:8px 12px}
+  .tbl.stack tr td:last-child{border-bottom:0}
+  .tbl.stack td:first-child{background:var(--navy-l);color:var(--navy-d);font-weight:700}
+  .tbl.stack td[data-th]:not(:first-child)::before{content:attr(data-th);display:block;font-size:12px;font-weight:700;color:var(--text2);margin-bottom:2px}
+  .tbl.stack.c2 td[data-th]:not(:first-child)::before{display:none}
+  .tbl.stack td:empty{display:none}
+  /* 숫자 표 → 표 모양 유지, 글자·여백 축소, 넘치면 좌우로 밀기(오른쪽 그림자로 표시) */
+  .tbl:not(.stack){background:linear-gradient(to right,#fff 30%,rgba(255,255,255,0)) left/40px 100% no-repeat local,linear-gradient(to left,#fff 30%,rgba(255,255,255,0)) right/40px 100% no-repeat local,radial-gradient(farthest-side at 100% 50%,rgba(26,26,46,.22),transparent) right/12px 100% no-repeat scroll,#fff}
+  .tbl:not(.stack) table{font-size:13px;background:transparent}
+  .tbl:not(.stack) th,.tbl:not(.stack) td{padding:7px 8px}
+  /* 수식 → 줄바꿈 허용 */
+  .eq{white-space:pre-wrap;word-break:keep-all;font-size:13px;line-height:1.75;padding:12px 14px}
+  .eq .c{display:block;padding-left:1em}
+  .svgbox{position:relative}
+  .svgbox::after{content:"← 좌우로 밀어서 보기 →";display:block;text-align:center;font-size:12px;color:var(--text2);margin-top:6px;position:sticky;left:0}
+  ol.legend{grid-template-columns:1fr}
+  .steps>li{padding-left:34px;margin-left:14px}
+}
+.rev{white-space:nowrap}
+@media print{.rev{display:none}}
+</style>
+</head><body>
+<header class="top"><div class="top-in">
+<div class="eyebrow">MANMIN ENGINEERING · USER MANUAL</div>
+<h1>부설주차장 법정대수 산정기 사용자 매뉴얼</h1>
+<p class="sub">지역 · 조례 → 용도별 시설면적(복합용도) → [별표 1] · 제27조 법정대수 → 전용 구획 → A4 산정서</p>
+<div class="badges"><span class="badge acc">매뉴얼 <span style="font-family:var(--font-brand)">Ver-5.1</span></span><a class="badge" href="../index.html">▶ 부설주차장 법정대수 산정기 열기</a><a class="badge" href="주차장_사용자매뉴얼_Ver-5.1.pdf" download>⤓ PDF</a><span class="badge">2026-10-15</span><span class="badge">김만민 건축사 · ㈜대성건축사사무소</span></div>
+</div></header>
+<div class="wrap"><nav class="toc" aria-label="목차"><h2>목차</h2><ol><li><a href="#ch0">0. 이 매뉴얼에 대하여</a></li><li><a href="#ch1">1. 한눈에 보기</a></li><li class="sub"><a href="#s1-1">화면 구성</a></li><li class="sub"><a href="#s1-2">작업 탭·근거 표시</a></li><li class="sub"><a href="#s1-3">설치·보관·매뉴얼</a></li><li><a href="#ch2">2. 1분 따라하기</a></li><li><a href="#ch3">3. 화면별 기능 상세</a></li><li class="sub"><a href="#s3-1">지역·조례</a></li><li class="sub"><a href="#s3-2">시설 목록(복합용도)</a></li><li class="sub"><a href="#s3-3">산정 결과</a></li><li class="sub"><a href="#s3-4">용도별 산정표</a></li><li class="sub"><a href="#s3-5">전용 주차구획</a></li><li class="sub"><a href="#s3-6">사례 — 공동주택 + 근린생활시설</a></li><li class="sub"><a href="#s3-7">사례 — 조례 기준 입력</a></li><li class="sub"><a href="#s3-8">이용안내·관련 법령 창</a></li><li class="sub"><a href="#s3-9">A4 산정서·출력</a></li><li class="sub"><a href="#s3-10">휴대전화 화면</a></li><li><a href="#ch4">4. 법령 해설</a></li><li class="sub"><a href="#s4-1">근거 체계</a></li><li class="sub"><a href="#s4-2">[별표 1] 설치기준</a></li><li class="sub"><a href="#s4-3">시설면적·면제 시설</a></li><li class="sub"><a href="#s4-4">복합용도·끝수</a></li><li class="sub"><a href="#s4-5">공동주택 제27조</a></li><li class="sub"><a href="#s4-6">조례 강화·완화</a></li><li class="sub"><a href="#s4-7">전용 주차구획</a></li><li class="sub"><a href="#s4-8">산정 범위·한계</a></li><li class="sub"><a href="#s4-9">v5.1.0 정정</a></li><li><a href="#ch5">5. 실무 작업 방법</a></li><li class="sub"><a href="#s5-1">단계별 절차</a></li><li class="sub"><a href="#s5-2">허가 전 확인</a></li><li><a href="#ch6">6. 문제 해결·FAQ</a></li><li><a href="#ch7">부록</a></li><li class="sub"><a href="#a1">예제 입력값</a></li><li class="sub"><a href="#a2">예제 결과</a></li><li class="sub"><a href="#a3">버전 변경 내역</a></li><li class="sub"><a href="#a4">용어</a></li></ol></nav><main><style>
+#fig-s14_modal_guide,#fig-s15_modal_law,#fig-s16_modal_ref{max-width:640px}
+#fig-s03_region,#fig-s04_rows_a,#fig-s08_options,#fig-s09_rows_b,#fig-s12_rows_c{max-width:460px}
+#fig-s18_a4page{max-width:560px}
+.k1 td:first-child,.k1 th:first-child{white-space:nowrap}
+@media (max-width:1240px){.eq{white-space:pre-wrap;word-break:keep-all}}
+.eq .c{display:block;margin-top:2px}
+.pair>div{min-width:0}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:start}
+@media (max-width:760px){.tri{grid-template-columns:1fr}}
+@media print{
+  figure.shot{max-width:none!important}
+  figure.shot .frame{width:fit-content;max-width:100%}
+  figure.shot img{width:auto;height:auto;max-width:100%;max-height:118mm}
+  #fig-s18_a4page img,#fig-s04_rows_a img,#fig-s09_rows_b img,#fig-s12_rows_c img{max-height:190mm}
+  figure.narrow img{max-height:105mm}
+  .pair{grid-template-columns:1fr 1fr}.tri{grid-template-columns:repeat(3,1fr)}
+  .brk .tbl{break-inside:auto}.brk tr{break-inside:avoid}.brk thead{display:table-header-group}
+}
+</style><section class="ch" id="ch0"><h2><span class="n">00</span>이 매뉴얼에 대하여</h2>
+<p class="lead">부설주차장 법정대수 산정기는 시설물의 용도별 <b>시설면적</b>을 줄마다 넣어 <b>주차장법 시행령 [별표 1]</b>로 부설주차장 법정대수를 산정하고, 공동주택 · 오피스텔은 <b>주택건설기준 등에 관한 규정 제27조 제1항</b>으로 따로 산정해 더한 뒤, 조례 기준 · 장애인전용 · 환경친화적 자동차 전용주차구역까지 A4 산정서로 정리하는 도구입니다. 근거는 주차장법 제19조 · 주차장법 시행령 제6조 · [별표 1](2026. 8. 25. 개정, 2026. 8. 28. 시행), 주택건설기준 등에 관한 규정 제27조 제1항(2026. 9. 8. 시행), 환경친화적 자동차의 개발 및 보급 촉진에 관한 법률 시행령 제18조의5 · 제18조의6입니다.</p>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">항목</th><th class="">내용</th></tr></thead><tbody><tr><td class="">대상 프로그램</td><td class="">부설주차장 법정대수 산정기 <b>MANMIN Ver-5.1</b>(v5.1.0) — 탭 막대 「📘 매뉴얼」 버튼으로 이 문서가 열립니다</td></tr><tr><td class="">접속 주소</td><td class=""><a href="https://manminkim-eng.github.io/Parking-Lot-Act/" target="_blank" rel="noopener">manminkim-eng.github.io/Parking-Lot-Act</a></td></tr><tr><td class="">매뉴얼 판</td><td class=""><b>Ver-5.1</b> (화면 표기와 같은 판 번호, 초판) · 2026-10-15 · 작성 김만민 건축사(㈜대성건축사사무소)</td></tr><tr><td class="">내려받기</td><td class=""><a href="주차장_사용자매뉴얼_Ver-5.1.pdf" download>PDF(A4)</a> · <a href="../index.html">부설주차장 법정대수 산정기 열기</a></td></tr><tr><td class="">예제</td><td class="">본문 그림은 예제 A(익산 복합용도 — 제1종 근생 450㎡ · 제2종 근생 400㎡ · 업무 1,200㎡)로 캡처했습니다 — <b>합계 12.2 → 법정 12대 · 장애인전용 1구획</b>. 예제 B(공동주택 + 근생) · C(조례 기준 입력)는 <a href="#a2">부록 A2</a></td></tr><tr><td class="">근거 법령</td><td class="">주차장법 제19조 · 주차장법 시행령 제6조 · [별표 1](2026. 8. 25. 개정, 2026. 8. 28. 시행), 주택건설기준 등에 관한 규정 제27조 제1항(2026. 9. 8. 시행), 환경친화적 자동차의 개발 및 보급 촉진에 관한 법률 시행령 제18조의5 · 제18조의6 — LawMCP(국가법령정보센터) 원문 대조(2026-10-15)</td></tr><tr><td class="">읽는 순서</td><td class="">처음이면 1장 → 2장(따라하기) → 필요할 때 3장(화면별 상세). 건축허가 · 설계도서에 쓰기 전에는 4장(법령 해설) · 5장(작업 방법)</td></tr></tbody></table></div></div>
+<div class="note"><b>표기</b>그림 위 주황색 번호(①②…)는 그림 아래 범례 번호와 같습니다. 그림을 누르면 크게 볼 수 있습니다. 「비고 4」처럼 번호만 쓴 것은 주차장법 시행령 [별표 1]의 비고, 「제27조」는 주택건설기준 등에 관한 규정의 조문입니다. 면적 단위는 ㎡, 대수 단위는 대입니다.</div>
+<div class="warn"><b>책임 한계</b>산정값은 입력값에 따른 예비 · 검토용 결과입니다. 시 · 군 · 구 조례는 이 도구에 내장되어 있지 않으며 설계자가 조례 원문을 확인해 입력합니다. 용도변경 특례(시행령 제6조 제4항), 설치 제한 지역(법 제19조 제10항), 지구단위계획 · 기계식 주차장 기준은 범위 밖입니다(<a href="#s4-8">4-8</a>). 건축허가 신청 전에 허가권자와 협의하십시오.</div>
+</section>
+<section class="ch" id="ch1"><h2><span class="n">01</span>한눈에 보기</h2>
+<p class="lead">설치 없이 브라우저에서 바로 실행되는 단일 페이지 앱(PWA)입니다. 입력한 내용은 브라우저 안에서만 계산되며 서버로 전송되지 않습니다.</p>
+<div class="cards">
+<div class="card"><h5>무엇을 산정하나</h5><p>[별표 1] 제1호 ~ 제11호 시설군 법정대수, 제5호 주택(제27조 제1항), 조례 기준 대수, 장애인 · 친환경차 · 경형 구획</p></div>
+<div class="card"><h5>복합용도</h5><p>용도마다 한 줄 — 소수점 이하 첫째 자리까지 더한 뒤 끝수 처리(비고 4 · 6). 주택은 따로 산정해 더함</p></div>
+<div class="card"><h5>조례 입력</h5><p>줄마다 「○㎡당 1대」(또는 %) — 시행령 제6조 제2항 2분의 1 범위를 넘으면 경고</p></div>
+</div>
+<h3 id="s1-1">1-1. 화면 구성</h3>
+<figure class="shot" id="fig-s01_overview"><div class="frame"><img src="images/s01_overview.webp" width="1440" height="900" loading="lazy" alt="전체 화면 — 산정 입력 · 결과 탭(예제 A)"><span class="pin" style="left:5.26%;top:13.49%">1</span><span class="pin" style="left:5.26%;top:19.93%">2</span><span class="pin" style="left:5.96%;top:28.02%">3</span><span class="pin" style="left:5.96%;top:46.04%">4</span><span class="pin" style="left:5.96%;top:84.03%">5</span><span class="pin" style="left:36.79%;top:28.02%">6</span><span class="pin" style="left:94.15%;top:83.96%">7</span></div><figcaption><span class="fno">S01</span>전체 화면 — 산정 입력 · 결과 탭(예제 A)</figcaption><ol class="legend"><li><b>1</b><span>작업 탭 · 매뉴얼</span></li><li><b>2</b><span>요약 스트립</span></li><li><b>3</b><span>공사 정보(A4 표제)</span></li><li><b>4</b><span>지역 · 조례</span></li><li><b>5</b><span>시설 목록(복합용도)</span></li><li><b>6</b><span>산정 결과</span></li><li><b>7</b><span>초기화 · 이용안내</span></li></ol></figure>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">영역</th><th class="">내용</th></tr></thead><tbody><tr><td class="">헤더 · 탭</td><td class="">「⌨ 산정 입력 · 결과」 → 「📄 A4 산정서」, 오른쪽 끝 「📘 매뉴얼」</td></tr><tr><td class="">요약 스트립</td><td class="">어느 탭에 있든 용도 구성 · 지역 · 시설면적 합계 · 법정 대수 · 조례 대수 · 장애인 구획을 한 줄로 보여 줍니다</td></tr><tr><td class="">왼쪽 입력</td><td class="">공사 정보(A4 표제) → 지역 · 조례 → 시설 목록 → 전용 주차구획 → 「산정」 · 「초기화」</td></tr><tr><td class="">오른쪽 결과</td><td class="">산정 결과(대수) → 용도별 산정표(줄별 산식) → 전용 주차구획 — 값을 바꾸면 즉시 다시 계산됩니다</td></tr></tbody></table></div></div>
+<h3 id="s1-2">1-2. 작업 탭·근거 표시</h3>
+<figure class="shot" id="fig-s02_tabs"><div class="frame"><img src="images/s02_tabs.webp" width="1440" height="186" loading="lazy" alt="헤더 — 작업 탭과 근거 표시"><span class="pin" style="left:6.82%;top:66.48%">1</span><span class="pin" style="left:16.12%;top:66.48%">2</span><span class="pin" style="left:86.30%;top:66.48%">3</span><span class="pin" style="left:78.42%;top:13.74%">4</span></div><figcaption><span class="fno">S02</span>헤더 — 작업 탭과 근거 표시</figcaption><ol class="legend"><li><b>1</b><span>산정 입력 · 결과</span></li><li><b>2</b><span>A4 산정서</span></li><li><b>3</b><span>매뉴얼</span></li><li><b>4</b><span>근거 · 시행일</span></li></ol></figure>
+<p>헤더 오른쪽에는 적용 근거(주차장법 제19조 · 시행령 제6조 · [별표 1] · 주택건설기준 제27조)와 시행일 <b>[시행령 시행 2026. 8. 28.]</b>이 표시됩니다.</p>
+<h3 id="s1-3">1-3. 설치·보관·매뉴얼</h3>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">항목</th><th class="">내용</th></tr></thead><tbody><tr><td class="">설치</td><td class="">주소창의 설치 아이콘 또는 휴대전화 「홈 화면에 추가」로 앱처럼 쓸 수 있습니다. 한 번 연 뒤에는 인터넷 없이도 산정됩니다</td></tr><tr><td class="">결과 보관</td><td class="">산정 결과는 「A4 산정서」 탭에서 PDF · JPG로 남기십시오. 화면을 닫으면 입력값은 남지 않습니다</td></tr><tr><td class="">매뉴얼</td><td class="">탭 막대 오른쪽 끝 「📘 매뉴얼」 — 인터넷 연결 시 새 창으로 열립니다(오프라인 캐시 대상이 아닙니다)</td></tr><tr><td class="">업데이트</td><td class="">새 버전이 올라오면 다음 접속 때 자동으로 바뀝니다. 화면 표기가 Ver-5.1이 아니면 새로 고침(Ctrl+F5)</td></tr></tbody></table></div></div>
+</section>
+<section class="ch" id="ch2"><h2><span class="n">02</span>1분 따라하기</h2>
+<p class="lead">예제 A — 익산시 근린생활시설 및 업무시설(복합용도 3개 용도)입니다. 아래 순서대로 넣으면 <b>법정 12대 · 장애인전용 1구획</b>이 나옵니다.</p>
+<ol class="steps">
+<li><b class="t">① 지역 · 조례</b>시 · 군 · 구 「전북특별자치도 익산시」, 주택 지역 구분 「다. 가 · 나목 외의 시지역」, 조례명은 비워 둡니다(법정 기준만 산정, <a href="#s3-1">3-1</a>).</li>
+<li><b class="t">② 1번 줄</b>용도 「제1종 근린생활시설」, 시설면적 450㎡ → 450 ÷ 200 = 2.25 → <b>2.2</b>(소수점 이하 첫째 자리까지).</li>
+<li><b class="t">③ 2번 줄</b>「＋ 용도 추가」 → 「제2종 근린생활시설」 400㎡ → 400 ÷ 200 = <b>2.0</b>.</li>
+<li><b class="t">④ 3번 줄</b>「업무시설」 1,200㎡ → 1,200 ÷ 150 = <b>8.0</b>(<a href="#s3-2">3-2</a>).</li>
+<li><b class="t">⑤ 합산 · 끝수</b>2.2 + 2.0 + 8.0 = <b>12.2</b> → 소수점 이하 0.2는 0.5 미만이므로 버림 → <b>12대</b>(비고 4 · 6, <a href="#s3-4">3-4</a>).</li>
+<li><b class="t">⑥ 전용 구획</b>장애인전용 「대상」 · 조례 비율 2 % → 12 × 2 % = 0.24 → 올림 <b>1구획</b>, 경형 1대까지 인정(<a href="#s3-5">3-5</a>).</li>
+<li><b class="t">⑦ A4 산정서</b>「📄 A4 산정서」 탭에서 「🖨️ 인쇄 · PDF」 또는 「🖼️ JPG 저장」(<a href="#s3-9">3-9</a>).</li>
+</ol>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">항목</th><th class="">예제 A</th></tr></thead><tbody><tr><td class="">제1종 근생 450㎡</td><td class="">제3호 200㎡당 1대 → 2.25 → 2.2</td></tr><tr><td class="">제2종 근생 400㎡</td><td class="">제3호 200㎡당 1대 → 2.0</td></tr><tr><td class="">업무 1,200㎡</td><td class="">제2호 150㎡당 1대 → 8.0</td></tr><tr><td class="">합계</td><td class="">12.2 → 비고 6 → <b>12대</b></td></tr><tr><td class="">장애인전용</td><td class="">1구획 이상 (2 % · 올림)</td></tr><tr><td class="">친환경차</td><td class="">총주차대수 50대 미만 — 의무 없음</td></tr></tbody></table></div></div>
+<div class="tip"><b>확인</b>용도별로 따로 반올림하면 2 + 2 + 8 = 12로 같아 보이지만, 줄마다 소수를 버리지 않고 첫째 자리까지 더한 뒤 마지막에 한 번만 끝수 처리하는 것이 비고 4 · 6의 방식입니다. 예컨대 0.6 + 0.6은 각각 반올림하면 2대이지만 합산하면 1.2 → 1대입니다.</div>
+</section>
+<section class="ch" id="ch3"><h2><span class="n">03</span>화면별 기능 상세</h2>
+<h3 id="s3-1">3-1. 지역·조례</h3>
+<figure class="shot" id="fig-s03_region"><div class="frame"><img src="images/s03_region.webp" width="444" height="348" loading="lazy" alt="지역 · 조례 카드"><span class="pin" style="left:7.38%;top:29.31%">1</span><span class="pin" style="left:51.53%;top:30.12%">2</span><span class="pin" style="left:7.38%;top:63.90%">3</span></div><figcaption><span class="fno">S03</span>지역 · 조례 카드</figcaption><ol class="legend"><li><b>1</b><span>시 · 군 · 구</span></li><li><b>2</b><span>주택 지역 구분(제27조 표)</span></li><li><b>3</b><span>적용 조례명</span></li></ol></figure>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">항목</th><th class="">설명</th></tr></thead><tbody><tr><td class="">시 · 군 · 구</td><td class="">A4 산정서 「대지 위치」에 그대로 표기됩니다. 산정값에는 영향이 없습니다(조례는 아래에서 직접 입력)</td></tr><tr><td class="">주택 지역 구분</td><td class="">제27조 제1항 표의 가 ~ 라 — 가. 특별시 · 나. 광역시 · 특별자치시 · 수도권 내 시지역 · 다. 가 · 나목 외의 시지역 · 수도권 내 군지역 · 라. 그 밖의 지역. 공동주택 · 다가구 · 오피스텔(제5호)에만 쓰입니다</td></tr><tr><td class="">적용 조례명</td><td class="">조례 기준을 넣을 때 근거 조례명을 적으면 A4 산정서 「적용 조례」 · 결과 카드에 표기됩니다(예: ○○시 주차장 조례 [별표 ○])</td></tr></tbody></table></div></div>
+<h3 id="s3-2">3-2. 시설 목록(복합용도)</h3>
+<figure class="shot" id="fig-s04_rows_a"><div class="frame"><img src="images/s04_rows_a.webp" width="444" height="785" loading="lazy" alt="시설 목록 — 예제 A(3개 용도)"><span class="pin" style="left:7.38%;top:12.30%">1</span><span class="pin" style="left:7.38%;top:32.94%">2</span><span class="pin" style="left:7.38%;top:53.58%">3</span><span class="pin" style="left:10.31%;top:23.22%">4</span><span class="pin" style="left:7.38%;top:72.78%">5</span><span class="pin" style="left:7.38%;top:81.98%">6</span></div><figcaption><span class="fno">S04</span>시설 목록 — 예제 A(3개 용도)</figcaption><ol class="legend"><li><b>1</b><span>1번 줄 — 제1종 근생 450㎡</span></li><li><b>2</b><span>2번 줄 — 제2종 근생 400㎡</span></li><li><b>3</b><span>3번 줄 — 업무 1,200㎡</span></li><li><b>4</b><span>조례 기준 칸</span></li><li><b>5</b><span>＋ 용도 추가</span></li><li><b>6</b><span>시설면적 · 증축 · 용도변경</span></li></ol></figure>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">항목</th><th class="">설명</th></tr></thead><tbody><tr><td class="">용도</td><td class="">[별표 1] 시설군별로 묶은 목록에서 고릅니다. 제1종 근생 중 공중화장실 · 대피소 · 지역아동센터, 의료시설 중 정신 · 요양 · 격리병원, 학원 · 독서실 · 금융업소 등 세부 구분이 따로 있습니다</td></tr><tr><td class="">시설면적</td><td class="">공용면적을 포함하고 부설주차장 바닥면적은 빼는 면적입니다(비고 2). 골프장은 홀, 골프연습장은 타석, 옥외수영장 · 관람장은 정원(명)을 넣습니다</td></tr><tr><td class="">조례 기준</td><td class="">해당 용도에 조례 기준이 따로 있으면 「○㎡당 1대」를 넣습니다. 단독주택 · 골프장 등 면적 기준이 아닌 용도는 증감 %로 넣습니다(<a href="#s4-6">4-6</a>)</td></tr><tr><td class="">＋ 용도 추가 · ✕</td><td class="">복합용도는 용도마다 한 줄씩 추가하고, 필요 없는 줄은 ✕로 지웁니다</td></tr><tr><td class="">증축 · 용도변경</td><td class="">증축 · 용도변경은 해당 부분의 면적만 넣습니다(비고 5 · 7). 용도변경 특례(시행령 제6조 제4항)는 따로 확인합니다</td></tr><tr><td class="">설치 면제 시설</td><td class="">비고 1의 시설(가목 변전소 · 양수장 · 정수장 등, 나목 수도원 · 수녀원 · 제실 · 사당, 다목 동물 및 식물 관련 시설(도축장 · 도계장 제외), 라목 방송통신시설 중 송신 · 수신 · 중계시설, 바목 도시철도 역사, 사목 전통한옥 밀집지역 안의 전통한옥)을 고르면 그 줄은 0대입니다</td></tr></tbody></table></div></div>
+<h3 id="s3-3">3-3. 산정 결과</h3>
+<figure class="shot" id="fig-s05_result_a"><div class="frame"><img src="images/s05_result_a.webp" width="856" height="475" loading="lazy" alt="산정 결과 카드 — 예제 A"><span class="pin" style="left:4.02%;top:18.36%">1</span><span class="pin" style="left:4.02%;top:52.70%">2</span><span class="pin" style="left:50.98%;top:52.70%">3</span><span class="pin" style="left:4.02%;top:73.96%">4</span><span class="pin" style="left:50.98%;top:73.96%">5</span></div><figcaption><span class="fno">S05</span>산정 결과 카드 — 예제 A</figcaption><ol class="legend"><li><b>1</b><span>부설주차장 대수</span></li><li><b>2</b><span>법정(별표 1)</span></li><li><b>3</b><span>조례 적용</span></li><li><b>4</b><span>장애인 전용</span></li><li><b>5</b><span>친환경차 전용</span></li></ol></figure>
+<p>큰 숫자는 최종 부설주차장 대수입니다 — 조례 기준을 하나라도 넣으면 조례 적용 대수, 아니면 법정(별표 1) 대수입니다. 아래 칸에 법정 · 조례 대수와 장애인 · 친환경차 전용 구획 수를 함께 보여 줍니다.</p>
+<h3 id="s3-4">3-4. 용도별 산정표</h3>
+<figure class="shot" id="fig-s06_table_a"><div class="frame"><img src="images/s06_table_a.webp" width="856" height="432" loading="lazy" alt="용도별 산정 — 예제 A"><span class="pin" style="left:4.02%;top:28.28%">1</span><span class="pin" style="left:4.02%;top:76.96%">2</span><span class="pin" style="left:4.02%;top:85.35%">3</span></div><figcaption><span class="fno">S06</span>용도별 산정 — 예제 A</figcaption><ol class="legend"><li><b>1</b><span>줄별 산식 — 소수 첫째 자리</span></li><li><b>2</b><span>합계 → 비고 6</span></li><li><b>3</b><span>부설주차장 주차대수</span></li></ol></figure>
+<p>줄마다 용도 · 근거 호 · 시설면적과 <b>산식(시설면적 ÷ 기준면적)</b>을 보여 주고, 값은 소수점 이하 첫째 자리까지 남깁니다(둘째 자리 이하 버림). 아래 「제5호 외 합계」에서 비고 4로 더한 값을 비고 6으로 끝수 처리하고, 제5호 주택이 있으면 그 대수를 따로 더해 「부설주차장 주차대수」를 냅니다.</p>
+<h3 id="s3-5">3-5. 전용 주차구획</h3>
+<div class="pair"><div><figure class="shot" id="fig-s08_options"><div class="frame"><img src="images/s08_options.webp" width="444" height="433" loading="lazy" alt="전용 주차구획 입력 카드"><span class="pin" style="left:7.38%;top:17.67%">1</span><span class="pin" style="left:7.38%;top:38.00%">2</span><span class="pin" style="left:7.38%;top:50.48%">3</span><span class="pin" style="left:51.53%;top:70.81%">4</span><span class="pin" style="left:7.38%;top:79.59%">5</span></div><figcaption><span class="fno">S08</span>전용 주차구획 입력 카드</figcaption><ol class="legend"><li><b>1</b><span>장애인전용 대상</span></li><li><b>2</b><span>조례 비율 2 ~ 4 %</span></li><li><b>3</b><span>친환경차 대상</span></li><li><b>4</b><span>기계식 대수 제외</span></li><li><b>5</b><span>기축시설 2 %</span></li></ol></figure></div><div><figure class="shot" id="fig-s07_special_a"><div class="frame"><img src="images/s07_special_a.webp" width="856" height="308" loading="lazy" alt="전용 주차구획 결과 — 예제 A"><span class="pin" style="left:4.02%;top:36.25%">1</span><span class="pin" style="left:4.02%;top:48.01%">2</span><span class="pin" style="left:4.02%;top:59.77%">3</span></div><figcaption><span class="fno">S07</span>전용 주차구획 결과 — 예제 A</figcaption><ol class="legend"><li><b>1</b><span>장애인전용 (비고 10)</span></li><li><b>2</b><span>친환경차 (제18조의5 · 6)</span></li><li><b>3</b><span>경형 (비고 12)</span></li></ol></figure></div></div>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">항목</th><th class="">설명</th></tr></thead><tbody><tr><td class="">장애인전용</td><td class="">조례로 정한 비율(2 ~ 4 %)을 넣습니다 — 전체 대수 × 비율, 올림. 부설주차장 10대 미만은 의무 없음(비고 10). 구획 크기 3.3 m × 5.0 m 이상(시행규칙 제3조)</td></tr><tr><td class="">환경친화적 자동차</td><td class="">시 · 도 조례 대상 시설이면 「대상」 — 총주차대수(기계식 제외) 50대 이상일 때 5 %(기축시설 2 %) 이상, 소수점 이하 반올림(친환경자동차법 시행령 제18조의5 · 6). 조례 비율이 더 높으면 고쳐 넣습니다</td></tr><tr><td class="">기계식 대수</td><td class="">기계식 주차장치 대수는 친환경차 산정 기준 대수에서 뺍니다</td></tr><tr><td class="">경형자동차</td><td class="">전체 주차단위구획의 10 %까지를 경형 전용구획으로 설치기준에 넣을 수 있습니다(비고 12) — 「○대까지」로 표시</td></tr></tbody></table></div></div>
+<h3 id="s3-6">3-6. 사례 — 공동주택 + 근린생활시설</h3>
+<div class="pair"><div><figure class="shot" id="fig-s09_rows_b"><div class="frame"><img src="images/s09_rows_b.webp" width="444" height="729" loading="lazy" alt="예제 B — 시설 목록(공동주택 주택형 2종 + 제1종 근생)"><span class="pin" style="left:10.31%;top:18.63%">1</span><span class="pin" style="left:10.31%;top:24.66%">2</span><span class="pin" style="left:10.31%;top:35.77%">3</span><span class="pin" style="left:7.38%;top:49.79%">4</span></div><figcaption><span class="fno">S09</span>예제 B — 시설 목록(공동주택 주택형 2종 + 제1종 근생)</figcaption><ol class="legend"><li><b>1</b><span>주택형 59㎡ × 40세대</span></li><li><b>2</b><span>주택형 84㎡ × 60세대</span></li><li><b>3</b><span>도시형 생활주택</span></li><li><b>4</b><span>제1종 근생 600㎡</span></li></ol></figure></div><div><figure class="shot" id="fig-s10_table_b"><div class="frame"><img src="images/s10_table_b.webp" width="856" height="413" loading="lazy" alt="예제 B — 용도별 산정"><span class="pin" style="left:4.02%;top:29.41%">1</span><span class="pin" style="left:4.02%;top:67.13%">2</span><span class="pin" style="left:4.02%;top:75.89%">3</span><span class="pin" style="left:4.02%;top:84.65%">4</span></div><figcaption><span class="fno">S10</span>예제 B — 용도별 산정</figcaption><ol class="legend"><li><b>1</b><span>제27조 — 전용면적 합계 · 세대당 하한</span></li><li><b>2</b><span>제5호 외 합계</span></li><li><b>3</b><span>제5호 따로 합산</span></li><li><b>4</b><span>합계 91대</span></li></ol></figure></div></div>
+<p>공동주택은 주택형마다 「세대 전용면적 × 세대수」를 넣습니다. 전용면적 85㎡ 이하 합계 59 × 40 + 84 × 60 = 7,400㎡ ÷ 95(다. 시지역) = 77.89대, 세대당 하한 40 × 0.7(60㎡ 이하) + 60 × 1 = 88대 → 큰 값 · 끝수 올림 <b>88대</b>(제27조 제1항 제1호). 제1종 근생 600㎡ ÷ 200 = 3.0 → 3대를 따로 더해 <b>91대</b>입니다(비고 4 — 제5호는 따로 합산).</p>
+<figure class="shot" id="fig-s11_special_b"><div class="frame"><img src="images/s11_special_b.webp" width="856" height="308" loading="lazy" alt="예제 B — 전용 주차구획"><span class="pin" style="left:4.02%;top:36.25%">1</span><span class="pin" style="left:4.02%;top:48.01%">2</span></div><figcaption><span class="fno">S11</span>예제 B — 전용 주차구획</figcaption><ol class="legend"><li><b>1</b><span>장애인 2구획</span></li><li><b>2</b><span>친환경차 5구역</span></li></ol></figure>
+<p>장애인전용 91 × 2 % = 1.82 → 올림 <b>2구획</b>, 친환경차 91 × 5 % = 4.55 → 반올림 <b>5구역</b>, 경형 9대까지 인정입니다.</p>
+<h3 id="s3-7">3-7. 사례 — 조례 기준 입력</h3>
+<div class="pair"><div><figure class="shot" id="fig-s12_rows_c"><div class="frame"><img src="images/s12_rows_c.webp" width="444" height="803" loading="lazy" alt="예제 C — 조례명 · 조례 기준 입력"><span class="pin" style="left:7.38%;top:28.15%">1</span><span class="pin" style="left:10.31%;top:65.31%">2</span></div><figcaption><span class="fno">S12</span>예제 C — 조례명 · 조례 기준 입력</figcaption><ol class="legend"><li><b>1</b><span>조례명</span></li><li><b>2</b><span>조례 기준 134㎡당 1대</span></li></ol></figure></div><div><figure class="shot" id="fig-s13_result_c"><div class="frame"><img src="images/s13_result_c.webp" width="856" height="773" loading="lazy" alt="예제 C — 산정 결과"><span class="pin" style="left:4.02%;top:12.45%">1</span><span class="pin" style="left:4.02%;top:31.36%">2</span><span class="pin" style="left:4.02%;top:75.63%">3</span></div><figcaption><span class="fno">S13</span>예제 C — 산정 결과</figcaption><ol class="legend"><li><b>1</b><span>조례 적용 7대</span></li><li><b>2</b><span>법정 5대</span></li><li><b>3</b><span>법정 4.5 · 조례 6.7</span></li></ol></figure></div></div>
+<p>제1종 근생 900㎡에 조례 기준 「134㎡당 1대」를 넣은 경우입니다. 법정 900 ÷ 200 = 4.5 → <b>5대</b>, 조례 900 ÷ 134 = 6.716 → 6.7 → <b>7대</b>. 별표 1 기준 200㎡에 대한 비율 200 ÷ 134 = 1.49배로 시행령 제6조 제2항의 2분의 1 범위(0.5 ~ 1.5배) 안이므로 경고가 없습니다. 7대는 10대 미만이므로 장애인전용 의무는 없습니다. ※ 134㎡는 설명용 가정값이며, 실제 조례 기준은 해당 시 · 군 · 구 조례 원문에서 확인합니다.</p>
+<h3 id="s3-8">3-8. 이용안내·관련 법령 창</h3>
+<div class="tri"><div><figure class="shot" id="fig-s14_modal_guide"><div class="frame"><img src="images/s14_modal_guide.webp" width="824" height="633" loading="lazy" alt="「이용안내」 — 6단계"></div><figcaption><span class="fno">S14</span>「이용안내」 — 6단계</figcaption></figure></div><div><figure class="shot" id="fig-s15_modal_law"><div class="frame"><img src="images/s15_modal_law.webp" width="824" height="725" loading="lazy" alt="「관련 법령」"></div><figcaption><span class="fno">S15</span>「관련 법령」</figcaption></figure></div><div><figure class="shot" id="fig-s16_modal_ref"><div class="frame"><img src="images/s16_modal_ref.webp" width="824" height="650" loading="lazy" alt="「산정 기준표」 — 별표 1"></div><figcaption><span class="fno">S16</span>「산정 기준표」 — 별표 1</figcaption></figure></div></div>
+<p>오른쪽 아래 「📖 이용안내」 버튼은 이용안내 · 관련 법령 · 산정 기준표 · 참고 자료 4개 탭 창입니다. 참고 자료에는 국가법령정보센터(시행령 · 주택건설기준), 자치법규정보시스템(조례 원문), 세움터 연결이 있습니다. 창은 ✕ 또는 Esc로 닫습니다.</p>
+<h3 id="s3-9">3-9. A4 산정서·출력</h3>
+<figure class="shot" id="fig-s17_a4"><div class="frame"><img src="images/s17_a4.webp" width="1440" height="900" loading="lazy" alt="A4 산정서 탭"><span class="pin" style="left:77.35%;top:27.04%">1</span><span class="pin" style="left:86.98%;top:27.04%">2</span><span class="pin" style="left:22.83%;top:38.24%">3</span></div><figcaption><span class="fno">S17</span>A4 산정서 탭</figcaption><ol class="legend"><li><b>1</b><span>인쇄 / PDF</span></li><li><b>2</b><span>JPG 저장</span></li><li><b>3</b><span>A4 산정서</span></li></ol></figure>
+<figure class="shot" id="fig-s18_a4page"><div class="frame"><img src="images/s18_a4page.webp" width="818" height="1647" loading="lazy" alt="A4 부설주차장 산정서 — 예제 A"><span class="pin" style="left:8.35%;top:11.50%">1</span><span class="pin" style="left:8.35%;top:20.14%">2</span><span class="pin" style="left:8.35%;top:36.34%">3</span><span class="pin" style="left:8.35%;top:42.02%">4</span><span class="pin" style="left:8.35%;top:52.56%">5</span><span class="pin" style="left:8.35%;top:79.10%">6</span></div><figcaption><span class="fno">S18</span>A4 부설주차장 산정서 — 예제 A</figcaption><ol class="legend"><li><b>1</b><span>1. 산정 조건</span></li><li><b>2</b><span>2. 용도별 산정</span></li><li><b>3</b><span>3. 산정 결과</span></li><li><b>4</b><span>4. 전용 주차구획</span></li><li><b>5</b><span>5. 별표 1</span></li><li><b>6</b><span>6. 적용 기준</span></li></ol></figure>
+<p>산정서는 1. 산정 조건, 2. 용도별 산정(법정 · 조례 열), 3. 산정 결과, 4. 전용 주차구획, 5. 시행령 [별표 1] 설치기준 표, 6. 적용 기준 · 유의사항 6개 절이며, 화면과 같은 산식을 담습니다. 공사명 · 작성자는 「공사 정보」 카드에서 넣습니다.</p>
+<h3 id="s3-10">3-10. 휴대전화 화면</h3>
+<div class="tri"><div><figure class="shot narrow" id="fig-s19_mobile_main"><div class="frame"><img src="images/s19_mobile_main.webp" width="390" height="844" loading="lazy" alt="산정 입력"></div><figcaption><span class="fno">S19</span>산정 입력</figcaption></figure></div><div><figure class="shot narrow" id="fig-s20_mobile_result"><div class="frame"><img src="images/s20_mobile_result.webp" width="390" height="844" loading="lazy" alt="산정 결과"></div><figcaption><span class="fno">S20</span>산정 결과</figcaption></figure></div><div><figure class="shot narrow" id="fig-s21_mobile_a4"><div class="frame"><img src="images/s21_mobile_a4.webp" width="390" height="844" loading="lazy" alt="A4 산정서"></div><figcaption><span class="fno">S21</span>A4 산정서</figcaption></figure></div></div>
+<p>좁은 화면에서는 입력 카드와 결과 카드가 한 줄로 쌓입니다. A4 산정서는 화면 폭에 맞춰 축소해 보여 주며 인쇄 · JPG는 원본 A4 크기로 나옵니다.</p>
+</section>
+<section class="ch" id="ch4"><h2><span class="n">04</span>법령 해설</h2>
+<h3 id="s4-1">4-1. 근거 체계</h3>
+<div class="brk"><div class="k1"><div class="tbl"><table><thead><tr><th class="">법령</th><th class="">내용</th></tr></thead><tbody><tr><td class="">주차장법 제19조</td><td class="">도시지역 · 지구단위계획구역 · 조례로 정하는 관리지역에서 시설물을 건축 · 설치하려는 자는 부설주차장 설치(제1항), 시설물 종류와 설치기준은 대통령령(제3항) [2026. 8. 28. 시행]</td></tr><tr><td class="">시행령 제6조</td><td class="">제1항 설치기준은 [별표 1] · 제2항 조례로 2분의 1 범위에서 강화 · 완화 · 제4항 용도변경 특례 [2026. 8. 25. 개정 · 8. 28. 시행]</td></tr><tr><td class="">시행령 [별표 1]</td><td class="">부설주차장의 설치대상 시설물 종류 및 설치기준 — 제1호 ~ 제11호 · 비고 1 ~ 12</td></tr><tr><td class="">주택건설기준 등에 관한 규정 제27조</td><td class="">제1항 주택단지 주차장 — [별표 1] 제5호(다가구 · 공동주택 · 오피스텔)가 따르는 기준 [2026. 9. 8. 시행]</td></tr><tr><td class="">친환경자동차법 시행령 제18조의5 · 6</td><td class="">환경친화적 자동차 전용주차구역 설치 대상 · 비율 [2025. 10. 1. 시행]</td></tr><tr><td class="">주차장법 시행규칙 제3조</td><td class="">주차구획 크기 — 장애인전용 3.3 × 5.0 m · 일반형 2.5 × 5.0 m · 경형 2.0 × 3.6 m</td></tr></tbody></table></div></div></div>
+<p class="mono" style="font-size:13px;color:var(--text2)">LawMCP(국가법령정보센터) 원문 대조 2026-10-15 · 원문은 law.go.kr에서 열람할 수 있습니다.</p>
+<h3 id="s4-2">4-2. [별표 1] 설치기준</h3>
+<div class="brk"><div class="k1"><div class="tbl"><table><thead><tr><th class="">호</th><th class="">시설물</th><th class="">설치기준</th></tr></thead><tbody><tr><td class="">1</td><td class="">위락시설</td><td class="">시설면적 100㎡당 1대</td></tr><tr><td class="">2</td><td class="">문화 및 집회(관람장 제외) · 종교 · 판매 · 운수 · 의료(정신병원 · 요양병원 · 격리병원 제외) · 운동(골프장 · 골프연습장 · 옥외수영장 제외) · 업무(외국공관 · 오피스텔 제외) · 방송국 · 장례식장</td><td class="">시설면적 150㎡당 1대</td></tr><tr><td class="">3</td><td class="">제1종 근린생활시설(바 · 사목 제외) · 제2종 근린생활시설 · 숙박시설</td><td class="">시설면적 200㎡당 1대</td></tr><tr><td class="">4</td><td class="">단독주택(다가구주택 제외)</td><td class="">50㎡ 초과 150㎡ 이하 1대 · 150㎡ 초과 1대 + (시설면적 − 150㎡) ÷ 100㎡</td></tr><tr><td class="">5</td><td class="">다가구주택 · 공동주택(기숙사 제외) · 오피스텔</td><td class="">주택건설기준 등에 관한 규정 제27조 제1항(도시형 생활주택 단서 포함)</td></tr><tr><td class="">6</td><td class="">골프장 · 골프연습장 · 옥외수영장 · 관람장</td><td class="">1홀당 10대 · 1타석당 1대 · 정원 15명당 1대 · 정원 100명당 1대</td></tr><tr><td class="">7</td><td class="">수련시설 · 공장(아파트형 제외) · 발전시설</td><td class="">시설면적 350㎡당 1대</td></tr><tr><td class="">8</td><td class="">창고시설</td><td class="">시설면적 400㎡당 1대</td></tr><tr><td class="">9</td><td class="">학생용 기숙사</td><td class="">시설면적 400㎡당 1대</td></tr><tr><td class="">10</td><td class="">방송통신시설 중 데이터센터</td><td class="">시설면적 400㎡당 1대</td></tr><tr><td class="">11</td><td class="">그 밖의 건축물</td><td class="">시설면적 300㎡당 1대</td></tr></tbody></table></div></div></div>
+<p>2026. 8. 25. 개정은 제5호에 도시형 생활주택 단서를 더한 것이며, 데이터센터(제10호)는 2021. 3. 30. 개정 별표에 이미 있던 항목입니다. 교육연구 · 노유자 · 자동차 관련 · 위험물 저장 및 처리 시설 등 제1호 ~ 제10호에 없는 용도는 제11호(300㎡)입니다.</p>
+<h3 id="s4-3">4-3. 시설면적·면제 시설</h3>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">비고</th><th class="">내용</th></tr></thead><tbody><tr><td class="">비고 1</td><td class="">설치 면제 가능 시설 가 ~ 사목 — 이 도구에서 「설치 면제 시설」을 고르면 0대</td></tr><tr><td class="">비고 2</td><td class="">시설면적은 공용면적을 포함한 바닥면적 합계, 부설주차장 · 기계식 주차장치의 바닥면적은 제외</td></tr><tr><td class="">비고 5 · 7</td><td class="">증축은 증축 부분, 용도변경은 변경 부분의 면적으로 산정</td></tr></tbody></table></div></div>
+<h3 id="s4-4">4-4. 복합용도·끝수</h3>
+<div class="eq">대수 = 비고 6[ Σ (용도별 시설면적 ÷ 기준면적, 소수점 이하 첫째 자리까지) ] + Σ 제5호 주택 대수<span class="c">비고 4 — 용도별 산정값을 소수점 이하 첫째 자리까지 합산, 제5호는 따로 산정해 합산 · 단독주택 50㎡ 이하 부분은 시설면적 ÷ 100 · 비고 6 — 소수점 이하 0.5 이상 1대, 전체 1대 미만 0대</span></div>
+<p>「소수점 이하 첫째 자리까지」에서 둘째 자리 이하를 어떻게 처리하는지는 별표에 명시가 없어 <b>MANMIN은 버림</b>으로 적용합니다(예: 2.25 → 2.2). 허가권자가 반올림으로 해석하는 경우 결과가 0.1대 달라질 수 있으니 경계값에서는 협의하십시오.</p>
+<h3 id="s4-5">4-5. 공동주택 제27조</h3>
+<div class="brk"><div class="k1"><div class="tbl"><table><thead><tr><th class="">지역</th><th class="">전용 85㎡ 이하 — ㎡당 1대</th><th class="">전용 85㎡ 초과 — ㎡당 1대</th></tr></thead><tbody><tr><td class="">가. 특별시</td><td class="">75㎡</td><td class="">65㎡</td></tr><tr><td class="">나. 광역시 · 특별자치시 · 수도권 내 시지역</td><td class="">85㎡</td><td class="">70㎡</td></tr><tr><td class="">다. 가 · 나목 외의 시지역 · 수도권 내 군지역</td><td class="">95㎡</td><td class="">75㎡</td></tr><tr><td class="">라. 그 밖의 지역</td><td class="">110㎡</td><td class="">85㎡</td></tr></tbody></table></div></div></div>
+<div class="eq">대수 = 올림[ max( Σ전용(≤85) ÷ 기준 + Σ전용(&gt;85) ÷ 기준 , Σ세대 × 1대(전용 60㎡ 이하 0.7대) ) ]<span class="c">제27조 제1항 제1호 · 도시형 생활주택(제2호) 세대당 1대(30 ~ 60㎡ 0.6대 · 30㎡ 미만 0.5대) · 끝수는 1대</span></div>
+<p>조례로 강화할 수 있는 범위는 1/5(전용 60㎡ 이하만이면 1/2)이며, 도시형 생활주택은 강화 · 완화 모두 가능합니다. 이 도구는 주택 줄의 「조례 증감 %」로 받고 범위를 검사합니다. ※ 주택건설기준 등에 관한 규정은 2026-11-07 시행 개정이 예정되어 있으니 시행 후 원문을 다시 확인하십시오.</p>
+<h3 id="s4-6">4-6. 조례 강화·완화</h3>
+<div class="eq">0.5 ≤ (별표 1 기준면적 ÷ 조례 기준면적) ≤ 1.5<span class="c">시행령 제6조 제2항 — 시설물의 종류를 세분하거나 2분의 1 범위에서 강화 · 완화 · 홀 · 타석 · 정원 · 단독주택 기준은 증감 % (−50 ~ +50)</span></div>
+<p>이 도구에는 특정 지역 조례가 내장되어 있지 않습니다. 대지 소재 시 · 군 · 구 주차장 조례의 [별표]를 자치법규정보시스템(elis.go.kr)에서 확인해 해당 용도 줄에 넣으십시오. 범위를 벗어나면 결과에 「⚠ ○번 줄」 경고가 뜹니다 — 조례 원문을 다시 확인하라는 뜻이며, 입력값대로 산정은 합니다.</p>
+<h3 id="s4-7">4-7. 전용 주차구획</h3>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">구획</th><th class="">기준</th></tr></thead><tbody><tr><td class="">장애인전용(비고 10)</td><td class="">부설주차장 대수 × 조례 비율(2 ~ 4 %) — 10대 미만 제외 · MANMIN 올림 · 3.3 × 5.0 m 이상</td></tr><tr><td class="">환경친화적 자동차(제18조의5 · 6)</td><td class="">총주차대수(기계식 제외) 50대 이상 대상 시설 중 시 · 도 조례로 정하는 시설 · 5 %(기축 2 %) 이상 · 소수점 이하 반올림</td></tr><tr><td class="">경형자동차(비고 12)</td><td class="">전체 주차단위구획의 10 %까지 설치기준에 포함</td></tr></tbody></table></div></div>
+<h3 id="s4-8">4-8. 산정 범위·한계</h3>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">항목</th><th class="">내용</th></tr></thead><tbody><tr><td class="">산정하는 것</td><td class="">[별표 1] 제1호 ~ 제11호 · 비고 1 · 2 · 4 · 5 · 6 · 7 · 10 · 12, 제27조 제1항 제1 · 2호(조례 강화 · 완화 범위 포함), 시행령 제6조 제2항 범위 검사, 친환경차 전용주차구역 비율</td></tr><tr><td class="">산정하지 않는 것</td><td class="">시행령 제6조 제4항 용도변경 특례, 법 제19조 제4항 · 제10항 설치 제한 · 인근 설치, 지구단위계획 · 주차장 수급 실태에 따른 별도 기준, 기계식 주차장 설치기준, 이륜자동차 주차구획</td></tr><tr><td class="">사용자 판단값</td><td class="">용도 분류 · 시설면적(비고 2), 제27조 지역 구분, 조례 기준 · 장애인 비율 · 친환경차 대상 여부</td></tr></tbody></table></div></div>
+<h3 id="s4-9">4-9. v5.1.0 정정 (2026-10-15)</h3>
+<div class="brk"><div class="k1"><div class="tbl"><table><thead><tr><th class="">항목</th><th class="">기존</th><th class="">정정</th></tr></thead><tbody><tr><td class="">시행령 판 표기</td><td class="">2025. 8. 17. 판</td><td class="">2026. 8. 25. 개정 · 8. 28. 시행</td></tr><tr><td class="">면적</td><td class="">연면적</td><td class="">시설면적(비고 2)</td></tr><tr><td class="">운동 · 의료시설</td><td class="">200㎡ · 정신 · 요양병원 의무 없음</td><td class="">150㎡ · 정신 · 요양 · 격리병원 300㎡</td></tr><tr><td class="">교육연구 · 노유자 · 자동차 관련</td><td class="">200 · 150㎡</td><td class="">300㎡(제11호)</td></tr><tr><td class="">단독주택</td><td class="">150㎡당 1대</td><td class="">50 ~ 150㎡ 1대 · 초과 (면적 − 150) ÷ 100 추가</td></tr><tr><td class="">공동주택 · 오피스텔</td><td class="">세대당 0.7 / 1.0대</td><td class="">제27조 제1항 — 전용면적 합계 ÷ 지역별 면적 · 세대당 하한</td></tr><tr><td class="">수련시설 · 면제 시설</td><td class="">없음</td><td class="">350㎡(제7호) · 비고 1 면제 0대</td></tr><tr><td class="">끝수</td><td class="">올림 · 항상 1대 이상</td><td class="">0.5 이상 1대 · 전체 1대 미만 0대(비고 6)</td></tr><tr><td class="">복합용도</td><td class="">주용도 하나로 산정</td><td class="">용도별 줄 입력 · 첫째 자리까지 합산 · 주택 따로(비고 4)</td></tr><tr><td class="">조례</td><td class="">전북 6개 시 조례 내장</td><td class="">내장 삭제 → 조례명 · 줄별 기준 직접 입력 · 2분의 1 범위 검사</td></tr><tr><td class="">역세권 감면 · 주유소 최소 2대</td><td class="">적용</td><td class="">근거 없음 → 삭제</td></tr><tr><td class="">장애인전용</td><td class="">50대 이상 2 % · 미만 1구획</td><td class="">2 ~ 4 % 조례 비율 · 10대 미만 의무 없음</td></tr><tr><td class="">전기차</td><td class="">100대 이상 · 올림</td><td class="">50대 이상(기계식 제외) · 5 %(기축 2 %) · 반올림</td></tr><tr><td class="">이륜자동차 5 %</td><td class="">50대 이상</td><td class="">부설주차장 설치 의무 근거 없음 → 삭제</td></tr><tr><td class="">경형 전용</td><td class="">없음</td><td class="">10 %까지 인정(비고 12)</td></tr></tbody></table></div></div></div>
+<p>예전 판으로 만든 산정서는 다시 산정하십시오. 특히 공동주택 · 운동 · 의료 · 교육연구시설과 복합용도 건축물의 대수가 달라집니다. 엔진은 화면 · A4 · 검증이 같은 코드(window.PARKENG)를 쓰며, 별도로 짠 독립 구현과 무작위 50,000건을 대조해 불일치 0건을 확인했습니다.</p>
+</section>
+<section class="ch" id="ch5"><h2><span class="n">05</span>실무 작업 방법</h2>
+<h3 id="s5-1">5-1. 단계별 절차</h3>
+<div class="svgbox"><svg viewBox="0 0 900 210" role="img" aria-label="부설주차장 산정 흐름: 지역과 조례를 정하고 용도별 시설면적을 줄마다 넣으면 별표 1과 제27조로 법정대수를 합산하고, 조례 기준과 전용 구획을 확인한 뒤 A4 산정서로 남긴다">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2D3A8C"/></marker></defs>
+<style>.b{fill:#E9ECF8;stroke:#2D3A8C;stroke-width:1.5}.o{fill:#FDF1E7;stroke:#C97A3A;stroke-width:1.5}.t{font:600 14px 'Noto Sans KR','Noto Sans KR Local',sans-serif;fill:#1A1A2E}.s{font:12px 'Noto Sans KR','Noto Sans KR Local',sans-serif;fill:#4A4F66}.l{stroke:#2D3A8C;stroke-width:1.6;fill:none;marker-end:url(#ar)}</style>
+<rect class="b" x="10" y="20" width="200" height="72" rx="10"/><text class="t" x="22" y="48">① 지역 · 조례</text><text class="s" x="22" y="72">시 · 군 · 구 · 제27조 지역</text>
+<rect class="b" x="240" y="20" width="200" height="72" rx="10"/><text class="t" x="252" y="48">② 용도별 시설면적</text><text class="s" x="252" y="72">줄마다 한 용도(비고 4)</text>
+<rect class="b" x="470" y="20" width="200" height="72" rx="10"/><text class="t" x="482" y="48">③ 법정 · 조례 대수</text><text class="s" x="482" y="72">비고 6 끝수 · 제6조 ②</text>
+<rect class="o" x="700" y="20" width="190" height="72" rx="10"/><text class="t" x="712" y="48">④ A4 산정서</text><text class="s" x="712" y="72">인쇄 · PDF · JPG</text>
+<path class="l" d="M210,56 L238,56"/><path class="l" d="M440,56 L468,56"/><path class="l" d="M670,56 L698,56"/>
+<rect class="b" x="240" y="122" width="430" height="66" rx="10"/><text class="t" x="252" y="148">제5호 주택 — 제27조 제1항으로 따로 산정해 더함</text><text class="s" x="252" y="171">전용 구획: 장애인 2 ~ 4 % · 친환경차 5 % · 경형 10 %까지</text>
+<path class="l" d="M570,122 L570,96"/>
+</svg></div>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">단계</th><th class="">내용</th></tr></thead><tbody><tr><td class="">① 조건 정리</td><td class="">대지 위치(시 · 군 · 구), 용도지역 · 지구단위계획 여부, 층별 용도 · 시설면적(공용면적 배분 포함)을 정리합니다</td></tr><tr><td class="">② 조례 확인</td><td class="">자치법규정보시스템에서 해당 시 · 군 · 구 주차장 조례 [별표]와 장애인 비율 · 친환경차 대상 시설을 확인합니다</td></tr><tr><td class="">③ 입력 · 산정</td><td class="">용도마다 한 줄씩 넣고, 조례 기준이 다른 용도만 「조례 기준」 칸을 채웁니다. 범위 경고가 있으면 조례 원문을 다시 확인합니다</td></tr><tr><td class="">④ 구획 배분</td><td class="">장애인 · 친환경차 · 경형 구획 수를 배치도에 반영하고 장애인전용은 3.3 × 5.0 m 이상으로 둡니다</td></tr><tr><td class="">⑤ 출력</td><td class="">A4 산정서를 PDF로 남겨 건축허가 도서 · 협의 자료에 붙입니다</td></tr></tbody></table></div></div>
+<h3 id="s5-2">5-2. 허가 전 확인</h3>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">항목</th><th class="">확인</th></tr></thead><tbody><tr><td class="">용도변경</td><td class="">사용승인 후 5년 경과 · 1,000㎡ 미만 등 시행령 제6조 제4항 특례 대상 여부</td></tr><tr><td class="">설치 제한 · 인근 설치</td><td class="">법 제19조 제4항(부지 인근 설치) · 제10항(설치 제한 지역) 해당 여부</td></tr><tr><td class="">지구단위계획</td><td class="">지구단위계획에 주차 기준이 따로 있으면 그 기준 우선 여부를 허가권자와 협의</td></tr><tr><td class="">주택 개정</td><td class="">주택건설기준 등에 관한 규정 2026-11-07 시행 개정 내용 반영 여부</td></tr></tbody></table></div></div>
+</section>
+<section class="ch" id="ch6"><h2><span class="n">06</span>문제 해결·FAQ</h2>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">증상</th><th class="">해결</th></tr></thead><tbody><tr><td class="">우리 시 조례가 목록에 없어요</td><td class="">v5.1.0부터 조례는 내장하지 않습니다 — 조례 원문의 기준을 해당 줄에 직접 넣으십시오(<a href="#s4-6">4-6</a>)</td></tr><tr><td class="">용도별로 반올림한 값과 달라요</td><td class="">비고 4에 따라 첫째 자리까지 더한 뒤 한 번만 끝수 처리합니다(<a href="#s4-4">4-4</a>)</td></tr><tr><td class="">1대 미만인데 0대로 나와요</td><td class="">전체 산정값이 1대 미만이면 0대입니다(비고 6 단서)</td></tr><tr><td class="">아파트 대수가 세대수보다 많아요</td><td class="">전용면적 합계 ÷ 지역별 기준이 세대당 하한보다 크면 그 값을 씁니다(<a href="#s4-5">4-5</a>)</td></tr><tr><td class="">주택 지역 구분이 무엇인가요</td><td class="">제27조 제1항 표의 가 ~ 라 지역 — 익산 · 군산 · 전주 등 수도권 밖 시는 「다」입니다</td></tr><tr><td class="">⚠ 조례 범위 경고가 떠요</td><td class="">입력한 조례 기준이 별표 1 기준의 0.5 ~ 1.5배를 벗어났습니다 — 단위(㎡당 1대)와 원문을 확인하십시오</td></tr><tr><td class="">장애인 구획이 「의무 없음」이에요</td><td class="">부설주차장 10대 미만입니다(비고 10)</td></tr><tr><td class="">친환경차가 0이에요</td><td class="">「대상」을 켜지 않았거나 총주차대수(기계식 제외)가 50대 미만입니다</td></tr><tr><td class="">예전 판과 값이 달라요</td><td class="">v5.1.0에서 별표 1 원문대로 정정했습니다(<a href="#s4-9">4-9</a>)</td></tr><tr><td class="">화면이 예전 판이에요</td><td class="">새로 고침(Ctrl+F5) 또는 앱을 닫았다 다시 여십시오</td></tr></tbody></table></div></div>
+</section>
+<section class="ch" id="ch7"><h2><span class="n">부록</span></h2>
+<h3 id="a1">A1. 예제 입력값</h3>
+<div class="brk"><div class="k1"><div class="tbl"><table><thead><tr><th class="">예제</th><th class="">입력</th></tr></thead><tbody><tr><td class="">예제 A</td><td class="">전북특별자치도 익산시 · 지역 다 · 제1종 근생 450㎡ · 제2종 근생 400㎡ · 업무 1,200㎡ · 장애인 2 %</td></tr><tr><td class="">예제 B</td><td class="">전북특별자치도 익산시 · 지역 다 · 공동주택 59㎡ × 40세대 + 84㎡ × 60세대 · 제1종 근생 600㎡ · 장애인 2 % · 친환경차 5 %</td></tr><tr><td class="">예제 C</td><td class="">○○시 · 지역 다 · 제1종 근생 900㎡ (조례 134㎡당 1대) · 장애인 2 %</td></tr></tbody></table></div></div></div>
+<p>예제 C의 조례 기준(134㎡당 1대)과 조례명은 매뉴얼 설명용 가정값입니다.</p>
+<h3 id="a2">A2. 예제 결과</h3>
+<div class="brk"><div class="k1"><div class="tbl"><table><thead><tr><th class="">예제</th><th class="">제5호 외 합계</th><th class="">제5호</th><th class="">법정(대)</th><th class="">조례(대)</th><th class="">장애인</th><th class="">친환경차</th><th class="">경형까지</th></tr></thead><tbody><tr><td class="">예제 A</td><td class="">12.2</td><td class="">—</td><td class="">12</td><td class="">—</td><td class="">1</td><td class="">—</td><td class="">1</td></tr><tr><td class="">예제 B</td><td class="">3.0</td><td class="">88</td><td class="">91</td><td class="">—</td><td class="">2</td><td class="">5</td><td class="">9</td></tr><tr><td class="">예제 C</td><td class="">4.5</td><td class="">—</td><td class="">5</td><td class="">7</td><td class="">의무 없음</td><td class="">—</td><td class="">0</td></tr></tbody></table></div></div></div>
+<h3 id="a3">A3. 버전 변경 내역</h3>
+<div class="k1"><div class="tbl"><table><thead><tr><th class="">버전</th><th class="">내용</th></tr></thead><tbody><tr><td class="">Ver-5.1 · v5.1.0 (2026-10-15)</td><td class="">[별표 1](2026. 8. 25. 개정) 원문 대조 산정 전면 정정(<a href="#s4-9">4-9</a>), 복합용도 줄 입력 · 제27조 공동주택 · 조례 직접 입력 · 전용 구획, 엔진 단일화 · 독립 검증, 탭 막대 「📘 매뉴얼」 · 사용자 매뉴얼</td></tr><tr><td class="">Ver-5.0 (2026-09)</td><td class="">MANMIN 디자인 통일(헤더 · 탭 · 요약 스트립), A4 산정서 · JPG 저장, PWA</td></tr></tbody></table></div></div>
+<h3 id="a4">A4. 용어</h3>
+<div class="brk"><div class="k1"><div class="tbl"><table><thead><tr><th class="">용어</th><th class="">뜻</th></tr></thead><tbody><tr><td class="">시설면적</td><td class="">공용면적을 포함한 바닥면적 합계에서 주차시설 바닥면적을 뺀 면적(비고 2)</td></tr><tr><td class="">복합용도</td><td class="">한 시설물에 [별표 1]의 둘 이상 용도가 있는 경우 — 용도별 산정 후 합산(비고 4)</td></tr><tr><td class="">법정 대수</td><td class="">[별표 1] · 제27조로 산정한 대수</td></tr><tr><td class="">조례 대수</td><td class="">시 · 군 · 구 조례가 2분의 1 범위에서 강화 · 완화한 기준으로 산정한 대수(시행령 제6조 제2항)</td></tr><tr><td class="">주택 지역 구분</td><td class="">제27조 제1항 표의 가 ~ 라 지역</td></tr><tr><td class="">기축시설</td><td class="">친환경자동차법 시행령에서 신축 시설과 구분하는 기존 시설 — 전용주차구역 2 % 이상</td></tr></tbody></table></div></div></div>
+</section></main></div>
+<footer class="foot">© 2026 김만민 건축사 · ㈜대성건축사사무소 · 부설주차장 법정대수 산정기 사용자 매뉴얼 Ver-5.1 · 주차장법 시행령 [별표 1] (2026. 8. 25. 개정) · 주택건설기준 등에 관한 규정 제27조 <span class="rev">· 화면 대응 개정 2026-10-15</span></footer>
+<div class="pfoot"><span>부설주차장 법정대수 산정기 사용자 매뉴얼 Ver-5.1</span><span>2026-10-15</span></div>
+<div id="lb" role="dialog" aria-label="그림 확대"><img alt=""></div>
+<button class="totop" aria-label="맨 위로">↑</button>
+<script>
+(function(){
+  var lb=document.getElementById('lb'),li=lb.querySelector('img');
+  document.querySelectorAll('figure.shot .frame').forEach(function(f){f.addEventListener('click',function(){li.src=f.querySelector('img').src;li.alt=f.querySelector('img').alt;lb.classList.add('open');});});
+  lb.addEventListener('click',function(){lb.classList.remove('open');li.removeAttribute('src');});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')lb.classList.remove('open');});
+  document.querySelector('.totop').addEventListener('click',function(){window.scrollTo(0,0);});
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id);});}});},{rootMargin:'0px 0px -70% 0px'});
+    document.querySelectorAll('section.ch,h3[id]').forEach(function(s){io.observe(s);});
+  }
+})();
+/* 좁은 화면 표 쌓기 준비: 숫자 칸이 없는 표에 stack 표시, 각 칸에 머리글(data-th) 복사 */
+(function(){document.querySelectorAll('.tbl').forEach(function(t){var tb=t.querySelector('table');if(!tb||!tb.tHead)return;
+ if(tb.querySelector('td.num,th.num'))return;var hs=[].map.call(tb.tHead.rows[0].cells,function(c){return c.textContent.trim()});
+ [].forEach.call(tb.tBodies[0].rows,function(r){[].forEach.call(r.cells,function(c,i){if(hs[i])c.setAttribute('data-th',hs[i])})});t.classList.add('stack');if(hs.length===2)t.classList.add('c2')})})();
+</script>
+</body></html>
