@@ -6,11 +6,11 @@ const repo=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]);fs.mk
 const VW=+(process.env.MM_VW||1440),VH=+(process.env.MM_VH||900),DSF=+(process.env.MM_DSF||1.25),PORT=8901;
 /* 예제 A = 익산 근린생활 · 업무 복합 — 제1종 근생 450㎡ · 제2종 근생 400㎡ · 업무 1,200㎡ (앱 기본 용도 구성)
    예제 B = 익산 공동주택 + 근생 — 전용 59㎡ × 40세대 · 84㎡ × 60세대(제27조 다목) + 제1종 근생 600㎡ · 친환경차 대상
-   예제 C = 조례 적용 — 제1종 근생 900㎡ · 조례 134㎡당 1대(설명용 가정값 — 실제 조례값은 원문 확인) */
+   예제 C = 전북 조례 자동 적용 — 예제 A와 같은 용도 구성에 「익산시 주차장 설치 및 관리 조례 [별표 4]」 선택(v5.1.1) */
 const EX={
  A:{pn:'익산시 ○○동 근린생활시설 및 업무시설 신축공사',au:'김만민',city:'전북특별자치도 익산시',region:'da',ord:'',ev:false,rows:[{use:'nb1',q:450},{use:'nb2',q:400},{use:'office',q:1200}]},
  B:{pn:'익산시 ○○동 공동주택 및 근린생활시설 신축공사',au:'김만민',city:'전북특별자치도 익산시',region:'da',ord:'',ev:true,rows:[{use:'apt',units:[{a:59,n:40},{a:84,n:60}]},{use:'nb1',q:600}]},
- C:{pn:'○○시 ○○동 근린생활시설 신축공사 (조례 적용 예시)',au:'김만민',city:'○○시',region:'da',ord:'○○시 주차장 조례 [별표] (설명용 가정값)',ev:false,rows:[{use:'nb1',q:900,ordDiv:134}]},
+ C:{pn:'익산시 ○○동 근린생활시설 및 업무시설 신축공사 (익산시 조례 적용)',au:'김만민',jb:'iksan',ev:false,rows:[{use:'nb1',q:450},{use:'nb2',q:400},{use:'office',q:1200}]},
 };
 const FREEZE=`(()=>{const T=new Date(2026,9,15,10,0,0).getTime();const D=Date;class F extends D{constructor(...a){if(a.length)super(...a);else super(T);}static now(){return T;}}window.Date=F;window.alert=()=>{};window.confirm=()=>true;try{localStorage.clear();localStorage.setItem('pwa-dismissed','1');}catch(e){}})()`;
 const HIDE='#toast,.toast,#pwa-banner{display:none!important}#result-col{position:static!important;max-height:none!important;overflow:visible!important}';
@@ -19,15 +19,16 @@ window.__find=sel=>{if(sel.startsWith('nth:')){const [q,i]=sel.slice(4).split('|
  for(const s of sel.split(',')){const e=[...document.querySelectorAll(s)].find(__vis);if(e)return e;}return null;};
 window.__EX=${JSON.stringify(EX)};
 window.__run=k=>{const e=__EX[k];closeModalDirect();goTab('main');
- const sv=(id,v)=>{const x=document.getElementById(id);x.value=v;};sv('a4ProjName',e.pn);sv('a4Author',e.au);sv('inp-city',e.city);sv('sel-region27',e.region);sv('inp-ordname',e.ord);
- document.getElementById('chk-ev').checked=e.ev;document.getElementById('chk-dis').checked=true;sv('inp-dispct','2');sv('inp-evpct','5');sv('inp-mech','');document.getElementById('chk-evold').checked=false;
+ const sv=(id,v)=>{const x=document.getElementById(id);x.value=v;};sv('a4ProjName',e.pn);sv('a4Author',e.au);
+ document.getElementById('chk-ev').checked=e.ev;document.getElementById('chk-dis').checked=true;sv('inp-dispct','2');sv('inp-evpct','5');sv('inp-mech','');sv('inp-gfa','');document.getElementById('chk-evold').checked=false;
+ sv('sel-jb',e.jb||'');pkSetJb(e.jb||'');if(!e.jb){sv('inp-city',e.city);sv('sel-region27',e.region);sv('inp-ordname',e.ord);}
  __mmPark.setRows(e.rows);window.scrollTo(0,0);};
 window.__ex=()=>JSON.parse(JSON.stringify({in:__mmPark.state,R:__mmPark.R}));`;
 const IN=i=>`nth:#input-col > .card|${i}`, RS=i=>`nth:#result-area .card|${i}`;
 const SHOTS=[
  {id:'s01_overview',pre:"__run('A')",clip:'viewport',m:[['.tab-bar-inner','작업 탭 · 매뉴얼'],['.sum-bar','요약 스트립'],[IN(0),'공사 정보(A4 표제)'],[IN(1),'지역 · 조례'],[IN(2),'시설 목록(복합용도)'],[RS(0),'산정 결과'],['#fab-group','초기화 · 이용안내']]},
  {id:'s02_tabs',clip:'header.app-header',m:[['nth:.tab-bar-inner .tb|0','산정 입력 · 결과'],['nth:.tab-bar-inner .tb|1','A4 산정서'],['.tb-manual','매뉴얼'],['.hdr-right','근거 · 시행일']]},
- {id:'s03_region',clip:IN(1),m:[['#inp-city','시 · 군 · 구'],['#sel-region27','주택 지역 구분(제27조 표)'],['#inp-ordname','적용 조례명']]},
+ {id:'s03_region',clip:IN(1),m:[['#sel-jb','전북 시 · 군 조례 선택'],['#inp-city','시 · 군 · 구'],['#sel-region27','주택 지역 구분(제27조 표)'],['#inp-ordname','적용 조례명']]},
  {id:'s04_rows_a',clip:IN(2),m:[['nth:.pk-row|0','1번 줄 — 제1종 근생 450㎡'],['nth:.pk-row|1','2번 줄 — 제2종 근생 400㎡'],['nth:.pk-row|2','3번 줄 — 업무 1,200㎡'],['nth:.pk-ord|0','조례 기준 칸'],['#pk-rows + .reset-btn','＋ 용도 추가'],['#pk-rows ~ .info-box','시설면적 · 증축 · 용도변경']]},
  {id:'s05_result_a',clip:RS(0),m:[['.verdict-hero','부설주차장 대수'],['nth:.metric-card|0','법정(별표 1)'],['nth:.metric-card|1','조례 적용'],['nth:.metric-card|2','장애인 전용'],['nth:.metric-card|3','친환경차 전용']]},
  {id:'s06_table_a',clip:RS(1),m:[['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|0','줄별 산식 — 소수 첫째 자리'],['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|3','합계 → 비고 6'],['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|4','부설주차장 주차대수']]},
@@ -36,8 +37,8 @@ const SHOTS=[
  {id:'s09_rows_b',pre:"__run('B')",wait:800,clip:IN(2),m:[['nth:.pk-unit|0','주택형 59㎡ × 40세대'],['nth:.pk-unit|1','주택형 84㎡ × 60세대'],['nth:.pk-chk|0','도시형 생활주택'],['nth:.pk-row|1','제1종 근생 600㎡']]},
  {id:'s10_table_b',clip:RS(1),m:[['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|0','제27조 — 전용면적 합계 · 세대당 하한'],['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|2','제5호 외 합계'],['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|3','제5호 따로 합산'],['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|4','합계 91대']]},
  {id:'s11_special_b',clip:RS(2),m:[['nth:#result-area .fade-in > .card:nth-child(3) tbody tr|0','장애인 2구획'],['nth:#result-area .fade-in > .card:nth-child(3) tbody tr|1','친환경차 5구역']]},
- {id:'s12_rows_c',pre:"__run('C')",wait:800,clip:IN(1),union:IN(2),m:[['#inp-ordname','조례명'],['nth:.pk-ord|0','조례 기준 134㎡당 1대']]},
- {id:'s13_result_c',clip:RS(0),union:RS(1),crop:1500,m:[['.verdict-hero','조례 적용 7대'],['nth:.metric-card|0','법정 5대'],['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|0','법정 4.5 · 조례 6.7']]},
+ {id:'s12_rows_c',pre:"__run('C')",wait:800,clip:IN(1),union:IN(2),m:[['#sel-jb','익산시 조례 선택'],['#jb-info','조례 · 장애인 3 % · 유의사항'],['#inp-ordname','조례명 자동 입력'],['nth:.pk-ord|0','조례 기준 — 익산시 150㎡']]},
+ {id:'s13_result_c',clip:RS(0),union:RS(1),crop:1500,m:[['.verdict-hero','조례 적용 18대'],['nth:.metric-card|0','법정 12대'],['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|0','법정 2.2 · 조례 3.0'],['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|2','업무 8.0 → 12.0']]},
  {id:'s14_modal_guide',pre:"__run('A');openModal()",wait:700,fixed:true,clip:'.modal-box',m:[]},
  {id:'s15_modal_law',pre:"switchTab(document.querySelectorAll('.m-tab')[1],'mp-law')",wait:500,fixed:true,clip:'.modal-box',m:[]},
  {id:'s16_modal_ref',pre:"switchTab(document.querySelectorAll('.m-tab')[2],'mp-ref')",wait:500,fixed:true,clip:'.modal-box',post:"closeModalDirect()",m:[]},
