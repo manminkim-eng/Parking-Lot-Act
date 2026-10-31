@@ -20,7 +20,7 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE  = 'parking-v5.1.5';   /* v5.1.1 (2026-10-15) — 전북 14개 시 · 군 조례 [별표] 내장 · v5.1.0 별표 1 원문 대조 정정 */
+const CACHE  = 'parking-v5.1.6';   /* v5.1.1 (2026-10-15) — 전북 14개 시 · 군 조례 [별표] 내장 · v5.1.0 별표 1 원문 대조 정정 */
 const ORPHAN = ['parking-law-v1'];
 const ASSETS = [
   './', './index.html', './manifest.json',
