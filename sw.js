@@ -1,8 +1,9 @@
 /* ═══════════════════════════════════════════════════
+   v6.1.0 2026-11-12 — 주택건설기준 제27조 시행일 표기 정정 4곳(정밀검토 B13) · 판 6.1 · 캐시명 parking-v6.1.0
    v5.1.0 회차 2026-10-15 — 산정 엔진 교체(PARKENG) · 매뉴얼(/manual/) 캐시 제외 · 캐시명 v5.1.0
    S3-0 회차 2026-09-04 — R27 html2canvas 클론 정화 동반 캐시명 v5.0.2
    R25 회차 2026-09-04 — 자기 접두어 캐시 조회 · cors 프리캐시 · opaque 가드 · 캐시명 v5.0.1 (S10)
-   부설주차장 법정대수 산정기  MANMIN Ver-5.0
+   부설주차장 법정대수 산정기  MANMIN Ver-6.1
    Service Worker — 오프라인 캐시 + 버전 업데이트  ·  ARCHITECT KIM MANMIN
    v5.0.0 (2026-09-04) — §11-3 navigate Network-first · §17-1 PREFIX · §18-7 ORPHAN · allSettled · R19 폴백
 ═══════════════════════════════════════════════════ */
@@ -20,7 +21,7 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE  = 'parking-v5.1.11';   /* v5.1.1 (2026-10-15) — 전북 14개 시 · 군 조례 [별표] 내장 · v5.1.0 별표 1 원문 대조 정정 */
+const CACHE  = 'parking-v6.1.0';   /* 2026-11-12 v6.1.0 B13 표기 (종전 parking-v5.1.11) */   /* v5.1.1 (2026-10-15) — 전북 14개 시 · 군 조례 [별표] 내장 · v5.1.0 별표 1 원문 대조 정정 */
 const ORPHAN = ['parking-law-v1'];
 const ASSETS = [
   './', './index.html', './manifest.json',
