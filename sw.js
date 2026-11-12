@@ -1,4 +1,5 @@
 /* ═══════════════════════════════════════════════════
+   v6.1.2 (2026-11-12) — 건물개요 공통 원본 MM-PROJECT v1.2 → v1.3(불러오기 창 표 칸 모양 고정 — 도구 CSS 가 새지 않음 · 저장값 같음, 정밀검토 C10) · 작업지시서 §25-6-80 · 판 6.1 · 캐시명 v6.1.2 (종전 v6.1.1)
    v6.1.1 (2026-11-12) — 건물개요 공통 원본 MM-PROJECT v1.1 → v1.2(불러오기 창 칸 줄바꿈 · 저장값 같음, 정밀검토 B5 · 작업지시서 §25-6-76) · 캐시명 v6.1.1 (종전 parking-v6.1.0)
    v6.1.0 2026-11-12 — 주택건설기준 제27조 시행일 표기 정정 4곳(정밀검토 B13) · 판 6.1 · 캐시명 parking-v6.1.0
    v5.1.0 회차 2026-10-15 — 산정 엔진 교체(PARKENG) · 매뉴얼(/manual/) 캐시 제외 · 캐시명 v5.1.0
@@ -22,7 +23,7 @@ const mmMatch = (req, opt) => caches.keys()
   .then((ks) => ks.reduce((p, k) => p.then((r) => r || caches.open(k).then((c) => c.match(req, opt))), Promise.resolve(undefined)))
   .then((r) => (r && r.type === 'opaque' && req && req.mode === 'cors') ? undefined : r);
 
-const CACHE  = 'parking-v6.1.1';   /* 2026-11-12 v6.1.0 B13 표기 (종전 parking-v5.1.11) */   /* v5.1.1 (2026-10-15) — 전북 14개 시 · 군 조례 [별표] 내장 · v5.1.0 별표 1 원문 대조 정정 */
+const CACHE  = 'parking-v6.1.2';   /* 2026-11-12 v6.1.0 B13 표기 (종전 parking-v5.1.11) */   /* v5.1.1 (2026-10-15) — 전북 14개 시 · 군 조례 [별표] 내장 · v5.1.0 별표 1 원문 대조 정정 */
 const ORPHAN = ['parking-law-v1'];
 const ASSETS = [
   './', './index.html', './manifest.json',
