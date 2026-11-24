@@ -735,7 +735,7 @@ footer.mm-foot{position:relative;z-index:1;border-top:1px solid #e4e9f0;backgrou
       <div class="fg">
         <div class="slabel">전북특별자치도 시 · 군 조례 <span class="badge">자동 적용</span></div>
         <select class="mm-sel" id="sel-jb" onchange="pkSetJb(this.value)"><option value="">— 직접 입력 (전북 외 지역 · 조례 미적용) —</option></select>
-        <div class="iunit">14개 시 · 군 주차장 조례 [별표] 부설주차장 설치기준을 내장했습니다(LawMCP 원문 대조 2026-10-15). 고르면 시 · 군 · 지역 구분 · 조례명 · 장애인전용 비율이 채워지고, 줄마다 조례 기준이 자동 적용됩니다.</div>
+        <div class="iunit">14개 시 · 군 주차장 조례 [별표] 부설주차장 설치기준을 내장했습니다(LawMCP 원문 대조 2026-10-15 · 전주 · 익산 · 남원 · 임실 2026-11-24 재대조). 선택을 해제하면 자동으로 채운 칸(그대로인 것)은 되돌립니다. 고르면 시 · 군 · 지역 구분 · 조례명 · 장애인전용 비율이 채워지고, 줄마다 조례 기준이 자동 적용됩니다.</div>
       </div>
       <div id="jb-info"></div>
       <div class="proj-grid" id="jb-gunsan" style="display:none">
@@ -794,7 +794,7 @@ footer.mm-foot{position:relative;z-index:1;border-top:1px solid #e4e9f0;backgrou
       </div>
       <div class="toggle-row">
         <div><div class="toggle-lbl">기축시설 (2022. 1. 28. 전 건축허가 · 공공 외)</div>
-          <div class="toggle-sub">시행령 제18조의6 제1항 단서 — 2 % 이상</div></div>
+          <div class="toggle-sub">시행령 제18조의6 제1항 단서 — 2 % 이상 (공공기축시설은 켜지 않음 — 5 %)</div></div>
         <label class="tog"><input type="checkbox" id="chk-evold" onchange="pkEvOld()"><span class="tog-sl"></span></label>
       </div>
     </div>
@@ -805,9 +805,9 @@ footer.mm-foot{position:relative;z-index:1;border-top:1px solid #e4e9f0;backgrou
     </div>
 
     <div class="law-update-box">
-      <strong>✅ 2026. 8. 28. 시행 기준 (v5.1.0 · 2026-10-15 원문 대조)</strong><br>
+      <strong>✅ 2026. 8. 28. 시행 기준 (v6.1.5 · 2026-11-24 조례 재대조)</strong><br>
       주차장법 시행령 [별표 1] &lt;개정 2026. 8. 25.&gt; · 주택건설기준 등에 관한 규정 제27조(최종 개정 2025. 1. 21. · 2026-11-12 현행 확인)<br>
-      전북 14개 시 · 군 조례 [별표] 내장(2026-10-15 원문 대조) — 조례 개정 여부는 자치법규정보시스템(elis.go.kr)에서 확인하십시오.
+      전북 14개 시 · 군 조례 [별표] 내장(2026-10-15 원문 대조 · 전주 2026. 11. 13. · 익산 2026. 11. 11. · 남원 2026. 11. 6. · 임실 2026. 11. 19. 개정분 2026-11-24 반영) — 조례 개정 여부는 자치법규정보시스템(elis.go.kr)에서 확인하십시오.
     </div>
 
     <div class="note-box">
@@ -925,12 +925,12 @@ footer.mm-foot{position:relative;z-index:1;border-top:1px solid #e4e9f0;backgrou
         <div class="law-item"><strong>주차장법 시행령 제6조 (부설주차장의 설치기준)</strong><span class="law-date">2026.08.25 개정</span><br>
           ① 설치기준은 별표 1 · ② 조례로 별표 1 기준의 <b>2분의 1 범위</b>에서 강화 · 완화(시설물 종류 · 규모 세분 가능) · ④ 용도변경은 변경 전후 차이 — 사용승인 5년 · 1천㎡ 미만 등 예외</div>
         <div class="law-item"><strong>주차장법 시행령 [별표 1] 비고</strong><span class="law-date">2026.08.25 개정</span><br>
-          1 설치 면제 가능 시설 · 2 시설면적(공용면적 포함 · 주차시설 제외) · 4 복합용도 소수점 이하 첫째 자리 합산 · 5 증축 · 용도변경 부분 · 6 0.5 이상 1대 · 1대 미만 0 · 10 장애인 2~4 % · 12 경형 10 %</div>
-        <div class="law-item"><strong>주택건설기준 등에 관한 규정 제27조 제1항</strong><span class="law-date">2026.09.08 시행</span><br>
-          제1호 전용면적 합계 ÷ 지역 · 규모별 면적(85㎡ 이하 75 · 85 · 95 · 110 / 초과 65 · 70 · 75 · 85), 세대당 1대(60㎡ 이하 0.7대) 이상 · 제2호 도시형 생활주택 · 끝수 1대</div>
+          1 설치 면제 가능 시설(가 ~ 사목 — 마목 주차전용건축물 안 시설물 포함) · 2 시설면적(공용면적 포함 · 주차시설 제외) · 4 복합용도 소수점 이하 첫째 자리 합산 · 5 증축 · 용도변경 부분 · 6 0.5 이상 1대 · 1대 미만 0 · 10 장애인 2~4 % · 12 경형 10 %</div>
+        <div class="law-item"><strong>주택건설기준 등에 관한 규정 제27조 제1항</strong><span class="law-date">2025.01.21 개정</span><br>
+          제1호 전용면적 합계 ÷ 지역 · 규모별 면적(85㎡ 이하 75 · 85 · 95 · 110 / 초과 65 · 70 · 75 · 85), 세대당 1대(60㎡ 이하 0.7대) 이상 · 조례 강화 5분의 1(60㎡ 이하 2분의 1) · 제2호 도시형 생활주택 세대당 1대(30 ~ 60㎡ 0.6 · 30㎡ 미만 0.5) — 조례 강화 · 완화 나목 5분의 1(60㎡ 이하 2분의 1) · 가목 요건 10분의 7 완화 · 끝수 1대</div>
         <div class="law-item"><strong>친환경자동차법 시행령 제18조의5 · 제18조의6</strong><span class="law-date">2025.10.01 시행</span><br>
           총주차대수(기계식 제외) 50 이상 대상 시설 중 시 · 도 조례 지정 · 전용주차구역 5 % 이상(기축 2 %) · 소수점 이하 반올림</div>
-        <div class="law-item"><strong>전북특별자치도 14개 시 · 군 주차장 조례 [별표]</strong><span class="law-date">2026.10.15 원문 대조</span><br>
+        <div class="law-item"><strong>전북특별자치도 14개 시 · 군 주차장 조례 [별표]</strong><span class="law-date">2026.10.15 · 11.24 원문 대조</span><br>
           전주 · 군산 · 익산 · 정읍 · 남원 · 김제 · 완주 · 진안 · 무주 · 장수 · 임실 · 순창 · 고창 · 부안 — 부설주차장 설치기준 · 장애인전용 비율 · 친환경차는 도 조례 제7조 · 제8조(50면 이상 · 5 %)</div>
         <div class="law-item"><strong>주차장법 시행규칙 제3조 (주차구획)</strong><span class="law-date">2026.07.27 시행</span><br>
           장애인전용 너비 3.3 m 이상 × 길이 5.0 m 이상 · 경형 2.0 × 3.6 m · 일반형 2.5 × 5.0 m (평행주차 외)</div>
@@ -984,7 +984,8 @@ footer.mm-foot{position:relative;z-index:1;border-top:1px solid #e4e9f0;backgrou
 
 <script id="park-engine">
 /* ══════════════════════════════════════════════════════════════════
-   PARKENG v5.1.1 — 부설주차장 법정대수 산정 엔진 (화면 · A4 · 검증 공용)
+   PARKENG v6.1.5 — 부설주차장 법정대수 산정 엔진 (화면 · A4 · 검증 공용)
+   v6.1.5 (2026-11-24) — 건축 1차 교차검증 반영: 남원(2183037) · 전주(2187543) 조례 갱신 · 익산(2184393) · 임실(2188491) 표기 · 제27조 ①1호 단서 주택형별 상한 · ①2호 도시형 완화 하한 −50/−20 % (가목 요건 때만 −70 %) · 비율 칸 0 그대로 · 비고 1 마목 · 비고 6 단서 해석 안내
    근거(LawMCP 원문 대조 2026-10-15)
      주차장법 제19조(2026. 8. 28. 시행) · 시행령 제6조 · [별표 1] <개정 2026. 8. 25.> (2026. 8. 28. 시행)
      주택건설기준 등에 관한 규정 제27조 제1항(최종 개정 2025. 1. 21. · 2026-11-12 현행 확인)
@@ -1019,6 +1020,7 @@ var USES=[
   {id:'medical',g:2,k:'area',l:'의료시설 (병원 · 종합병원 · 치과병원 · 한방병원 — 정신 · 요양 · 격리병원 제외)'},
   {id:'sports',g:2,k:'area',l:'운동시설 (체육관 · 운동장 — 골프장 · 골프연습장 · 옥외수영장 제외)'},
   {id:'office',g:2,k:'area',l:'업무시설 (공공업무 · 일반업무 — 외국공관 · 오피스텔 제외)'},
+  {id:'office_fin',g:2,k:'area',l:'업무시설 중 일반업무시설 금융업소 — 전주 전북핀테크육성지구 안 (전주 조례 150㎡당 1대 · 그 밖은 업무시설과 같음)'},
   {id:'broadcast',g:2,k:'area',l:'방송통신시설 중 방송국'},
   {id:'funeral',g:2,k:'area',l:'장례시설 중 장례식장'},
   {id:'nb1',g:3,k:'area',l:'제1종 근린생활시설 (소매점 · 휴게음식점 · 이용원 · 의원 · 체육도장 등 — 바목 · 사목 제외)'},
@@ -1056,6 +1058,7 @@ var USES=[
   {id:'ex_mona',g:0,k:'exempt',l:'종교시설 중 수도원 · 수녀원 · 제실 · 사당 (비고 1 나목)'},
   {id:'ex_animal',g:0,k:'exempt',l:'동물 및 식물 관련 시설 — 도축장 · 도계장 제외 (비고 1 다목)'},
   {id:'ex_relay',g:0,k:'exempt',l:'방송통신시설 중 송신 · 수신 · 중계시설 (비고 1 라목)'},
+  {id:'ex_pbld',g:0,k:'exempt',l:'주차전용건축물(노외주차장)에 주차장 외 용도로 설치하는 시설물 — 백화점 · 쇼핑센터 · 대형점 · 영화관 · 전시장 · 예식장 제외 (비고 1 마목)'},
   {id:'ex_rail',g:0,k:'exempt',l:'도시철도법에 따른 역사 (비고 1 바목)'},
   {id:'ex_hanok',g:0,k:'exempt',l:'전통한옥 밀집지역 안의 전통한옥 (비고 1 사목)'}
 ];
@@ -1067,27 +1070,27 @@ var REGION27={
   da:{l:'다. 가목 및 나목 외의 시지역과 수도권 내의 군지역',le:95,gt:75},
   ra:{l:'라. 그 밖의 지역',le:110,gt:85}
 };
-/* ── 전북특별자치도 14개 시 · 군 주차장 조례 [별표] 부설주차장 설치기준 (LawMCP 원문 대조 2026-10-15) ──
+/* ── 전북특별자치도 14개 시 · 군 주차장 조례 [별표] 부설주차장 설치기준 (LawMCP 원문 대조 2026-10-15 · 전주 · 익산 · 남원 · 임실 2026-11-24 재대조 — chk) ──
    d: 시설군(별표 1 호) → ○㎡당 1대, u: 용도별 예외, house: 단독주택 {lo(1대 시작 초과), hi(1대 상한), mix(비고 4 단서 ÷100 상한)},
    apt: 제5호 조례 방식, dis: 부설주차장 장애인전용 비율(%), sp: 특례, src: 근거, nt: 유의사항 */
 var G2=['culture','wedding','exhibit','religion','retail','transport','medical','sports','office','broadcast','funeral'];
 var JB={
- jeonju:{n:'전주시',k:'si',ord:'전주시 주차장 조례 [별표 7] (개정 2025. 3. 7.)',enf:'2026. 6. 30.',seq:'2136481',dis:3,disSrc:'제13조 제3항',
-  d:{1:80,2:120,3:150,7:350,8:350,9:350,10:350,11:250},u:{wedding:80,funeral:80,kic:150},apt:'jeonju',sp:{lodging_res:'jeonju'},
-  nt:['예식장 · 장례식장은 자주식 주차장을 법정대수의 50 % 이상 확보','생활숙박시설은 시설면적 100㎡당 1대 또는 호실당 0.7대 중 많은 것','오피스텔 부설주차장은 자주식']},
+ jeonju:{n:'전주시',k:'si',ord:'전주시 주차장 조례 [별표 7] (개정 2026. 11. 13.)',enf:'2026. 11. 13.',seq:'2187543',chk:'2026-11-24',dis:3,disSrc:'제13조 제3항',
+  d:{1:80,2:120,3:150,7:350,8:350,9:350,10:350,11:250},u:{wedding:80,funeral:80,kic:150,office_fin:150},apt:'jeonju',sp:{lodging_res:'jeonju'},
+  nt:['전북핀테크육성지구 안 일반업무시설 중 금융업소는 150㎡당 1대([별표 7] 제2호 단서 — 「업무시설 중 일반업무시설 금융업소」 줄)','예식장 · 장례식장은 자주식 주차장을 법정대수의 50 % 이상 확보','생활숙박시설은 시설면적 100㎡당 1대 또는 호실당 0.7대 중 많은 것','오피스텔 부설주차장은 자주식']},
  gunsan:{n:'군산시',k:'si',ord:'군산시 주차장 조례 [별표 4] (개정 2018. 7. 12.)',enf:'2026. 9. 15.',seq:'2168177',dis:4,disSrc:'제19조의2 제3호',
   d:{1:80,2:100,3:160,7:350,8:400,9:250,10:250,11:250},u:{wedding:75,funeral:75,exhibit:120,sports:120,broadcast:120,transport:120,lodging:120,lodging_res:120,nb1c:250,medical_x:250},
   house:{lo:75,hi:150,mix:75},range:1.5,apt:'gunsan',sp:{nb1:'gunsan_gfa',nb2:'gunsan_gfa'},
   nt:['제1 · 2종 근린생활시설은 건축연면적 1,000㎡ 미만이면 200㎡당 1대','연육교가 연결된 야미도 · 신시도 · 무녀도 · 선유도 · 장자도 외 도서지역은 [별표 4] 미적용(제13조의2 제2항 단서)','[별표 4]에 학생용 기숙사 · 데이터센터 항목이 없어 「기타 건축물」 250㎡ 적용']},
- iksan:{n:'익산시',k:'si',ord:'익산시 주차장 설치 및 관리 조례 [별표 4] (개정 2023. 8. 14.)',enf:'2025. 11. 12.',seq:'2084745',dis:3,disSrc:'제18조 제5항',
+ iksan:{n:'익산시',k:'si',ord:'익산시 주차장 설치 및 관리 조례 [별표 4] (개정 2023. 8. 14.)',enf:'2026. 11. 11.',seq:'2184393',chk:'2026-11-24',dis:3,disSrc:'제18조 제5항',
   d:{1:80,2:100,3:150,7:250,8:400,9:200,10:200,11:200},u:{funeral:200,factory:360,edu:150,nb1c:200},house:{lo:50,hi:135,mix:50},apt:'iksan',
   nt:['[별표 4] 제2호에 장례식장이 없어 「그 밖의 건축물」 200㎡ 적용','[별표 4]에 학생용 기숙사 · 데이터센터 항목이 없어 「그 밖의 건축물」 200㎡ 적용','2단식 이상 기계식 주차장은 자주식 제외 대수의 300 % 설치(제12조 제2항)']},
  jeongeup:{n:'정읍시',k:'si',ord:'정읍시 주차장 조례 [별표 4]',enf:'2026. 7. 10.',seq:'2148155',dis:4,disSrc:'제15조 제1항 제3호',
   d:{1:80,2:120,3:150,7:350,8:400,9:400,10:250,11:250},house:{lo:50,hi:100,mix:50},apt:'jeongeup',
   nt:['관리지역 단독주택은 건축면적 120㎡ 이하 미적용(제14조 제1항 단서)','[별표 4]에 데이터센터 항목이 없어 「그 밖의 건축물」 250㎡ 적용']},
- namwon:{n:'남원시',k:'si',ord:'남원시 주차장 조례 [별표 3] (개정 2024. 2. 5.)',enf:'2026. 4. 7.',seq:'2119645',dis:3,disSrc:'[별표 3] 비고 10',
-  d:{1:100,2:150,3:200,7:350,8:400,9:400,10:300,11:300},u:{factory:400},apt:'namwon',
-  nt:['관리지역은 건축법 제11조 건축허가 대상만 적용(건축신고 대상 제외)','장애인전용 구획의 소수점 이하 끝수는 1대']},
+ namwon:{n:'남원시',k:'si',ord:'남원시 주차장 조례 [별표 3] (개정 2026. 11. 6.)',enf:'2026. 11. 6.',seq:'2183037',chk:'2026-11-24',dis:3,disSrc:'[별표 3] 비고 10',
+  d:{1:100,2:150,3:200,7:350,8:400,9:400,10:400,11:300},apt:'namwon',
+  nt:['[별표 3] 제1~11호 시설면적 기준은 시행령 [별표 1]과 같음(2026. 11. 6. 개정 — 공장 350㎡ · 데이터센터 400㎡)','제5호 — 제27조 제1항 산정 이상 · 세대당 1.2대(세대당 전용 60㎡ 이하 1.05대) 이상','도시형 생활주택(제27조 제1항 제2호 나목 — 단지형 연립 · 다세대 5 · 6개층 건축 제외)은 세대당 1.2대(30 ~ 60㎡ 0.9대 · 30㎡ 미만 0.75대) 이상','관리지역은 건축법 제11조 건축허가 대상만 적용(건축신고 대상 제외)','장애인전용 구획의 소수점 이하 끝수는 1대']},
  gimje:{n:'김제시',k:'si',ord:'김제시 주차장 조례 [별표 4] (개정 2013. 7. 25.)',enf:'2026. 8. 21.',seq:'2168071',dis:4,disSrc:'[별표 4] 비고 10',
   d:{1:100,2:150,3:200,7:350,8:400,9:300,10:300,11:300},u:{nb1c:300},apt:'27',
   nt:['[별표 4]에 학생용 기숙사 · 데이터센터 항목이 없어 「그 밖의 건축물」 300㎡ 적용']},
@@ -1103,7 +1106,7 @@ var JB={
  jangsu:{n:'장수군',k:'gun',ord:'장수군 주차장 조례 [별표 4] (개정 2015. 3. 25.)',enf:'2023. 1. 1.',seq:'1727811',dis:3,disSrc:'제17조 (별표 4 비고 10은 2 %)',
   d:{1:100,2:150,3:200,7:350,8:400,9:400,10:300,11:300},u:{nb1c:300},house:{lo:100,hi:150,mix:50},apt:'27',sp:{factory:'jangsu'},
   nt:['시설면적 10,000㎡ 이상 공장은 500㎡당 1대','장애인전용 비율 — 제17조 3 % · [별표 4] 비고 10은 2 % 이상(상충 — 제17조 적용)']},
- imsil:{n:'임실군',k:'gun',ord:'임실군 주차장 조례 [별표 4]',enf:'2026. 1. 2.',seq:'2105415',dis:2,disSrc:'제10조의3 제5항 제3호',
+ imsil:{n:'임실군',k:'gun',ord:'임실군 주차장 조례 [별표 4]',enf:'2026. 11. 19.',seq:'2188491',chk:'2026-11-24',dis:2,disSrc:'제10조의3 제5항 제3호',
   d:{1:100,2:150,3:200,7:350,8:400,9:400,10:300,11:300},apt:'27',nt:[]},
  sunchang:{n:'순창군',k:'gun',ord:'순창군 주차장 조례 [별표 5]',enf:'2026. 8. 18.',seq:'2163575',dis:2,disSrc:'제18조 제1항',
   d:{1:100,2:150,3:200,7:350,8:400,9:400,10:300,11:300},u:{nb1c:300},apt:'27',nt:['관리지역 — 건축허가 · 신고 대상 구역(농축업 · 식물관련 시설 제외)']},
@@ -1117,6 +1120,7 @@ var JB_EV='전북특별자치도 환경친화적 자동차 보급 및 이용 활
 function jbDiv(c,u){ if(c.u&&c.u[u.id]!=null) return c.u[u.id]; return c.d[u.g]; }
 var EPS=1e-9;
 function num(v){var x=parseFloat(v);return isFinite(x)?x:0;}
+function pctOr(v,def){ if(v==null||String(v).trim()==='') return def; var x=parseFloat(v); return isFinite(x)?x:def; }   /* v6.1.5 — 빈 칸만 기본값, 0 · 범위 밖은 그대로(⚠) */
 function r1(x){return Math.round(x*10+EPS*10)/10;}
 function trunc1(x){return Math.floor(x*10+EPS)/10;}           /* 소수점 이하 첫째 자리까지(둘째 자리 이하 버림 — MANMIN 적용) */
 function ceilE(x){return Math.ceil(x-EPS);}
@@ -1177,7 +1181,7 @@ function rowOrd(row,base,st,mixed){
 /* 제5호 — 주택건설기준 규정 제27조 제1항 */
 function aptCalc(row,region,st){
   var R=REGION27[region]||REGION27.da, units=(row.units||[]).filter(function(x){return num(x.a)>0&&num(x.n)>0;});
-  var o={units:units,region:region,dosi:!!row.dosi};
+  var o={units:units,region:region,dosi:!!row.dosi,ga:!!(row.dosi&&row.ga)};
   var hh=0,Ale=0,Agt=0,minv=0,dosiv=0,all60=true;
   units.forEach(function(x){ var a=num(x.a),n=num(x.n); hh+=n; if(a<=85+EPS) Ale+=a*n; else Agt+=a*n; minv+=n*(a<=60+EPS?0.7:1.0); dosiv+=n*(a<30-EPS?0.5:(a<=60+EPS?0.6:1.0)); if(a>60+EPS) all60=false; });
   o.hh=hh; o.Ale=Ale; o.Agt=Agt;
@@ -1185,7 +1189,13 @@ function aptCalc(row,region,st){
   else { o.byArea=Ale/R.le+Agt/R.gt; o.min=minv; o.req=Math.max(o.byArea,o.min);
     o.f='전용면적 합계 85㎡ 이하 '+r1(Ale)+' ÷ '+R.le+(Agt>0?' + 85㎡ 초과 '+r1(Agt)+' ÷ '+R.gt:'')+' = '+(Math.round(o.byArea*100)/100)+'대 · 세대당 하한 '+r1(minv)+'대 중 큰 값'; }
   o.count=ceilE(o.req);                                  /* 소수점 이하 끝수는 1대 */
-  var p=num(row.ordPct); o.ord={on:false}; var lim=all60?50:20, lo=o.dosi?(all60?-70:-50):0;
+  /* v6.1.5 — 제27조 제1항 제2호: 나목 5분의 1(60㎡ 이하 2분의 1) 범위 강화 · 완화, 가목(공공임대 · 무차량 임차 · 역세권 500 m · 60㎡ 이하) 요건 때만 10분의 7 완화 */
+  var gaOk=o.ga&&all60; o.gaOk=gaOk;
+  var p=num(row.ordPct); o.ord={on:false}; var lim=all60?50:20, lo=o.dosi?(gaOk?-70:(all60?-50:-20)):0;
+  /* v6.1.5 — 조례 범위는 주택형별로: 60㎡ 이하 +50 % · 초과 +20 % 상한(도시형 하한 −50 % · −20 %, 가목 −70 %) */
+  var ub=0, lb=0; units.forEach(function(x){ var a=num(x.a),n=num(x.n),l60=a<=60+EPS, b=o.dosi?n*(a<30-EPS?0.5:(l60?0.6:1.0)):Math.max(a*n/(a<=85+EPS?R.le:R.gt),n*(l60?0.7:1.0));
+    ub+=b*(1+(l60?50:20)/100); lb+=b*(1+(o.dosi?(l60?(gaOk?-70:-50):-20):0)/100); });
+  if(!o.dosi) lb=o.req;
   if(p!==0){ o.ord={on:true,src:'user',pct:p,count:ceilE(o.req*(1+p/100)),ok:(p>=lo-EPS&&p<=lim+EPS),lim:lim,lo:lo}; }
   else if(JB[st&&st.jb]){
     var c=JB[st.jb], t=c.apt, rq=o.req, f='제27조 제1항 산정과 같음', S=function(fn){var v=0;units.forEach(function(x){v+=num(x.n)*fn(num(x.a));});return v;};
@@ -1193,12 +1203,12 @@ function aptCalc(row,region,st){
     else if(t==='gunsan'&&o.dosi){ var dv=st.comZone?60:30; rq=Math.max((Ale+Agt)/dv,hh*0.7); f='원룸형 — 전용면적 '+dv+'㎡당 1대와 세대당 0.7대 중 많은 대수'; }
     else if(t==='iksan'){ rq=S(function(a){return a<=60+EPS?1:(a<=85+EPS?1.5:a/75*1.5);}); f='60㎡ 이하 세대당 1대 · 60 ~ 85㎡ 1.5대 · 85㎡ 초과 75㎡당 1.5대'; }
     else if(t==='jeongeup'){ rq=S(function(a){return a<=60+EPS?1:(a<=85+EPS?1.5:(a<=100+EPS?1.6:a/50));}); f='60㎡ 이하 1.0 · 85㎡ 이하 1.5 · 100㎡ 이하 1.6대 · 초과 50㎡당 1대(세대당)'; }
-    else if(t==='namwon'){ rq=o.dosi?Math.max(o.req,S(function(a){return a<30-EPS?0.7:0.9;})):Math.max(o.req,S(function(a){return a<=60+EPS?0.8:1.2;})); f=o.dosi?'소형 주택 세대당 0.9대(30㎡ 미만 0.7대) 이상':'제27조 산정 이상 · 세대당 1.2대(60㎡ 이하 0.8대) 이상'; }
+    else if(t==='namwon'){ rq=o.dosi?Math.max(o.req,S(function(a){return a<30-EPS?0.75:(a<=60+EPS?0.9:1.2);})):Math.max(o.req,S(function(a){return a<=60+EPS?1.05:1.2;})); f=o.dosi?'도시형 생활주택 세대당 1.2대(30 ~ 60㎡ 0.9대 · 30㎡ 미만 0.75대) 이상':'제27조 산정 이상 · 세대당 1.2대(60㎡ 이하 1.05대) 이상'; }   /* v6.1.5 — [별표 3] 2026. 11. 6. 개정 */
     else if(t==='wanju'){ rq=o.dosi?o.req*1.5:Math.max(o.req,S(function(a){return a<=60+EPS?0.9:1;})); f=o.dosi?'원룸형 — 제27조 산정의 1.5배 이상':'제27조 산정 · 세대(호실)당 1대(60㎡ 이하 0.9대) 이상'; }
     else if(t==='jinan'&&o.dosi){ rq=hh*0.4; f='원룸형 주택 세대당 0.4대 이상'; }
     else if(t==='muju'){ rq=o.dosi?S(function(a){return a<30-EPS?0.75:0.9;}):Math.max(Ale/85+Agt/70,hh); f=o.dosi?'원룸형 세대당 0.9대(30㎡ 미만 0.75대)':'85㎡ 이하 85㎡당 · 초과 70㎡당 1대 · 세대당 1대 이상'; }
     var pp=o.req>0?(rq/o.req-1)*100:0;
-    o.ord={on:true,src:'jb',req:rq,count:ceilE(rq),f:f,pct:Math.round(pp),ok:(pp>=lo-0.5&&pp<=lim+0.5),lim:lim,lo:lo};
+    o.ord={on:true,src:'jb',req:rq,count:ceilE(rq),f:f,pct:Math.round(pp),ok:(rq>=lb-1e-6&&rq<=ub+1e-6),lim:lim,lo:lo,ub:ub,lb:lb};
   }
   return o;
 }
@@ -1217,20 +1227,22 @@ function calcAll(st){
   S=r1(S); So=r1(So);
   var nA=rule6(S), nAo=rule6(So);
   var legal=nA+H, ordTot=nAo+Ho;
+  /* v6.1.5 — 비고 6 단서: 제5호 외 합계만으로 1대 미만 0(현행). 주택 대수까지 합친 전체로 보는 해석이면 0.5 이상 끝수가 1대 → 참고값만 */
+  var r6alt={legal:(H>0&&S>=0.5-EPS&&S<1-EPS)?legal+1:null, ord:(Ho>0&&So>=0.5-EPS&&So<1-EPS)?ordTot+1:null};
   if(JB[st.jb]) ordAny=true;
   var total= ordAny? ordTot : legal;
   /* 장애인 전용 — 비고 10 (10대 미만 제외 · 조례 2~4 %) */
-  var dp=num(st.disPct)||2, dis={pct:dp,ok:(dp>=2-EPS&&dp<=4+EPS),on:st.disOn!==false};
+  var dp=pctOr(st.disPct,2), dis={pct:dp,ok:(dp>=2-EPS&&dp<=4+EPS),on:st.disOn!==false};
   dis.count = (dis.on && total>=10) ? ceilE(total*dp/100) : 0; dis.exempt = total<10;
   /* 친환경자동차 전용주차구역 — 시행령 제18조의5 · 6 (기계식 제외 총주차대수 50 이상 · 5 % 이상 · 반올림) */
-  var ep=num(st.evPct)||(st.evOld?2:5), mech=num(st.mech), evBase=Math.max(total-mech,0);
+  var ep=pctOr(st.evPct,st.evOld?2:5), mech=num(st.mech), evBase=Math.max(total-mech,0);
   var ev={on:!!st.evOn,pct:ep,base:evBase,old:!!st.evOld,ok:(ep>=(st.evOld?2:5)-EPS)};
   ev.count=(ev.on&&evBase>=50)?Math.floor(evBase*ep/100+0.5+EPS):0; ev.below=evBase<50;
   /* 경형 — 비고 12 (10 %까지 설치기준 인정) */
   var light=Math.floor(total*0.1+EPS);
-  return {rows:R,mixed:mixed,S:S,So:So,nA:nA,nAo:nAo,H:H,Ho:Ho,legal:legal,ordTot:ordTot,ordAny:ordAny,ordBad:ordBad,total:total,dis:dis,ev:ev,light:light,region:st.region,ordName:st.ordName||'',jb:JB[st.jb]?st.jb:''};
+  return {rows:R,mixed:mixed,S:S,So:So,nA:nA,nAo:nAo,H:H,Ho:Ho,legal:legal,ordTot:ordTot,ordAny:ordAny,ordBad:ordBad,total:total,r6alt:r6alt,dis:dis,ev:ev,light:light,region:st.region,ordName:st.ordName||'',jb:JB[st.jb]?st.jb:''};
 }
-var API={JB:JB,JB_ORDER:JB_ORDER,JB_EV:JB_EV,jbDiv:jbDiv,GROUPS:GROUPS,USES:USES,UMAP:UMAP,REGION27:REGION27,rule6:rule6,trunc1:trunc1,rowRaw:rowRaw,aptCalc:aptCalc,calcAll:calcAll};
+var API={VER:'6.1.5',JB:JB,JB_ORDER:JB_ORDER,JB_EV:JB_EV,jbDiv:jbDiv,GROUPS:GROUPS,USES:USES,UMAP:UMAP,REGION27:REGION27,rule6:rule6,trunc1:trunc1,rowRaw:rowRaw,aptCalc:aptCalc,calcAll:calcAll};
 root.PARKENG=API; if(typeof module!=='undefined'&&module.exports) module.exports=API;
 })(typeof window!=='undefined'?window:globalThis);
 </script>
@@ -1241,7 +1253,7 @@ root.PARKENG=API; if(typeof module!=='undefined'&&module.exports) module.exports
 var ENG=window.PARKENG;
 var PK={rows:[]};
 var _lastResult=null, _lastState=null;
-function pkNewRow(use){ return {use:use||'',q:'',units:[{a:'',n:''}],dosi:false,ordDiv:'',ordPct:'',rooms:''}; }
+function pkNewRow(use){ return {use:use||'',q:'',units:[{a:'',n:''}],dosi:false,ga:false,ordDiv:'',ordPct:'',rooms:''}; }
 function pkEsc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function pkUseOptions(sel){
   var h='<option value="">— 용도 선택 —</option>', cur=-1;
@@ -1268,7 +1280,8 @@ function pkRenderRows(){
           +(r.units.length>1?'<button class="pk-del" onclick="pkDelUnit('+i+','+j+')">✕</button>':'')+'</div>';
       });
       h+='<button class="pk-add-u" onclick="pkAddUnit('+i+')">＋ 주택형 추가</button>'
-        +'<label class="pk-chk"><input type="checkbox" '+(r.dosi?'checked':'')+' onchange="pkSetF('+i+',\'dosi\',this.checked)"> 도시형 생활주택 (제27조 제1항 제2호)</label></div>';
+        +'<label class="pk-chk"><input type="checkbox" '+(r.dosi?'checked':'')+' onchange="pkSetF('+i+',\'dosi\',this.checked);pkRenderRows()"> 도시형 생활주택 (제27조 제1항 제2호 — 단지형 연립 · 다세대 5개층 건축은 제외)</label>'
+        +(r.dosi?'<label class="pk-chk"><input type="checkbox" '+(r.ga?'checked':'')+' onchange="pkSetF('+i+',\'ga\',this.checked)"> 가목 요건 모두 충족 — 공공임대주택 · 무차량 임차 · 역세권 시설 500 m 이내 · 세대당 60㎡ 이하 (조례 완화 −70 %까지)</label>':'')+'</div>';
     } else if(u&&k!=='exempt'){
       var ql=pkQLabel(k);
       h+='<div class="pk-q"><div class="num-wrap"><input class="mm-inp" type="number" min="0" step="0.01" placeholder="'+ql[0]+'" value="'+pkEsc(r.q)+'" oninput="pkSetF('+i+',\'q\',this.value)"><span class="num-unit">'+ql[1]+'</span></div></div>';
@@ -1297,13 +1310,14 @@ function pkJbInfo(){
   var box=document.getElementById('jb-info'), c=ENG.JB[pkVal('sel-jb')], g=document.getElementById('jb-gunsan');
   if(g) g.style.display=(pkVal('sel-jb')==='gunsan')?'':'none';
   if(!box) return; if(!c){ box.innerHTML=''; return; }
-  box.innerHTML='<div class="info-box" style="margin:8px 0 10px"><strong>📜 '+pkEsc(c.ord)+'</strong> · 조례 시행 '+pkEsc(c.enf)+' · 자치법규 일련번호 '+c.seq
+  box.innerHTML='<div class="info-box" style="margin:8px 0 10px"><strong>📜 '+pkEsc(c.ord)+'</strong> · 조례 시행 '+pkEsc(c.enf)+' · 자치법규 일련번호 '+c.seq+' · LawMCP 원문 대조 '+(c.chk||'2026-10-15')
     +'<br>장애인전용 '+c.dis+' % ('+pkEsc(c.disSrc)+')'+(c.nt&&c.nt.length?'<br>'+c.nt.map(function(t){return '· '+pkEsc(t);}).join('<br>'):'')+'</div>';
 }
+var _pkJbAuto=null;   /* v6.1.5 — 시 · 군 고를 때 자동으로 채운 값(해제 시 그대로면 되돌림) */
 function pkSetJb(id){
   var c=ENG.JB[id], set=function(i,v){ var e=document.getElementById(i); if(e) e.value=v; };
-  if(c){ set('inp-city','전북특별자치도 '+c.n); set('sel-region27',c.k==='si'?'da':'ra'); set('inp-ordname',c.ord); set('inp-dispct',String(c.dis)); var ev=document.getElementById('inp-evpct'); }
-  else { set('inp-ordname',''); }
+  if(c){ _pkJbAuto={'inp-city':'전북특별자치도 '+c.n,'sel-region27':c.k==='si'?'da':'ra','inp-ordname':c.ord,'inp-dispct':String(c.dis)}; Object.keys(_pkJbAuto).forEach(function(k){ set(k,_pkJbAuto[k]); }); }
+  else { var DEF={'inp-city':'','sel-region27':'da','inp-ordname':'','inp-dispct':'2'}; if(_pkJbAuto) Object.keys(DEF).forEach(function(k){ if(pkVal(k)===_pkJbAuto[k]) set(k,DEF[k]); }); else set('inp-ordname',''); _pkJbAuto=null; }
   pkJbInfo(); pkRenderRows(); pkCalc();
 }
 function pkVal(id){ var e=document.getElementById(id); return e?e.value:''; }
@@ -1331,7 +1345,8 @@ function pkRowLines(R){
     if(u.k==='apt'){ var a=it.apt; line.law='제5호 · 주택건설기준 규정 제27조 제1항'+(a.dosi?' 제2호':' 제1호');
       line.qty=a.units.map(function(x){return x.a+'㎡ × '+x.n+'세대';}).join(' · ');
       line.formula=a.f; line.val=a.count+'대'; line.note='끝수 올림 · 별표 1 비고 4에 따라 따로 합산';
-      if(a.ord.on){ line.valo=a.ord.count+'대'; line.note+=a.ord.src==='jb'?(' · 조례: '+a.ord.f+' (법정 대비 '+(a.ord.pct>=0?'+':'')+a.ord.pct+' %)'):(' · 조례 '+(a.ord.pct>0?'강화 +':'완화 ')+a.ord.pct+' %'); if(!a.ord.ok) line.note+=' ⚠ 제27조 제1항 단서 조례 범위('+a.ord.lo+' ~ +'+a.ord.lim+' %) 밖 — 허가권자 확인'; } }
+      if(a.ord.on){ line.valo=a.ord.count+'대'; line.note+=a.ord.src==='jb'?(' · 조례: '+a.ord.f+' (법정 대비 '+(a.ord.pct>=0?'+':'')+a.ord.pct+' %)'):(' · 조례 '+(a.ord.pct>0?'강화 +':'완화 ')+a.ord.pct+' %'); if(!a.ord.ok) line.note+=(a.ord.src==='jb'?' ⚠ 제27조 제1항 단서 조례 범위(주택형별 60㎡ 이하 +50 % · 초과 +20 %'+(a.dosi?' · 하한 '+(a.gaOk?'−70':'−50')+' % · −20 %':'')+' → '+f1(a.ord.lb)+' ~ '+f1(a.ord.ub)+'대) 밖 — 허가권자 확인':' ⚠ 제27조 제1항 단서 조례 범위('+a.ord.lo+' ~ +'+a.ord.lim+' %) 밖 — 허가권자 확인'); }
+      if(a.dosi&&a.ga&&!a.gaOk) line.note+=' · 가목은 세대당 60㎡ 이하만 — 나목 범위로 검사'; }
     else if(u.k==='exempt'){ line.law='비고 1'; line.qty='—'; line.formula='설치하지 않을 수 있음'; line.val='0'; }
     else { var b=it.base; line.law='제'+u.g+'호'+(b.d?' — '+b.d+'㎡당 1대':''); line.qty=(u.k==='area'||u.k==='house')?(b.q+'㎡'):(b.q+(u.k==='golf'?'홀':u.k==='range'?'타석':'명'));
       line.formula=b.f+' = '+f2(b.raw); line.val=f1(it.v);
@@ -1348,6 +1363,8 @@ function renderResult(R,st){
     +(R.H||R.Ho?'<tr><td></td><td><strong>제5호(주택) 따로 합산</strong></td><td class="td-mono td-hi">'+R.H+'</td>'+(ord?'<td class="td-mono">'+R.Ho+'</td>':'')+'</tr>':'')
     +'<tr><td></td><td><strong>부설주차장 주차대수</strong></td><td class="td-mono td-hi"><strong>'+R.legal+'대</strong></td>'+(ord?'<td class="td-mono"><strong>'+R.ordTot+'대</strong></td>':'')+'</tr>';
   var bad=R.ordBad.length?'<div class="note-box" style="margin-top:10px"><strong>⚠ 조례 기준 확인</strong><br>'+R.ordBad.map(function(i){return (i+1)+'번 줄';}).join(' · ')+' — 시행령 제6조 제2항(별표 1 기준의 2분의 1 범위) 또는 제27조 제1항 조례 범위를 벗어났습니다. 조례 원문을 확인하십시오.</div>':'';
+  var alt=ord?R.r6alt.ord:R.r6alt.legal;
+  var r6n=alt!=null?'<div class="note-box" style="margin-top:10px"><strong>📌 비고 6 단서 해석</strong><br>제5호 외 합계가 1대 미만이라 0대로 보았습니다(현행 산정). 주택(제5호) 대수까지 합쳐 「전체 1대 이상」으로 보는 해석도 있음(이 경우 '+alt+'대) — 허가권자 확인</div>':'';
   var dis=R.dis, ev=R.ev;
   var html='<div class="fade-in"><div class="card"><div class="sec-title">🚗 산정 결과</div>'
     +'<div class="verdict-hero"><div class="vh-label">'+(ord?'조례 적용 부설주차장':'법정 부설주차장 (시행령 별표 1)')+'</div><div class="vh-value">'+R.total+'<span>대</span></div>'
@@ -1358,13 +1375,14 @@ function renderResult(R,st){
     +'<div class="metric-card"><div class="ml">장애인 전용</div><div class="mv gold">'+(dis.on?(dis.exempt?'—':dis.count+' 이상'):'—')+'</div><div class="mu">'+(dis.on?(dis.exempt?'10대 미만 제외':'구획 ('+dis.pct+' %)'):'대상 아님')+'</div></div>'
     +'<div class="metric-card"><div class="ml">친환경차 전용</div><div class="mv">'+(ev.on?(ev.below?'—':ev.count+' 이상'):'—')+'</div><div class="mu">'+(ev.on?(ev.below?'50대 미만':'구역 ('+ev.pct+' %)'):'대상 아님')+'</div></div>'
     +'</div></div>'
-    +'<div class="card"><div class="sec-title">📐 용도별 산정 — 별표 1</div><div class="shadow-table-wrap"><table class="shadow-table"><thead><tr><th>#</th><th>용도 · 산식</th><th>법정</th>'+(ord?'<th>조례</th>':'')+'</tr></thead><tbody>'+rowsHtml+sumRow+'</tbody></table></div>'+bad+'</div>'
+    +'<div class="card"><div class="sec-title">📐 용도별 산정 — 별표 1</div><div class="shadow-table-wrap"><table class="shadow-table"><thead><tr><th>#</th><th>용도 · 산식</th><th>법정</th>'+(ord?'<th>조례</th>':'')+'</tr></thead><tbody>'+rowsHtml+sumRow+'</tbody></table></div>'+bad+r6n+'</div>'
     +'<div class="card card-teal"><div class="sec-title">♿ 전용 주차구획</div><div class="shadow-table-wrap"><table class="shadow-table"><thead><tr><th>구획</th><th>수</th><th>근거</th></tr></thead><tbody>'
     +'<tr><td>장애인전용</td><td class="td-mono td-hi">'+(dis.on?(dis.exempt?'의무 없음':dis.count+'구획 이상'):'—')+'</td><td>별표 1 비고 10 — '+R.total+'대 × '+dis.pct+' % (올림)'+(dis.exempt?' · 10대 미만 제외':'')+(dis.ok?'':' ⚠ 2~4 % 범위 밖')+'</td></tr>'
-    +'<tr><td>환경친화적 자동차</td><td class="td-mono td-hi">'+(ev.on?(ev.below?'의무 없음':ev.count+'구역 이상'):'—')+'</td><td>시행령 제18조의5 · 6 — (총 '+R.total+'대 − 기계식 '+(R.total-ev.base)+'대) × '+ev.pct+' % (반올림)'+(ev.below?' · 50대 미만':'')+(ev.ok?'':' ⚠ '+(ev.old?'2':'5')+' % 미만')+'</td></tr>'
+    +'<tr><td>환경친화적 자동차</td><td class="td-mono td-hi">'+(ev.on?(ev.below?'의무 없음':ev.count+'구역 이상'):'—')+'</td><td>시행령 제18조의5 · 6 — (총 '+R.total+'대 − 기계식 '+(R.total-ev.base)+'대) × '+ev.pct+' % (반올림)'+(ev.below?' · 50대 미만':'')+(ev.ok?'':' ⚠ '+(ev.old?'2':'5')+' % 미만')+(ev.old?' · 공공기축시설은 5 %':'')+'</td></tr>'
     +'<tr><td>경형자동차 전용</td><td class="td-mono">'+R.light+'구획까지</td><td>별표 1 비고 12 — 전체의 10 %까지 설치기준으로 인정</td></tr>'
     +'</tbody></table></div><div class="note-box" style="margin-top:10px"><strong>📌 규격</strong> 장애인전용 너비 3.3 m 이상 × 길이 5.0 m 이상(주차장법 시행규칙 제3조)</div></div>'
-    +'<div class="note-box"><strong>⚠️ 면책 고지</strong><br>본 결과는 검토용입니다. 조례 기준은 내장값(전북 14개 시 · 군, 2026-10-15 원문 대조) 또는 입력값이며, 실제 인허가 시 해당 지자체의 최신 조례를 반드시 확인하십시오.</div></div>';
+    +'<div class="note-box"><strong>📌 자동 산정하지 않는 규정 — 허가권자 확인</strong><br>· 비고 6 · 7 — 나누어 증축 · 용도변경하는 경우 앞선 회차와의 누적(0.5대 · 1대 미만 합산)<br>· 제27조 제1항 제2호 — 단지형 연립 · 다세대 5개층 건축 제외 · 제2항 승용차공동이용 구획 3.5배(소수점 이하 버림) · 제5항 임대 도시형 생활주택 · 제6항 노인복지주택 세대당 0.3대(60㎡ 이하 0.2대) · 제7항 철도부지 활용 공공주택 2분의 1 완화<br>· 친환경차 — 공공기축시설(국가 · 지자체 · 공공기관 · 지방공기업 등 소유 · 관리)은 기축이라도 5 % · 설치 면제(시행령 제18조의6 제2항)</div>'
+    +'<div class="note-box"><strong>⚠️ 면책 고지</strong><br>본 결과는 검토용입니다. 조례 기준은 내장값(전북 14개 시 · 군 — 2026-10-15 원문 대조, 전주 · 익산 · 남원 · 임실 2026-11-24 재대조) 또는 입력값이며, 실제 인허가 시 해당 지자체의 최신 조례를 반드시 확인하십시오.</div></div>';
   document.getElementById('result-area').innerHTML=html;
 }
 function showErr(msg){ document.getElementById('result-area').innerHTML='<div class="card fade-in"><div class="result-ph"><div class="ph-icon" style="font-size:28px">⚠️</div><div class="ph-txt" style="color:var(--gold)">'+msg+'</div></div></div>'; }
@@ -1374,7 +1392,7 @@ function resetForm(){
   var r=document.getElementById('sel-region27'); if(r) r.value='da';
   var d=document.getElementById('inp-dispct'); if(d) d.value='2';
   var e=document.getElementById('inp-evpct'); if(e) e.value='5';
-  pkJbInfo(); ['chk-ev','chk-evold','chk-comzone'].forEach(function(id){ var x=document.getElementById(id); if(x) x.checked=false; });
+  _pkJbAuto=null; pkJbInfo(); ['chk-ev','chk-evold','chk-comzone'].forEach(function(id){ var x=document.getElementById(id); if(x) x.checked=false; });
   var cd=document.getElementById('chk-dis'); if(cd) cd.checked=true;
   PK.rows=[pkNewRow()]; pkRenderRows(); pkCalc();
 }
@@ -1456,10 +1474,11 @@ window.renderA4=function(){
   h+='<tr><td></td><td colspan="3"><strong>부설주차장 주차대수</strong></td><td class="r"><strong>'+R.legal+'</strong></td>'+(ord?'<td class="r"><strong>'+R.ordTot+'</strong></td>':'')+'</tr></tbody></table>';
   h+='<div class="a4-sub">3. 산정 결과</div>'
     +'<div class="a4-verdict ok"><div><div class="v-main">부설주차장 '+_n(R.total,0)+' 대 이상</div><div class="v-sub">'+(ord?'법정(별표 1) '+R.legal+'대 · 조례 적용 '+R.ordTot+'대 — '+_esc(st.ordName||'조례'):'시행령 [별표 1] 법정 기준')+'</div></div></div>';
+  var alt=ord?R.r6alt.ord:R.r6alt.legal; if(alt!=null) h+='<div style="font-size:10px;color:#b45309;margin:4px 0 8px">📌 비고 6 단서 — 제5호 외 합계 1대 미만 0대(현행 산정). 주택 대수까지 합쳐 보는 해석도 있음(이 경우 '+alt+'대) — 허가권자 확인</div>';
   if(R.ordBad.length) h+='<div style="font-size:10px;color:#b45309;margin:4px 0 8px">⚠ '+R.ordBad.map(function(i){return (i+1)+'번 줄';}).join(' · ')+' — 조례 기준이 시행령 제6조 제2항(2분의 1 범위) 또는 주택건설기준 규정 제27조 제1항 단서 범위를 벗어남. 조례 원문값으로 산정 — 허가권자 확인 필요</div>';
   h+='<div class="a4-sub">4. 전용 주차구획</div><table class="a4-tbl"><thead><tr><th>구획</th><th style="width:18%">구획 수</th><th>산식 · 근거</th></tr></thead><tbody>'
-    +'<tr><td>♿ 장애인전용 주차구획</td><td class="r">'+(R.dis.on?(R.dis.exempt?'의무 없음':R.dis.count+' 이상'):'—')+'</td><td>'+R.total+'대 × '+R.dis.pct+' % (올림) — 별표 1 비고 10 (2~4 % 범위 조례 비율 · 10대 미만 제외) · 너비 3.3 m × 길이 5.0 m 이상</td></tr>'
-    +'<tr><td>⚡ 환경친화적 자동차 전용주차구역</td><td class="r">'+(R.ev.on?(R.ev.below?'의무 없음':R.ev.count+' 이상'):'—')+'</td><td>(총 '+R.total+'대 − 기계식 '+(R.total-R.ev.base)+'대) × '+R.ev.pct+' % (반올림) — 친환경자동차법 시행령 제18조의5 · 6 (총주차대수 50 이상 · 신축 5 % · 기축 2 % 이상 조례)</td></tr>'
+    +'<tr><td>♿ 장애인전용 주차구획</td><td class="r">'+(R.dis.on?(R.dis.exempt?'의무 없음':R.dis.count+' 이상'):'—')+'</td><td>'+R.total+'대 × '+R.dis.pct+' % (올림) — 별표 1 비고 10 (2~4 % 범위 조례 비율 · 10대 미만 제외) · 너비 3.3 m × 길이 5.0 m 이상'+(R.dis.on&&!R.dis.ok?' <span style="color:#b45309">⚠ 2~4 % 범위 밖</span>':'')+'</td></tr>'
+    +'<tr><td>⚡ 환경친화적 자동차 전용주차구역</td><td class="r">'+(R.ev.on?(R.ev.below?'의무 없음':R.ev.count+' 이상'):'—')+'</td><td>(총 '+R.total+'대 − 기계식 '+(R.total-R.ev.base)+'대) × '+R.ev.pct+' % (반올림) — 친환경자동차법 시행령 제18조의5 · 6 (총주차대수 50 이상 · 신축 5 % · 기축 2 % 이상 조례 · 공공기축 5 %)'+(R.ev.on&&!R.ev.ok?' <span style="color:#b45309">⚠ '+(R.ev.old?'2':'5')+' % 미만</span>':'')+'</td></tr>'
     +'<tr><td>🚙 경형자동차 전용구획</td><td class="r">'+R.light+'까지</td><td>별표 1 비고 12 — 전체 주차단위구획의 10 %까지 설치기준으로 인정</td></tr>'
     +'</tbody></table>';
   h+='<div class="a4-sub">5. 주차장법 시행령 [별표 1] 부설주차장 설치기준 (개정 2026. 8. 25.)</div><table class="a4-tbl long splitok"><thead><tr><th style="width:6%">호</th><th>시설물</th><th style="width:34%">설치기준</th></tr></thead><tbody>';
@@ -1469,10 +1488,10 @@ window.renderA4=function(){
     +'<tr><td class="k">주차장법 제19조</td><td>도시지역 · 지구단위계획구역 · 조례로 정하는 관리지역에서 시설물을 건축 · 설치하려는 자는 부설주차장 설치(제1항) — 설치기준은 대통령령(제3항) [2026. 8. 28. 시행]</td></tr>'
     +'<tr><td class="k">시행령 제6조 · [별표 1]</td><td>제6조 제2항 — 조례로 별표 1 기준의 2분의 1 범위 강화 · 완화 · 비고 2 시설면적 · 비고 4 복합용도 합산 · 비고 6 소수점 0.5 이상 1대 · 비고 10 장애인 2~4 % [시행령 2026. 8. 25. 개정 · 8. 28. 시행]</td></tr>'
     +'<tr><td class="k">주택건설기준 규정 제27조</td><td>제1항 제1호 — 전용면적 합계 ÷ 지역 · 규모별 면적, 세대당 1대(60㎡ 이하 0.7대) 이상 · 제2호 도시형 생활주택 · 끝수 1대 [최종 개정 2025. 1. 21. · 2026-11-12 현행 확인]</td></tr>'
-    +(R.jb?(function(){ var c=PARKENG.JB[R.jb]; return '<tr><td class="k">조례</td><td>'+_esc(c.ord)+' · 조례 시행 '+_esc(c.enf)+' · 자치법규 일련번호 '+c.seq+' — LawMCP 원문 대조 2026-10-15'+(c.nt&&c.nt.length?'<br>'+c.nt.map(function(t){return '· '+_esc(t);}).join('<br>'):'')+'</td></tr>'
+    +(R.jb?(function(){ var c=PARKENG.JB[R.jb]; return '<tr><td class="k">조례</td><td>'+_esc(c.ord)+' · 조례 시행 '+_esc(c.enf)+' · 자치법규 일련번호 '+c.seq+' — LawMCP 원문 대조 '+(c.chk||'2026-10-15')+(c.nt&&c.nt.length?'<br>'+c.nt.map(function(t){return '· '+_esc(t);}).join('<br>'):'')+'</td></tr>'
         +'<tr><td class="k">장애인 · 친환경차 조례</td><td>장애인전용 '+c.dis+' % ('+_esc(c.disSrc)+') · '+_esc(PARKENG.JB_EV)+'</td></tr>'; })()
       :'<tr><td class="k">조례</td><td>'+(ord?_esc(st.ordName||'(조례명 미입력)')+' — 입력 기준값. 개정 여부는 자치법규정보시스템(elis.go.kr) 확인':'조례 미입력 — 해당 시 · 군 · 구 주차장 조례의 강화 · 완화 기준을 확인하십시오')+'</td></tr>')
-    +'<tr><td class="k">검토 범위</td><td>MANMIN 적용: 용도별 값은 소수점 이하 둘째 자리 이하 버림 · 장애인 구획 올림. 용도변경 특례(시행령 제6조 제4항) · 설치 제한 지역(법 제19조 제10항) · 지구단위계획 · 기계식 주차장 기준은 허가권자 확인</td></tr>'
+    +'<tr><td class="k">검토 범위</td><td>MANMIN 적용: 용도별 값은 소수점 이하 둘째 자리 이하 버림 · 장애인 구획 올림. 용도변경 특례(시행령 제6조 제4항) · 설치 제한 지역(법 제19조 제10항) · 지구단위계획 · 기계식 주차장 기준은 허가권자 확인. 자동 산정 안 함: 비고 6 · 7 증축 · 용도변경 누적 · 제27조 제2항(승용차공동이용 3.5배) · 제5 ~ 7항(임대 도시형 · 노인복지주택 0.3(0.2)대 · 철도부지 공공주택) · 도시형 단지형 5개층 제외 · 친환경차 공공기축 5 % · 설치 면제</td></tr>'
     +'</tbody></table>';
   body.innerHTML=h;
   var p=$('a4Page'); if(p&&typeof markLongTables==='function') markLongTables(p);
@@ -1535,7 +1554,7 @@ window.exportA4Jpg=function(){
   markLongTables(el); var segs=mmSegments(el), fullH=Math.max(mmContentHeight(el),1);
   html2canvas(el,{scale:2,useCORS:true,allowTaint:false,backgroundColor:'#ffffff',logging:false,width:el.scrollWidth,height:fullH,windowWidth:el.scrollWidth,windowHeight:fullH,scrollX:0,scrollY:0}).then(function(canvas){
     restoreScale(); var now=new Date(), ts=now.getFullYear()+''+String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0')+'_'+String(now.getHours()).padStart(2,'0')+String(now.getMinutes()).padStart(2,'0');
-    var base='주차장법_법정주차대수_산정서_MANMIN-Ver5.1_'+ts;
+    var base='주차장법_법정주차대수_산정서_MANMIN-Ver'+String(window.PARKENG&&PARKENG.VER||'6.1').split('.').slice(0,2).join('.')+'_'+ts;   /* v6.1.5 — 판 상수 연동(종전 Ver5.1 고정) */
     if(!segs||!segs.length){ mmDownload(canvas.toDataURL('image/jpeg',0.95), base+'.jpg'); showToast('✅ JPG 저장 완료!'); return; }
     var S=canvas.width/el.scrollWidth, PAGE_W=MM_PAGE.W, PAGE_H=MM_PAGE.H, mmPerPx=210/PAGE_W, topPx=MM_PAGE.MT/mmPerPx;
     var shots=segs.map(function(sg,idx){ var h=Math.max(1,Math.round((sg[1]-sg[0])*S)); var tmp=document.createElement('canvas'); tmp.width=Math.round(PAGE_W*S); tmp.height=Math.round(PAGE_H*S); var ctx=tmp.getContext('2d'); ctx.fillStyle='#ffffff'; ctx.fillRect(0,0,tmp.width,tmp.height); ctx.drawImage(canvas,0,Math.round(sg[0]*S),canvas.width,h,0,Math.round(topPx*S),canvas.width,h); if(segs.length>1){ var fs=Math.round(9*S); ctx.fillStyle='#9CA3AF'; ctx.font='700 '+fs+'px Orbitron, "JetBrains Mono", monospace'; ctx.textAlign='left'; ctx.textBaseline='alphabetic'; ctx.fillText((idx+1)+' / '+segs.length, Math.round(MM_PAGE.ML/mmPerPx*S), Math.round((MM_PAGE.H-MM_PAGE.MB/mmPerPx+fs/S*0.4)*S)); } return tmp.toDataURL('image/jpeg',0.95); });
