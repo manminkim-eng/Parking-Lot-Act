@@ -13,5 +13,5 @@ for f in sorted(glob.glob(raw+'/s*.png')):
 shutil.copy(raw+'/_marks.json',M+'/images/_marks.json'); shutil.copy(raw+'/_example.json',M+'/_tools/_example.json')
 PY
 MANUAL_DIR="$M" python3 gen_manual_park.py
-node pdf_park.js "$M" 주차장_사용자매뉴얼_Ver-5.1.pdf "부설주차장 법정대수 산정기 사용자 매뉴얼 Ver-5.1"
+node pdf_park.js "$M" 주차장_사용자매뉴얼_Ver-6.1.pdf "부설주차장 법정대수 산정기 사용자 매뉴얼 Ver-6.1"
 node audit_responsive.js "$M/index.html" > "$RAW/_audit.json"

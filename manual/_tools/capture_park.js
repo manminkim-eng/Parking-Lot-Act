@@ -6,7 +6,8 @@ const repo=path.resolve(process.argv[2]),out=path.resolve(process.argv[3]);fs.mk
 const VW=+(process.env.MM_VW||1440),VH=+(process.env.MM_VH||900),DSF=+(process.env.MM_DSF||1.25),PORT=8901;
 /* 예제 A = 익산 근린생활 · 업무 복합 — 제1종 근생 450㎡ · 제2종 근생 400㎡ · 업무 1,200㎡ (앱 기본 용도 구성)
    예제 B = 익산 공동주택 + 근생 — 전용 59㎡ × 40세대 · 84㎡ × 60세대(제27조 다목) + 제1종 근생 600㎡ · 친환경차 대상
-   예제 C = 전북 조례 자동 적용 — 예제 A와 같은 용도 구성에 「익산시 주차장 설치 및 관리 조례 [별표 4]」 선택(v5.1.1) */
+   예제 C = 전북 조례 자동 적용 — 예제 A와 같은 용도 구성에 「익산시 주차장 설치 및 관리 조례 [별표 4]」 선택(v5.1.1)
+   v6.1.5(2026-11-24) 장면 추가 — s24 남원 조례 정보 · 도시형 「가목 요건」 체크 · s25 비고 6 단서 해석 · s26 「자동 산정하지 않는 규정」 · s27 전주 금융업소 줄 · s28 A4 4절 비율 ⚠ · 공공기축 5 % · s29 A4 6절 조례 줄(남원). s01은 지역 카드가 길어져 「시설 목록」 번호를 뺌 */
 const EX={
  A:{pn:'익산시 ○○동 근린생활시설 및 업무시설 신축공사',au:'김만민',city:'전북특별자치도 익산시',region:'da',ord:'',ev:false,rows:[{use:'nb1',q:450},{use:'nb2',q:400},{use:'office',q:1200}]},
  B:{pn:'익산시 ○○동 공동주택 및 근린생활시설 신축공사',au:'김만민',city:'전북특별자치도 익산시',region:'da',ord:'',ev:true,rows:[{use:'apt',units:[{a:59,n:40},{a:84,n:60}]},{use:'nb1',q:600}]},
@@ -15,8 +16,10 @@ const EX={
 const FREEZE=`(()=>{const T=new Date(2026,9,15,10,0,0).getTime();const D=Date;class F extends D{constructor(...a){if(a.length)super(...a);else super(T);}static now(){return T;}}window.Date=F;window.alert=()=>{};window.confirm=()=>true;try{localStorage.clear();localStorage.setItem('pwa-dismissed','1');}catch(e){}})()`;
 const HIDE='#toast,.toast,#pwa-banner{display:none!important}#result-col{position:static!important;max-height:none!important;overflow:visible!important}';
 const HELP=`window.__vis=e=>e&&e.getClientRects().length>0;
-window.__find=sel=>{if(sel.startsWith('nth:')){const [q,i]=sel.slice(4).split('|');return [...document.querySelectorAll(q)].filter(__vis)[+i]||null;}
- for(const s of sel.split(',')){const e=[...document.querySelectorAll(s)].find(__vis);if(e)return e;}return null;};
+window.__find1=(sel,R)=>{R=R||document;if(sel.startsWith('nth:')){const [q,i]=sel.slice(4).split('|');return [...R.querySelectorAll(q)].filter(__vis)[+i]||null;}
+ if(sel.startsWith('txt:')){const [q,x]=sel.slice(4).split('|');return [...R.querySelectorAll(q)].filter(__vis).find(e=>e.textContent.includes(x))||null;}
+ for(const s of sel.split(',')){const e=[...R.querySelectorAll(s)].find(__vis);if(e)return e;}return null;};
+window.__find=sel=>{let R=document;for(const p of sel.split('>>')){R=__find1(p.trim(),R);if(!R)return null;}return R;};/* v6.1.5 — 'A>>B' 안쪽 찾기 · 'txt:선택자|글자' */
 window.__EX=${JSON.stringify(EX)};
 window.__run=k=>{const e=__EX[k];closeModalDirect();goTab('main');
  const sv=(id,v)=>{const x=document.getElementById(id);x.value=v;};sv('a4ProjName',e.pn);sv('a4Author',e.au);
@@ -26,7 +29,7 @@ window.__run=k=>{const e=__EX[k];closeModalDirect();goTab('main');
 window.__ex=()=>JSON.parse(JSON.stringify({in:__mmPark.state,R:__mmPark.R}));`;
 const IN=i=>`nth:#input-col > .card|${i}`, RS=i=>`nth:#result-area .card|${i}`;
 const SHOTS=[
- {id:'s01_overview',pre:"__run('A')",clip:'viewport',m:[['.tab-bar-inner','작업 탭 · 매뉴얼'],['.sum-bar','요약 스트립'],[IN(0),'공사 정보(A4 표제)'],[IN(1),'지역 · 조례'],[IN(2),'시설 목록(복합용도)'],[RS(0),'산정 결과'],['#fab-group','초기화 · 이용안내']]},
+ {id:'s01_overview',pre:"__run('A')",clip:'viewport',m:[['.tab-bar-inner','작업 탭 · 매뉴얼'],['.sum-bar','요약 스트립'],[IN(0),'공사 정보(A4 표제)'],[IN(1),'지역 · 조례'],[RS(0),'산정 결과'],['#fab-group','초기화 · 이용안내']]},
  {id:'s02_tabs',clip:'header.app-header',m:[['nth:.tab-bar-inner .tb|0','산정 입력 · 결과'],['nth:.tab-bar-inner .tb|1','A4 산정서'],['.tb-manual','매뉴얼'],['.hdr-right','근거 · 시행일']]},
  {id:'s03_region',clip:IN(1),m:[['#sel-jb','전북 시 · 군 조례 선택'],['#inp-city','시 · 군 · 구'],['#sel-region27','주택 지역 구분(제27조 표)'],['#inp-ordname','적용 조례명']]},
  {id:'s04_rows_a',clip:IN(2),m:[['nth:.pk-row|0','1번 줄 — 제1종 근생 450㎡'],['nth:.pk-row|1','2번 줄 — 제2종 근생 400㎡'],['nth:.pk-row|2','3번 줄 — 업무 1,200㎡'],['nth:.pk-ord|0','조례 기준 칸'],['#pk-rows + .reset-btn','＋ 용도 추가'],['#pk-rows ~ .info-box','시설면적 · 증축 · 용도변경']]},
@@ -46,6 +49,12 @@ const SHOTS=[
  {id:'s18_a4page',clip:'#a4Page',crop:2700,m:[['nth:#a4Page .a4-sub|0','1. 산정 조건'],['nth:#a4Page .a4-sub|1','2. 용도별 산정'],['nth:#a4Page .a4-sub|2','3. 산정 결과'],['nth:#a4Page .a4-sub|3','4. 전용 주차구획'],['nth:#a4Page .a4-sub|4','5. 별표 1'],['nth:#a4Page .a4-sub|5','6. 적용 기준']]},
  {id:"s22_proj_menu",pre:"goTab('main');localStorage.setItem('MANMIN_PROJECT_V1',JSON.stringify({\"사업명\": \"익산시 ○○동 근린생활시설 신축공사\", \"작성자\": \"김만민 건축사\", \"높이\": \"15.5\", \"updated\": \"2026-11-08 10:00\", \"from\": \"일조사선\"}));window.scrollTo(0,0);document.querySelector('.mm-proj-btn').click()",wait:700,clip:'viewport',post:"document.querySelectorAll('.mm-proj-menu').forEach(e=>e.remove())",m:[[".mm-proj-btn", "「🏢 건물개요」 단추(오른쪽 아래)"], [".mm-proj-menu button[data-a=\"save\"]", "저장 — 지금 값 담기"], [".mm-proj-menu button[data-a=\"load\"]", "불러오기"], [".mm-proj-menu button[data-a=\"exp\"]", "파일로 내보내기(.json)"], [".mm-proj-menu button[data-a=\"imp\"]", "파일 가져오기"]]},
  {id:"s23_proj_load",pre:"(()=>{window.__mmK=['사업명','작성자','높이'];window.__mmB=__mmK.map(k=>MMProject.fields(k).map(e=>e.value));const __sv=(e,v)=>{const d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value');d.set.call(e,v);e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));};const e=MMProject.fields('사업명')[0];if(e)__sv(e,'');(()=>{const a=MMProject.fields('작성자')[0];if(a&&!a.value){const d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value');d.set.call(a,'김만민');a.dispatchEvent(new Event('input',{bubbles:true}));}})();localStorage.setItem('MANMIN_PROJECT_V1',JSON.stringify({\"사업명\": \"익산시 ○○동 근린생활시설 신축공사\", \"작성자\": \"김만민 건축사\", \"높이\": \"15.5\", \"updated\": \"2026-11-08 10:00\", \"from\": \"일조사선\"}));MMProject.load();})()",wait:900,fixed:true,clip:'.mm-proj-dlg',post:"(()=>{document.querySelectorAll('.mm-proj-back').forEach(e=>e.remove());const __sv=(e,v)=>{const d=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value');d.set.call(e,v);e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));};__mmK.forEach((k,i)=>MMProject.fields(k).forEach((e,j)=>{if(e.value!==__mmB[i][j])__sv(e,__mmB[i][j]);}));localStorage.removeItem('MANMIN_PROJECT_V1');})()",m:[[".mm-proj-dlg input[type=checkbox]", "체크한 항목만 채움(빈 칸은 체크된 채로)"], [".mm-proj-dlg .mm-proj-warn", "이미 입력된 칸 — 직접 체크해야 덮어씀"], [".mm-proj-dlg .mm-proj-ok", "채우기"]]},
+ {id:'s24_namwon_dosi',pre:"(()=>{const __set=(o)=>{__run('A');const sv=(id,v)=>{document.getElementById(id).value=v;};if(o.jb){sv('sel-jb',o.jb);pkSetJb(o.jb);}if(o.dis!=null)sv('inp-dispct',o.dis);if(o.ev!=null)document.getElementById('chk-ev').checked=o.ev;if(o.evold!=null)document.getElementById('chk-evold').checked=o.evold;__mmPark.setRows(o.rows);window.scrollTo(0,0);};__set({jb:'namwon',rows:[{use:'apt',units:[{a:25,n:40}],dosi:true,ga:false}]});})()",wait:900,clip:IN(1),union:IN(2),m:[['#sel-jb','남원시 선택'],['#jb-info','조례 시행 · 일련번호 · 원문 대조일'],['nth:.pk-chk|0','도시형 생활주택 — 5개층 건축 제외'],['nth:.pk-chk|1','가목 요건 모두 충족(−70 %까지)']]},
+ {id:'s25_r6_note',pre:"(()=>{const __set=(o)=>{__run('A');const sv=(id,v)=>{document.getElementById(id).value=v;};if(o.jb){sv('sel-jb',o.jb);pkSetJb(o.jb);}if(o.dis!=null)sv('inp-dispct',o.dis);if(o.ev!=null)document.getElementById('chk-ev').checked=o.ev;if(o.evold!=null)document.getElementById('chk-evold').checked=o.evold;__mmPark.setRows(o.rows);window.scrollTo(0,0);};__set({rows:[{use:'apt',units:[{a:84,n:10}]},{use:'nb1',q:140}]});})()",wait:900,clip:RS(1),m:[['nth:#result-area .fade-in > .card:nth-child(2) tbody tr|1','제5호 외 0.7 → 0대'],['txt:#result-area .note-box|비고 6 단서','비고 6 단서 해석 — 허가권자 확인']]},
+ {id:'s26_notauto',clip:'nth:#result-area .fade-in > .note-box|0',m:[]},
+ {id:'s27_jeonju_fin',pre:"(()=>{const __set=(o)=>{__run('A');const sv=(id,v)=>{document.getElementById(id).value=v;};if(o.jb){sv('sel-jb',o.jb);pkSetJb(o.jb);}if(o.dis!=null)sv('inp-dispct',o.dis);if(o.ev!=null)document.getElementById('chk-ev').checked=o.ev;if(o.evold!=null)document.getElementById('chk-evold').checked=o.evold;__mmPark.setRows(o.rows);window.scrollTo(0,0);};__set({jb:'jeonju',rows:[{use:'office_fin',q:1500}]});})()",wait:900,clip:IN(2),m:[['nth:.pk-row|0>>select','금융업소(전북핀테크육성지구 안) 줄'],['nth:.pk-ord|0','비우면 전주시 조례 150㎡']]},
+ {id:'s28_a4_ratio',pre:"(()=>{const __set=(o)=>{__run('A');const sv=(id,v)=>{document.getElementById(id).value=v;};if(o.jb){sv('sel-jb',o.jb);pkSetJb(o.jb);}if(o.dis!=null)sv('inp-dispct',o.dis);if(o.ev!=null)document.getElementById('chk-ev').checked=o.ev;if(o.evold!=null)document.getElementById('chk-evold').checked=o.evold;__mmPark.setRows(o.rows);window.scrollTo(0,0);};__set({dis:'0',ev:true,evold:true,rows:[{use:'office',q:7500}]});goTab('print');scrollTo(0,0);})()",wait:1500,clip:'nth:#a4Page .a4-sub|3',union:'nth:#a4Page table.a4-tbl|1',m:[['nth:#a4Page table.a4-tbl|1>>nth:tbody tr|0','장애인 0 % — ⚠ 2~4 % 범위 밖'],['nth:#a4Page table.a4-tbl|1>>nth:tbody tr|1','기축 2 % · 공공기축 5 %']]},
+ {id:'s29_a4_jb',pre:"(()=>{const __set=(o)=>{__run('A');const sv=(id,v)=>{document.getElementById(id).value=v;};if(o.jb){sv('sel-jb',o.jb);pkSetJb(o.jb);}if(o.dis!=null)sv('inp-dispct',o.dis);if(o.ev!=null)document.getElementById('chk-ev').checked=o.ev;if(o.evold!=null)document.getElementById('chk-evold').checked=o.evold;__mmPark.setRows(o.rows);window.scrollTo(0,0);};__set({jb:'namwon',rows:[{use:'nb1',q:450},{use:'nb2',q:400},{use:'office',q:1200}]});goTab('print');scrollTo(0,0);})()",wait:1500,clip:'nth:#a4Page .a4-sub|5',union:'nth:#a4Page .a4-meta-table|1',crop:1500,post:"goTab('main')",m:[['nth:#a4Page .a4-meta-table|1>>txt:tr|자치법규 일련번호','조례 — 시행 · 일련번호 · 원문 대조일'],['nth:#a4Page .a4-meta-table|1>>txt:tr|검토 범위','검토 범위 — 자동 산정 안 함']]}
 ];
 (async()=>{
  const s=await server(repo,PORT);const b=await chromium.launch({args:['--lang=ko-KR'],env:{...process.env,LANG:'ko_KR.UTF-8',LANGUAGE:'ko',LC_ALL:'ko_KR.UTF-8'}});
@@ -63,6 +72,9 @@ const SHOTS=[
   if(S.id==='s01_overview')ex.A=await pg.evaluate('__ex()');
   if(S.id==='s09_rows_b')ex.B=await pg.evaluate('__ex()');
   if(S.id==='s12_rows_c')ex.C=await pg.evaluate('__ex()');
+  if(S.id==='s25_r6_note')ex.r6=await pg.evaluate('__ex()');
+  if(S.id==='s24_namwon_dosi')ex.namwon=await pg.evaluate('__ex()');
+  if(S.id==='s29_a4_jb')ex.namwon_a4=await pg.evaluate(()=>document.getElementById('a4Page').innerText.replace(/\s+/g,' '));
   if(S.id==='s18_a4page')ex.B_a4=await pg.evaluate(()=>document.getElementById('a4Page').innerText.replace(/\s+/g,' '));
   const info=await pg.evaluate(({S,VW,VH})=>{
    const abs=e=>{const r=e.getBoundingClientRect();return {x:r.left+scrollX,y:r.top+scrollY,w:r.width,h:r.height};};
